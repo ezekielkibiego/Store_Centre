@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Store Centre {% endblock %}
+{% block css %}
+{% endblock %}
+{% block content %}
+<div class="container">
+<br>
+<h1 class="text-center"><u>Client Login</u></h1>
+    <form method="POST"> {% csrf_token %}
+
+    <div class="row mt-4">
+        <div class="form-group col-md-12">
+            <label><i style="font-weight: bold;">Username</i></label>
+            <input type="text" class="form-control mt-2" name="username" placeholder="Enter Username" required>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="form-group col-md-12">
+            <label><i style="font-weight: bold;">Password</i></label>
+            <input type="password" class="form-control mt-2" name="password" placeholder="Enter Password" required>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-outline-primary mt-4">Login</button>
+</div>
+{% endblock %}
