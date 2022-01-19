@@ -42,7 +42,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'store',
-    
+    'units',
     'cloudinary',
     'crispy_forms',
     'django.contrib.admin',
