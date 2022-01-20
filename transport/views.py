@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, render
-import transport
+from transport.models import *
 from transport.forms import *
 
 def request_transport(request):
@@ -17,3 +17,10 @@ def request_transport(request):
         'form':form
     }
     return render(request,'request_transport.html', context)
+
+def request_summary(request):
+    transport_request = Transport.objects.filter(user=request.user).last()
+    context = {
+        'transport_request': transport_request,
+    }
+    return render(request,'request_summary.html', context)
