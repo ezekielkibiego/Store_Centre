@@ -107,9 +107,13 @@ virtual
 .venv
 env/
 venv/
+original/
 ENV/
 env.bak/
 venv.bak/
+start.sh
+migrate.sh
+migrations.sh
 
 # Spyder project settings
 .spyderproject
