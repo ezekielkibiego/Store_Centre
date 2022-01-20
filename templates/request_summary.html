@@ -12,27 +12,30 @@
     <div class="row">
         <div class="col-md-2"></div>
         <div class="col-md-8">
+            <a class="btn btn-primary m-5 mb-0" href="{%url 'index'%}" role="button">BACK</a>
             <div class="card m-5" >
-            <div class="row g-0">
-                <div class="col-md-4">
-                <img src="https://images.pexels.com/photos/6170154/pexels-photo-6170154.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" class="img-fluid rounded-start" alt="image of shipping boxes" style="height: 100%;">
-                </div>
-                <div class="col-md-8">
-                <div class="card-body">
-                    <h5 class="card-title">Transport Request Summary</h5>
-                    <p class="card-text"><strong>FIRST NAME: </strong>{{request_transport.user.first_name}}</p>
-                    <p class="card-text"><strong>LAST NAME:</strong>{{request_transport.user.last_name}}</p>
-                    <p class="card-text"><strong>TYPE OF REQUEST:</strong>{{request_transport.transport_type}}</p>
-                    <p class="card-text"><strong>GOODS TO BE TRANSPORTED:</strong></p>
-                    <p class="card-text"><strong>COUNTY:</strong>{{request_transport.county}}</p>
-                    <p class="card-text"><strong>TOWN:</strong>{{request_transport.town}}</p>
-                    <p class="card-text"><strong>ADDRESS:</strong>{{request_transport.address}}</p>
-                    <p class="card-text"><strong>PHONE NUMBER:</strong>{{request_transport.phone_number}}</p>
-                    <p class="card-text"><strong>EMAIL:</strong>{{request_transport.user.email}}</p>
-                    <p class="card-text"><strong>STATUS:</strong>PENDING</p>
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="https://images.pexels.com/photos/6170154/pexels-photo-6170154.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" class="img-fluid rounded-start" alt="image of shipping boxes" style="height: 100%;">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">Transport Request Summary</h5>
+                            <p class="card-text"><strong>FIRST NAME: </strong>{{request_transport.user.first_name}}</p>
+                            <p class="card-text"><strong>LAST NAME: </strong>{{request_transport.user.last_name}}</p>
+                            <p class="card-text"><strong>TYPE OF REQUEST: </strong>{{request_transport.transport_type}}</p>
+                            <p class="card-text"><strong>GOODS TO BE TRANSPORTED: </strong></p>
+                            <p class="card-text"><strong>COUNTY: </strong>{{request_transport.county}}</p>
+                            <p class="card-text"><strong>TOWN: </strong>{{request_transport.town}}</p>
+                            <p class="card-text"><strong>ADDRESS: </strong>{{request_transport.address}}</p>
+                            <p class="card-text"><strong>PHONE NUMBER: </strong>{{request_transport.phone_number}}</p>
+                            <p class="card-text"><strong>EMAIL: </strong>{{request_transport.user.email}}</p>
+                            <p class="card-text"><strong>STATUS: PENDING</strong></p>
+                        </div>
+                    </div>
                 </div>
             </div>
-            </div>
+            <a class="btn btn-success m-5 mt-0" href="{%url 'index'%}" role="button">DONE</a>
         </div>
         <div class="col-md-2"></div>
     </div>
