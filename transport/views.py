@@ -1,8 +1,18 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
+import transport
 from transport.forms import *
 
 def request_transport(request):
-    form= TransportForm()
+    if request.method == 'POST':
+        form = TransportForm(request.POST)
+        if form.is_valid():
+            transport_request = form.save(commit=False)
+            transport_request.user = request.user
+            transport_request.save()
+        else:
+            pass
+    else:
+        form =TransportForm()
     context = {
         'form':form
     }

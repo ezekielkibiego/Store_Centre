@@ -13,7 +13,6 @@
         <div class="col-sm-8">
             <h1 class="text-center">REQUEST TRANSPORT</h1>
             <form method="POST" class="form-group">
-                <div class="form-group"></div>
                 {% csrf_token %}
                 {{ form|crispy }}
                 <button type="submit" class="btn btn-success">SUBMIT</button>
