@@ -43,6 +43,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'store',
     'transport.apps.TransportConfig',
+    'units',
     'cloudinary',
     'crispy_forms',
     'django.contrib.admin',
