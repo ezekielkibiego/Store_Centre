@@ -92,7 +92,9 @@ cloudinary.config(
     api_secret=config('CD_SECRET'),
 )
 
-
+#GOOGLE API
+GOOGLE_API_KEY= config('GOOGLE_API_KEY')
+BASE_COUNTRY='KE'
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases

@@ -1,7 +1,9 @@
 from django.shortcuts import redirect, render
 from transport.models import *
 from transport.forms import *
+from django.contrib.auth.decorators import login_required
 
+@login_required(login_url='client_login')
 def request_transport(request):
     if request.method == 'POST':
         form = TransportForm(request.POST)
@@ -18,6 +20,7 @@ def request_transport(request):
     }
     return render(request,'request_transport.html', context)
 
+@login_required(login_url='client_login')
 def request_summary(request):
     transport_request = Transport.objects.filter(user=request.user).last()
     context = {
