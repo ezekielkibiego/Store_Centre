@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-from units.models import Goods
 
 class Transport(models.Model):
     PICKUP='Pick-Up'
@@ -19,7 +18,8 @@ class Transport(models.Model):
     county =models.CharField(max_length=50)
     town = models.CharField(max_length=50)
     address = models.CharField(max_length=100)
-    goods = models.ForeignKey(Goods,on_delete=models.CASCADE)
+    phone_number = models.CharField(max_length=15, null=True)
+    transport_goods = models.ManyToManyField('units.Goods')
     
     def __str__(self):
         return self.county
