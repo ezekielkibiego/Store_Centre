@@ -52,6 +52,24 @@ def client_login(request):
             return render(request, "client_login.html", {'alert':alert})
     return render(request, "client_login.html")
 
+def staff_login(request):
+    if request.method == "POST":
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            if request.user.is_superuser:
+                return redirect("/")
+            else:
+                return HttpResponse("You are not a staff.")
+        else:
+            alert = True
+            return render(request, "staff_login.html", {'alert':alert})
+    return render(request, "staff_login.html")
+
+
 def admin_login(request):
     if request.method == "POST":
         username = request.POST['username']
@@ -61,7 +79,7 @@ def admin_login(request):
         if user is not None:
             login(request, user)
             if request.user.is_superuser:
-                return redirect("/add_book")
+                return redirect("")
             else:
                 return HttpResponse("You are not an admin.")
         else:

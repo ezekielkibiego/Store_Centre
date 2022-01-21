@@ -4,63 +4,128 @@
 {% block css %}
 {% endblock %}
 {% block content %}
-<div class="container">
-    <form method="POST" enctype="multipart/form-data"> {% csrf_token %}
-        <br>
-        <h1 class="text-center"><u>Client Registration</u></h1>
-    <div class="row mt-4">
-        <div class="form-group col-md-12">
-            <label><i style="font-weight: bold;">Username</i></label>
-            <input type="text" class="form-control mt-2" name="username" placeholder="Enter Username" required>
-        </div>
-    </div>
 
-    <div class="row mt-4">
-        <div class="form-group col-md-6">
-            <label><i style="font-weight: bold;">First Name</i></label>
-            <input type="text" class="form-control mt-2" name="first_name" placeholder="Enter First Name" required>
-        </div>
-        <div class="form-group col-md-6">
-            <label><i style="font-weight: bold;">Last Name</i></label>
-            <input type="text" class="form-control mt-2" name="last_name" placeholder="Enter Last Name" required>
-        </div>
-    </div>
+<div class="overlay" style="box-shadow:inset 0 0 0 2000px rgba(23, 34, 23, 0.863);background-image: url(/static/images/hero_1.jpg);color: white;" data-aos="fade" id="home-section">
 
-    <div class="row mt-4">
-        <div class="form-group col-md-6">
-            <label><i style="font-weight: bold;">Email</i></label>
-            <input type="email" class="form-control mt-2" name="email" placeholder="Enter Email" required>
-        </div>
-        <div class="form-group col-md-6">
-            <label><i style="font-weight: bold;">Mobile Number</i></label>
-            <input type="number" class="form-control mt-2" name="phone" placeholder="Enter Mobile Number" required>
-        </div>
-    </div>
 
-    <div class="row mt-4">
-        <div class="form-group col-md-6">
-            <label><i style="font-weight: bold;">Location Name</i></label>
-            <input type="text" class="form-control mt-2" name="branch" placeholder="Enter Location Name" required>
-        </div>
-        <div class="form-group col-md-6">
-            <label><i style="font-weight: bold;">Client Image</i></label>
-            <input type="file" class="form-control mt-2" name="image" required>
-        </div>
+  <div class="container">
+    <div class="row align-items-center justify-content-center">
+      <div class="col-md-6 mt-lg-5 text-center">
+        <br><br>
+        <h1>Registration</h1> 
+        <div style="margin-bottom: 10px;">
+        </div>           
+      </div>
     </div>
-    <div class="row mt-4">
-        <div class="form-group col-md-6">
-            <label><i style="font-weight: bold;">Password</i></label>
-            <input type="password" class="form-control mt-2" name="password" placeholder="Enter Password" required>
-        </div>
-        <div class="form-group col-md-6">
-            <label><i style="font-weight: bold;">Confirm Password</i></label>
-            <input type="password" class="form-control mt-2" name="confirm_password" placeholder="Confirm Password" required>
-        </div>
+  </div>
+<br><br>
+  <a href="#heading" class="smoothscroll arrow-down"><span class="icon-arrow_downward"></span></a>
+</div>  
+
+
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-11 col-sm-10 col-md-10 col-lg-6 col-xl-5 text-center p-0 mt-3 mb-2">
+      <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
+        <h2 id="heading">Client Registration</h2>
+        <p>Fill all the form fields to go to the next step</p>
+        <form method="POST" enctype="multipart/form-data" id="msform">
+          {% csrf_token %}
+          <!-- progressbar -->
+          <ul id="progressbar">
+            <li class="active" id="personal"><strong>Personal</strong></li>
+            <li id="account"><strong>Account</strong></li>
+            <li id="payment"><strong>Image</strong></li>
+            <li id="confirm"><strong>Finish</strong></li>
+          </ul>
+          <div class="progress">
+            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemin="0"
+              aria-valuemax="100"></div>
+          </div> <br> <!-- fieldsets -->
+          
+          <fieldset>
+            <div class="form-card">
+              <div class="row">
+                <div class="col-7">
+                  <h2 class="fs-title">Personal Information:</h2>
+                </div>
+                <div class="col-5">
+                  <h2 class="steps">Step 1 - 4</h2>
+                </div>
+              </div>
+              <label class="fieldlabels">First Name: *</label> 
+              <input style="border-radius: 5px;background-color: rgba(240, 248, 255, 0.681);" required type="text" name="first_name" placeholder="First Name" />
+              <label class="fieldlabels">Last Name: *</label>
+              <input style="border-radius: 5px;background-color: rgba(240, 248, 255, 0.681);" required type="text" name="last_name" placeholder="Last Name" />
+              <label class="fieldlabels">User Name: *</label>
+              <input style="border-radius: 5px;background-color: rgba(240, 248, 255, 0.681);" aria-required="true" type="text" name="username" required placeholder="User Name" />
+            </div>
+            <input type="button" name="next" class="next action-button" value="Next" />
+          </fieldset>
+          <fieldset>
+            <div class="form-card">
+              <div class="row">
+                <div class="col-7">
+                  <h2 class="fs-title">Account Information:</h2>
+                </div>
+                <div class="col-5">
+                  <h2 class="steps">Step 2 - 4</h2>
+                </div>
+              </div>
+              <label class="fieldlabels">Email: *</label>
+              <input type="email" style="border-radius: 5px;background-color: rgba(240, 248, 255, 0.681);" required name="email" placeholder="Email" />
+              <label class="fieldlabels">Contact No.: *</label>
+              <input style="border-radius: 5px;background-color: rgba(240, 248, 255, 0.681);" type="tel" name="phone" required placeholder="Enter Mobile Number." />
+              <label class="fieldlabels">Password.: *</label>
+              <input style="border-radius: 5px;background-color: rgba(240, 248, 255, 0.681);" required style="border-radius: 20px;background-color: rgba(240, 248, 255, 0.681);" type="password" name="password" />
+              <label class="fieldlabels">Confirm Password.: *</label>
+              <input style="border-radius: 5px;background-color: rgba(240, 248, 255, 0.681);" required type="password" name="confirm_password"/>
+            </div>
+            <input type="button" name="next" class="next action-button" value="Next" />
+            <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+          </fieldset>
+          <fieldset>
+            <div class="form-card">
+              <div class="row">
+                <div class="col-7">
+                  <h2 class="fs-title">Image Upload:</h2>
+                </div>
+                <div class="col-5">
+                  <h2 class="steps">Step 3 - 4</h2>
+                </div>
+              </div> <label class="fieldlabels">Upload Your Photo (optional):</label>
+              <input type="file" style="border-radius: 20px;background-color: rgba(240, 248, 255, 0.681);"  name="image">
+            </div>
+            <button style="margin-top:10px;border-radius: 0px;" class="btn btn-lg btn-primary float-right" type="submit" name="next" class="next action-button">Submit</button>
+            <input style="margin-left: 10px;" type="button" name="previous" class="previous float-left action-button-previous " value="Previous" />
+            <!-- <input style="border-radius: 5px;" type="button" name="next" class="next action-button" value="Skip&Submit" /> -->
+          </fieldset>
+          <fieldset>
+            <div class="form-card">
+              <div class="row">
+                <div class="col-7">
+                  <h2 class="fs-title">Finish:</h2>
+                </div>
+                <div class="col-5">
+                  <h2 class="steps">Step 4 - 4</h2>
+                </div>
+              </div> <br><br>
+              <h2 class="purple-text text-center"><strong>SUCCESS !</strong></h2> <br>
+              <div class="row justify-content-center">
+                <div class="col-3"> <img src="/static/images/signup/signup.png" class="fit-image"> </div>
+              </div> <br><br>
+              <div class="row justify-content-center">
+                <div class="col-7 text-center">
+                  <h5 class="purple-text text-center">You Have Successfully Signed Up</h5>
+                </div>
+              </div>
+            </div>
+            <button class="btn btn-dark btn-sm mt-4">Login</button>
+          </fieldset>
+        </form>
+      </div>
     </div>
-    <button type="submit" class="btn btn-outline-primary mt-4">Register As Client</button>
+  </div>
 </div>
-</form>
+
 {% endblock %}
-
-
-
