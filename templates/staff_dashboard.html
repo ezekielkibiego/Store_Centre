@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+
+{% load static %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-2">
+            <a href="{% url 'units' 'normal_storage' %}">
+                <div class="card">
+                    <h1>Normal storage</h1>
+                    <p>{{normal_units.count}}</p>
+                </div>
+            </a></div>
+        <div class="col-md-2">
+            <a href="{% url 'units' 'cold_storage' %}">
+                <div class="card">
+                    <h1>Cold storage</h1>
+                    <p>{{cold_units.count}}</p>
+                </div>
+            </a></div>
+        <div class="col-md-2">
+            <a href="{% url 'units' 'hazardious_storage' %}">
+                <div class="card" >
+                    <h1>Hazardious storage</h1>
+                    <p>{{hazardious_units.count}}</p>
+                </div>
+            </a></div>
+        <div class="col-md-2">
+            <a href="{% url 'units' 'archive_storage' %}">
+                <div class="card" >
+                    <h1>Archive storage</h1>
+                    <p>{{archive_units.count}}</p>
+                </div>
+            </a></div>
+        <div class="col-md-2">
+            <a href="{% url 'units' 'bonded_storage' %}">
+                <div class="card" >
+                    <h1>Bonded storage</h1>
+                    <p>{{bonded_units.count}}</p>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+</div>
+{% endblock %}

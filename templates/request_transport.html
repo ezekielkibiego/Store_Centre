@@ -1,0 +1,47 @@
+{%extends 'base.html'%}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block title %} Request Transport{% endblock %}
+{% block css %}
+{% endblock %}
+
+
+{%block content%}
+<div class="container-fluid">
+    <div class="row ">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+            <h1 class="text-center">REQUEST TRANSPORT</h1>
+            <form method="POST" class="form-group">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                    NEXT
+                </button>
+                
+                <!-- Modal -->
+                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">REQUEST CONFIRMATION</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                        <p>Submit form with the input details?</p>
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-success" data-bs-dismiss="modal">EDIT</button>
+                        <button type="submit" class="btn btn-success">SUBMIT</button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-sm-2"></div>
+    </div>
+</div>
+
+{%endblock%}
