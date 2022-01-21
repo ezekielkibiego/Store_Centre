@@ -10,7 +10,7 @@ class Transport(models.Model):
         
     )
     transport_type = models.CharField(
-        max_length=7,
+        max_length=10,
         choices=TRANSPORT_CHOICES,
         default=PICKUP
     )
