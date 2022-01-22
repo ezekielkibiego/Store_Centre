@@ -18,6 +18,7 @@ django-crispy-forms==1.13.0
 django-emoji-picker==0.0.6
 django-extensions==2.2.5
 django-heroku==0.3.1
+django-jazzmin==2.4.9
 django-phone-field==1.8.1
 django-registration==3.1.2
 django-tinymce==3.4.0
