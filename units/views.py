@@ -1,18 +1,31 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from .models import *
+from transport.models import *
 from .forms import UnitForm,GoodsBookingForm
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+@login_required(login_url = '/client_login')
 def book_unit(request):
+    
     if request.method == 'POST':
         form = GoodsBookingForm(request.POST)
         if form.is_valid():
             goods_booking = form.save(commit=False)
-            goods_booking.user = request.user
-            goods_booking.save()
-
-            pick_up = form.cleaned_data.get['pick_up']
-            location = form.cleaned_data.get['location']
+            storage_type= form.cleaned_data.get('storage_type')
+            available_units = Unit.objects.filter(type=storage_type,booked=False)
+            if available_units is not None:
+                goods_booking.owner = request.user
+                goods_booking.unit_no = available_units[0]
+                booked_unit = Unit.objects.filter(pk = available_units[0].pk ).first()
+               
+                booked_unit.booked = True
+                booked_unit.add_unit()
+                
+                goods_booking.save()
+            else:
+                print('no slots available')
+                
         return redirect('book')
     else:
         form = GoodsBookingForm()
@@ -41,7 +54,7 @@ def dashboard(request):
 
 def display_units(request,storage_type):
 
-    units = Unit.objects.filter(type=storage_type,booked=False)
+    units = Unit.objects.filter(type=storage_type,booked=True)
    
 
     if request.method == 'POST':
