@@ -1,5 +1,6 @@
 from django.shortcuts import redirect, render,HttpResponse
 from .models import *
+from units.models import *
 from django.contrib.auth import authenticate, login, logout
 from . import *
 from datetime import date
@@ -9,6 +10,15 @@ from django.contrib.auth.decorators import login_required
 
 def IndexView(request):
     return render(request, 'index.html')
+
+
+@login_required(login_url = '/client_login')
+def records(request):
+    records = Goods.objects.filter(owner=request.user).all()
+
+    return render(request, "records.html",{records:'records'})
+
+
 
 
 def client_registration(request):
@@ -79,7 +89,7 @@ def admin_login(request):
         if user is not None:
             login(request, user)
             if request.user.is_superuser:
-                return redirect("")
+                return redirect("/")
             else:
                 return HttpResponse("You are not an admin.")
         else:

@@ -5,7 +5,7 @@ from .forms import UnitForm,GoodsBookingForm
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
-@login_required(login_url = '/client_login')
+# @login_required(login_url = '/client_login')
 def book_unit(request):
     
     if request.method == 'POST':
