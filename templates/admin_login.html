@@ -50,8 +50,33 @@
 
 <div style="margin-top: -90px;" class="limiter">
   <div class="wrap-login100">
-      <div class="login100-pic js-tilt" data-tilt>
-          <img src="/static/images/hoverable/img-01.png" alt="IMG">
+    <div class="login100-pic js-tilt" data-tilt>
+      <img style="margin-top: 70px;"
+        src="https://images.squarespace-cdn.com/content/v1/52797d42e4b01f648b9e8392/1455601046694-12NE4QQDGEHQ6TDTRHYJ/Blueconic__Chair_WhiteBG-trzown.gif?format=500w"
+        alt="IMG">
+    </div>
+
+    <form method="POST" enctype="multipart/form-data" class="login100-form validate-form">
+      {% csrf_token %}
+      <span class="login100-form-title">
+        <span class="badge badge-dark  text-center">ADMIN ONLY <i class="fa fa-user-circle"></i></span>
+      </span>
+      <p class="text-center"><b>Note: </b> Only the <strong>Admin</strong> can login from here. <br> No
+        <strong>Client</strong> will be allowed to login.</p><br>
+      <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+        <input style="outline: none;border: none;" class="input100" type="text" name="username" placeholder="Enter your username">
+        <span class="focus-input100"></span>
+        <span class="symbol-input100">
+          <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+        </span>
+      </div>
+
+      <div class="wrap-input100 validate-input" data-validate="Password is required">
+        <input style="outline: none;border: none;" class="input100" type="password" name="password" placeholder="Enter Password">
+        <span class="focus-input100"></span>
+        <span class="symbol-input100">
+          <i class="fa fa-lock" aria-hidden="true"></i>
+        </span>
       </div>
 
       <form method="POST" enctype="multipart/form-data" class="login100-form validate-form">
