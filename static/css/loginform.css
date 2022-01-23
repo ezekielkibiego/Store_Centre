@@ -45,7 +45,7 @@ ul, li {
 
 
 /*---------------------------------------------*/
-input {
+/* input {
 	outline: none;
 	border: none;
 }
@@ -77,7 +77,7 @@ input:-ms-input-placeholder { color: #999999; }
 textarea::-webkit-input-placeholder { color: #999999; }
 textarea:-moz-placeholder { color: #999999; }
 textarea::-moz-placeholder { color: #999999; }
-textarea:-ms-input-placeholder { color: #999999; }
+textarea:-ms-input-placeholder { color: #999999; } */
 
 /*---------------------------------------------*/
 button {
@@ -424,3 +424,20 @@ iframe {
     opacity: 1;
   }
 }
+
+
+.gradient-custom {
+  /* fallback for old browsers */
+  background: #f6d365;
+
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(to right bottom, rgb(101, 246, 210), rgb(80, 146, 245));
+
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(to right bottom, rgba(101, 236, 210), rgb(80, 146, 245))
+}
+
+
+
+
+
