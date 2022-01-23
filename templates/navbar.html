@@ -113,20 +113,31 @@
             <li><a href="/" class="nav-link">About</a></li>
             <li><a href="/" class="nav-link">News</a></li>
             <li><a href="/" class="nav-link">Contact</a></li>
+            {% if user.is_authenticated %}
+            {% else %}
             <li><a href="/client_registration/" class="nav-link">Register</a></li>
+            {% endif %}
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
+                {% if user.is_authenticated %}
+                Profile
+                {% else %}
                 Login
+                {% endif %}
               </a>
               <div class="dropdown-menu" style="background-color: rgba(127, 255, 212, 0.671);"
                 aria-labelledby="navbarDropdown">
+                {% if user.is_authenticated %}
+                <a style="border-radius: 50px;" class="text-dark dropdown-item" href="/profile/">Profile</a>
+                <a style="border-radius: 50px;" class="text-dark dropdown-item" href="/edit_profile/">Edit Profile</a>
+                <a style="border-radius: 50px;" class="text-dark dropdown-item" href="/change_password/">Change Password</a>
+                <a style="border-radius: 50px;" class="text-dark dropdown-item" href="/logout/">Logout</a>
+                {% else %}
                 <a style="border-radius: 50px;" class="text-dark dropdown-item" href="/admin_login/">Admin Login</a>
                 <a style="border-radius: 50px;" class="text-dark dropdown-item" href="/client_login/">Client Login</a>
                 <a style="border-radius: 50px;" class="text-dark dropdown-item" href="/staff_login/">Staff Login</a>
-                <a style="border-radius: 50px;" class="text-dark dropdown-item" href="/change_password/">Change Password</a>                
-                <a style="border-radius: 50px;" class="text-dark dropdown-item" href="/logout/">Logout</a>
-
+                {% endif %}
               </div>
             </li>
             <li><a href="/" class="nav-link"><strong>?</strong></a></li>
@@ -142,5 +153,4 @@
   </div>
 
 </header>
-
 
