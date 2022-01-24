@@ -175,8 +175,9 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 django_heroku.settings(locals())
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '535807003840-igrbersia47b1hmuvt6megjnrnf4o04e.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = config('S_KEY')
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = config('S_SECRET')
 
 LOGIN_REDIRECT_URL = 'index'
 
