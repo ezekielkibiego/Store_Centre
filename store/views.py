@@ -40,7 +40,7 @@ def admin_login(request):
             login(request, user)
             if request.user.is_superuser:
 
-                return redirect("/")
+                return redirect("/admin")
 
             else:
                 return HttpResponse("You are not an admin.")
@@ -76,25 +76,27 @@ def register(request):
     return render(request, 'register.html')
 
 class client_register(CreateView):
-    model = User
+    model = Client
     form_class = ClientSignUpForm
     template_name = 'client_registration.html'
 
     def form_valid(self, form):
         user = form.save()
         login(self.request, user)
-        return redirect('/')
+        return redirect('/client_login')
 
 
 class staff_register(CreateView):
-    model = User
+    model = Staff
     form_class = StaffSignUpForm
     template_name = 'staff_registration.html'
+
+    
 
     def form_valid(self, form):
         user = form.save()
         login(self.request, user)
-        return redirect('/')
+        return redirect('/staff_login')
 
 def client_login(request):
     if request.method=='POST':
@@ -105,11 +107,13 @@ def client_login(request):
             user = authenticate(username=username, password=password)
             if user is not None :
                 login(request,user)
-                return redirect('/')
+                if request.user.is_client:
+                    return redirect('/')
             else:
-                messages.error(request,"Invalid username or password")
+                return HttpResponse("You are not a Client.")
         else:
-                messages.error(request,"Invalid username or password")
+            alert = True
+            return render(request, "client_login.html", {'alert':alert})
     return render(request, 'client_login.html',
     context={'form':AuthenticationForm()})
 
@@ -122,11 +126,13 @@ def staff_login(request):
             user = authenticate(username=username, password=password)
             if user is not None :
                 login(request,user)
-                return redirect('/')
+                if request.user.is_staff:
+                    return redirect('/analytics')
             else:
-                messages.error(request,"Invalid username or password")
+                return HttpResponse("You are not a Staff.")
         else:
-                messages.error(request,"Invalid username or password")
+            alert = True
+            return render(request, "staff_login.html", {'alert':alert})
     return render(request, 'staff_login.html',
     context={'form':AuthenticationForm()})
 

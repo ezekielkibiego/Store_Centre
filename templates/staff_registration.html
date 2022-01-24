@@ -1,6 +1,7 @@
 {%extends "base.html"%} 
 {% load bootstrap4 %}
 {% block content %}
+{% load widget_tweaks %}
 
 <div class="overlay" style="box-shadow:inset 0 0 0 2000px rgba(23, 34, 23, 0.863);background-image: url(/static/images/hero_1.jpg);color: white;" data-aos="fade" id="home-section">
 
@@ -18,17 +19,6 @@
   <br><br>
     <a href="#heading" class="smoothscroll arrow-down"><span class="icon-arrow_downward"></span></a>
 </div>  
-  
-<!-- <div class="container">
-    <form  action="{% url 'staff_register' %}" method="post">
-        {% csrf_token %}
-        {% bootstrap_form form %}
-        <div class="form-group">
-          <input type="submit" class="btn bg-dark text-white" value="Create Account">
-        </div>
-        <input type="hidden" name="next" value="{{next}}">
-    </form>
-</div> -->
 
 
 
@@ -38,8 +28,8 @@
       <div class="card px-0 pt-4 pb-0 mt-3 mb-3" style="box-shadow: 0px 0px 2px black;">
         <div class="container">
           <h2 id="heading">Staff Registration</h2>
-          <p>Fill all the form fields to go to the next step</p>
-          <form method="POST" enctype="multipart/form-data" id="msform">
+          <p>Make Sure To Fill All The Form fields</p>
+          <form action="{% url 'staff_register' %}" method="post" id="msform">
             {% csrf_token %}
             <!-- progressbar -->
             <ul id="progressbar">
@@ -64,11 +54,11 @@
                   </div>
                 </div>
                 <label class="fieldlabels">First Name: *</label> 
-                <input style="border-radius: 5px;background-color: rgba(240, 248, 255, 0.681);" required type="text" name="first_name" placeholder="First Name" />
+                {{form.first_name}}
                 <label class="fieldlabels">Last Name: *</label>
-                <input style="border-radius: 5px;background-color: rgba(240, 248, 255, 0.681);" required type="text" name="last_name" placeholder="Last Name" />
+                {{form.last_name}}
                 <label class="fieldlabels">User Name: *</label>
-                <input style="border-radius: 5px;background-color: rgba(240, 248, 255, 0.681);" aria-required="true" type="text" name="username" required placeholder="User Name" />
+                {{form.username}}
               </div>
               <input type="button" style="border-radius: 5px;" name="next" class="next action-button" value="Next" />
             </fieldset>
@@ -76,18 +66,17 @@
               <div class="form-card">
                 <div class="row">
                   <div class="col-7">
-                    <h2 class="fs-title">Account Information:</h2>
+                    <h2 class="fs-title">Account Encryption:</h2>
                   </div>
                   <div class="col-5">
                     <h2 class="steps">Step 2 - 4</h2>
                   </div>
                 </div>
-                <label class="fieldlabels">Email: *</label>
-                <input type="email" style="border-radius: 5px;background-color: rgba(240, 248, 255, 0.681);" required name="email" placeholder="Email" />
+                
                 <label class="fieldlabels">Password.: *</label>
-                <input style="border-radius: 5px;background-color: rgba(240, 248, 255, 0.681);" required style="border-radius: 20px;background-color: rgba(240, 248, 255, 0.681);" type="password" name="password" />
+                {{form.password1}}
                 <label class="fieldlabels">Confirm Password.: *</label>
-                <input style="border-radius: 5px;background-color: rgba(240, 248, 255, 0.681);" required type="password" name="confirm_password"/>
+                {{form.password2}}
               </div>
               <input type="button" style="border-radius: 5px;" name="next" class="next action-button" value="Next" />
               <input type="button" style="border-radius: 5px;" name="previous" class="previous action-button-previous" value="Previous" />
@@ -102,12 +91,12 @@
                     <h2 class="steps">Step 3 - 4</h2>
                   </div>
                 </div>
-                <label class="fieldlabels">Contact No.: *</label>
-                <input style="border-radius: 5px;background-color: rgba(240, 248, 255, 0.681);" type="tel" name="phone" required placeholder="Enter Mobile Number." />
+                <label class="fieldlabels">Email.: *</label>
+                {{form.email}}
                 <label class="fieldlabels">Designation:</label>
-                <input type="text" style="border-radius: 20px;background-color: rgba(240, 248, 255, 0.681);"  name="designation">
+                {{form.designation|add_error_class:"error-border"}}
               </div>
-              <button style="margin-top:10px;border-radius: 0px;" class="btn btn-lg btn-primary float-right" type="submit" name="next" class="next action-button">Submit</button>
+              <input type="button" style="border-radius: 5px;" name="next" class="next action-button" value="Next" />
               <input style="margin-left: 10px;border-radius: 5px;" type="button" name="previous" class="previous float-left action-button-previous " value="Previous" />
             </fieldset>
             <fieldset>
@@ -127,7 +116,7 @@
                 <div class="row justify-content-center">
                   <div class="col-7 text-center">
                     <h5 class="purple-text text-center">You're One Click Away From Creation</h5>
-                    <small>* make sure you fill all required fields before finishing</small>
+                    <small>* make sure you fill all required fields before clicking finish</small>
                   </div>
                 </div>
               </div>
