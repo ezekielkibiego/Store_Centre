@@ -13,7 +13,7 @@ p {
 
 #heading {
     text-transform: uppercase;
-    color: #37cfa2;
+    color: #0a4a37;
     font-weight: normal
 }
 
@@ -161,12 +161,12 @@ p {
 
 #progressbar #personal:before {
     font-family: FontAwesome;
-    content: "\f007"
+    content: "\f2bb"
 }
 
 #progressbar #payment:before {
     font-family: FontAwesome;
-    content: "\f030"
+    content: "\f1e4"
 }
 
 #progressbar #confirm:before {
@@ -1026,3 +1026,45 @@ p {
 }
 
 
+
+/*------------------------------------------------------------------
+[ Responsive ]*/
+
+
+
+@media (max-width: 992px) {
+    .wrap-login100 {
+      padding: 177px 90px 33px 85px;
+    }
+  
+    .login100-pic {
+      width: 35%;
+    }
+  
+    .login100-form {
+      width: 50%;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .wrap-login100 {
+      padding: 100px 80px 33px 80px;
+    }
+  
+    .login100-pic {
+      display: none;
+    }
+  
+    .login100-form {
+      width: 100%;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .wrap-login100 {
+      padding: 100px 15px 33px 15px;
+    }
+  }
+  
+  
+  /*------------------------------------------------------------------
