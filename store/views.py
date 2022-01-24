@@ -76,7 +76,7 @@ def register(request):
     return render(request, 'register.html')
 
 class client_register(CreateView):
-    model = Client
+    model = User
     form_class = ClientSignUpForm
     template_name = 'client_registration.html'
 
@@ -87,11 +87,9 @@ class client_register(CreateView):
 
 
 class staff_register(CreateView):
-    model = Staff
+    model = User
     form_class = StaffSignUpForm
     template_name = 'staff_registration.html'
-
-    
 
     def form_valid(self, form):
         user = form.save()
@@ -107,13 +105,11 @@ def client_login(request):
             user = authenticate(username=username, password=password)
             if user is not None :
                 login(request,user)
-                if request.user.is_client:
-                    return redirect('/')
+                return redirect('/')
             else:
-                return HttpResponse("You are not a Client.")
+                messages.error(request,"Invalid username or password")
         else:
-            alert = True
-            return render(request, "client_login.html", {'alert':alert})
+                messages.error(request,"Invalid username or password")
     return render(request, 'client_login.html',
     context={'form':AuthenticationForm()})
 
@@ -126,13 +122,11 @@ def staff_login(request):
             user = authenticate(username=username, password=password)
             if user is not None :
                 login(request,user)
-                if request.user.is_staff:
-                    return redirect('/analytics')
+                return redirect('/')
             else:
-                return HttpResponse("You are not a Staff.")
+                messages.error(request,"Invalid username or password")
         else:
-            alert = True
-            return render(request, "staff_login.html", {'alert':alert})
+                messages.error(request,"Invalid username or password")
     return render(request, 'staff_login.html',
     context={'form':AuthenticationForm()})
 

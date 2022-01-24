@@ -57,20 +57,3 @@ class StaffSignUpForm(UserCreationForm):
             return staff
 
 
-
-
-# class MyForm(forms.ModelForm):
-#     class Meta:
-#         model = MyModel
-
-#     def __init__(self, *args, **kwargs):
-#         super(MyForm, self).__init__(*args, **kwargs)
-#         self.fields['myfield'].widget.attrs.update({'class': 'myfieldclass'})
-
-
-# class MyForm(forms.ModelForm):
-#     class Meta:
-#         model = MyModel
-#         widgets = {
-#             'myfield': forms.TextInput(attrs={'class': 'myfieldclass'}),
-#         }
