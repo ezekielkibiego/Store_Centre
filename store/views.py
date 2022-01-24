@@ -79,7 +79,7 @@ class client_register(CreateView):
     def form_valid(self, form):
         user = form.save()
         login(self.request, user)
-        return redirect('/')
+        return redirect('/client_login')
 
 
 class staff_register(CreateView):
@@ -90,7 +90,7 @@ class staff_register(CreateView):
     def form_valid(self, form):
         user = form.save()
         login(self.request, user)
-        return redirect('/')
+        return redirect('/staff_login')
 
 def client_login(request):
     if request.method=='POST':
