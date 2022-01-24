@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'social_django',
 ]
 
 MIDDLEWARE = [
@@ -174,6 +175,26 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 django_heroku.settings(locals())
 
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = config('S_KEY')
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = config('S_SECRET')
+
+LOGIN_REDIRECT_URL = 'index'
+
+AUTHENTICATION_BACKENDS = [
+  
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    
+
+   
+    'social_core.backends.facebook.FacebookOAuth2',
+    'social_core.backends.google.GoogleOAuth2',
+
+   
+]
 #jazzmin settings
 JAZZMIN_SETTINGS = {
       # title of the window (Will default to current_admin_site.site_title if absent or None)
