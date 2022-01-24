@@ -1,11 +1,15 @@
 from django.shortcuts import redirect, render,HttpResponse
+from django.contrib import messages
+from store.forms import ClientSignUpForm
 from .models import *
 from units.models import *
 from django.contrib.auth import authenticate, login, logout
 from . import *
 from datetime import date
 from django.contrib.auth.decorators import login_required
-
+from django.views.generic import CreateView
+from .forms import *
+from django.contrib.auth.forms import AuthenticationForm
 # Create your views here.
 
 def IndexView(request):
@@ -18,66 +22,11 @@ def records(request):
 
     return render(request, "records.html",{records:'records'})
 
+def services(request):
+    
+    
+    return render(request, "services.html")
 
-
-
-def client_registration(request):
-    if request.method == "POST":
-        username = request.POST['username']
-        first_name = request.POST['first_name']
-        last_name = request.POST['last_name']
-        email = request.POST['email']
-        phone = request.POST['phone']
-        # location = request.POST['location']
-        image = request.FILES['image']
-        password = request.POST['password']
-        confirm_password = request.POST['confirm_password']
-
-        if password != confirm_password:
-            passnotmatch = True
-            return render(request, "client_registration.html", {'passnotmatch':passnotmatch})
-
-        user = User.objects.create_user(username=username, email=email, password=password,first_name=first_name, last_name=last_name)
-        client = Client.objects.create(user=user, phone=phone, image=image)
-        user.save()
-        client.save()
-        alert = True
-        return render(request, "client_registration.html", {'alert':alert})
-    return render(request, "client_registration.html")
-
-def client_login(request):
-    if request.method == "POST":
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(username=username, password=password)
-
-        if user is not None:
-            login(request, user)
-            if request.user.is_superuser:
-                return HttpResponse("You are not a client!!")
-            else:
-                return redirect("/profile")
-        else:
-            alert = True
-            return render(request, "client_login.html", {'alert':alert})
-    return render(request, "client_login.html")
-
-def staff_login(request):
-    if request.method == "POST":
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(username=username, password=password)
-
-        if user is not None:
-            login(request, user)
-            if request.user.is_superuser:
-                return redirect("/")
-            else:
-                return HttpResponse("You are not a staff.")
-        else:
-            alert = True
-            return render(request, "dashboard_with_pivot.html", {'alert':alert})
-    return render(request, "dashboard_with_pivot.html")
 
 
 def admin_login(request):
@@ -121,24 +70,66 @@ def Logout(request):
     logout(request)
     return redirect ("/")
 
-@login_required(login_url = '/client_login')
-def profile(request):
-    return render(request, "profile.html")
 
-@login_required(login_url = '/client_login')
-def edit_profile(request):
-    client = Client.objects.get(user=request.user)
-    if request.method == "POST":
-        email = request.POST['email']
-        phone = request.POST['phone']
-        
+def register(request):
+    return render(request, 'register.html')
 
-        client.user.email = email
-        client.phone = phone
-        
-        client.user.save()
-        client.save()
-        alert = True
-        return render(request, "edit_profile.html", {'alert':alert})
-    return render(request, "edit_profile.html")
+class client_register(CreateView):
+    model = User
+    form_class = ClientSignUpForm
+    template_name = 'client_registration.html'
+
+    def form_valid(self, form):
+        user = form.save()
+        login(self.request, user)
+        return redirect('/')
+
+
+class staff_register(CreateView):
+    model = User
+    form_class = StaffSignUpForm
+    template_name = 'staff_registration.html'
+
+    def form_valid(self, form):
+        user = form.save()
+        login(self.request, user)
+        return redirect('/')
+
+def client_login(request):
+    if request.method=='POST':
+        form = AuthenticationForm(data=request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=password)
+            if user is not None :
+                login(request,user)
+                return redirect('/')
+            else:
+                messages.error(request,"Invalid username or password")
+        else:
+                messages.error(request,"Invalid username or password")
+    return render(request, 'client_login.html',
+    context={'form':AuthenticationForm()})
+
+def staff_login(request):
+    if request.method=='POST':
+        form = AuthenticationForm(data=request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=password)
+            if user is not None :
+                login(request,user)
+                return redirect('/')
+            else:
+                messages.error(request,"Invalid username or password")
+        else:
+                messages.error(request,"Invalid username or password")
+    return render(request, 'staff_login.html',
+    context={'form':AuthenticationForm()})
+
+def logout_view(request):
+    logout(request)
+    return redirect('/')
 

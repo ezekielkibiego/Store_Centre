@@ -46,8 +46,10 @@ INSTALLED_APPS = [
     'transport',
     'units',
     'analytics',
+    'bootstrap4',
     'cloudinary',
     'crispy_forms',
+    'widget_tweaks',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -68,6 +70,9 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'store_centre.urls'
+
+AUTH_USER_MODEL = 'store.User'
+
 
 TEMPLATES = [
     {

@@ -102,6 +102,7 @@ h1, h2, h3, h4, h5,
     border-color: #37cfa2; }
   .form-control:hover, .form-control:active, .form-control:focus {
     -webkit-box-shadow: none !important;
+    border-color: #37cfa2; 
     box-shadow: none !important; }
 
 .site-section {
@@ -991,7 +992,7 @@ h1, h2, h3, h4, h5,
     background: none;
     color: #fff; }
     .free-quote .form-control:active, .free-quote .form-control:focus {
-      border: 2px solid #fff; }
+      border: 2px solid rgb(255, 255, 255); }
     .free-quote .form-control::-webkit-input-placeholder {
       /* Chrome/Opera/Safari */
       color: rgba(255, 255, 255, 0.4);
@@ -1897,3 +1898,45 @@ h1, h2, h3, h4, h5,
         display: none; } }
 
 
+
+/*------------------------------------------------------------------
+[ Responsive ]*/
+
+
+
+@media (max-width: 992px) {
+  .wrap-login100 {
+    padding: 177px 90px 33px 85px;
+  }
+
+  .login100-pic {
+    width: 35%;
+  }
+
+  .login100-form {
+    width: 50%;
+  }
+}
+
+@media (max-width: 768px) {
+  .wrap-login100 {
+    padding: 100px 80px 33px 80px;
+  }
+
+  .login100-pic {
+    display: none;
+  }
+
+  .login100-form {
+    width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  .wrap-login100 {
+    padding: 100px 15px 33px 15px;
+  }
+}
+
+
+/*------------------------------------------------------------------

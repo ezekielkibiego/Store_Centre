@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+
+{% load static %}
+
+{% block content %} 
+<div class="container mt-4">
+    {% if records %}
+    
+    <ul class="list-group list-group-flush">
+        {% for record in records %}
+        <li class="list-group-item">{{record}}:&nbsp;</li>
+       
+        {% endfor %}
+      </ul>
+
+      {% else %}
+      <p>You don't have any records of bookings </p>
+    {%endif%}
+</div>
+{% endblock %}
