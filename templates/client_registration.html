@@ -24,7 +24,7 @@
 
 
 
-<!-- <div class="container-fluid" style="background-color: azure;">
+<div class="container-fluid" style="background-color: azure;">
   <div class="row justify-content-center">
     <div class="col-11 col-sm-10 col-md-10 col-lg-6 col-xl-5 text-center p-0 mt-3 mb-2">
       <div class="card px-0 pt-4 pb-0 mt-3 mb-3" style="box-shadow: 0px 0px 2px black;">
@@ -34,7 +34,7 @@
           <form action="{% url 'client_register' %}" method="post" id="msform">
             {% csrf_token %}
             <!-- progressbar -->
-            <!-- <ul id="progressbar">
+            <ul id="progressbar">
               <li class="active" id="personal"><strong>Personal</strong></li>
               <li id="account"><strong>Account</strong></li>
               <li id="payment"><strong>Contact</strong></li>
@@ -45,7 +45,7 @@
                 aria-valuemax="100"></div>
             </div> <br> <!-- fieldsets -->
             
-            <!-- <fieldset>
+            <fieldset>
               <div class="form-card">
                 <div class="row">
                   <div class="col-7">
@@ -99,7 +99,9 @@
                 <label class="fieldlabels">Phone:</label>
                 {{form.phone}}
               </div>
-
+              <input type="button" style="border-radius: 5px;" name="next" class="next action-button" value="Next" />
+              <input style="margin-left: 10px;border-radius: 5px;" type="button" name="previous" class="previous float-left action-button-previous " value="Previous" />
+            </fieldset>
             <fieldset>
               <div class="form-card">
                 <div class="row">
@@ -129,5 +131,7 @@
       </div>
     </div>
   </div>
-</div>  -->
+</div>
+
+
 {% endblock %}
