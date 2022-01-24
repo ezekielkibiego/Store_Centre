@@ -85,6 +85,44 @@
       $('.js-tilt').tilt({
         scale: 1.1
       })
+      $(document).ready(function(){
+        Date.prototype.toDateInputValue = (function() {
+          var local = new Date(this);
+          local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+          return local.toJSON().slice(0,10);
+      });
+
+      // calculate diff in days
+      function findDayDifference(departure, arrival) {
+        var date1 = new Date(departure);
+        var date2 = new Date(arrival);
+        // always round down
+        return Math.floor((Math.abs(date2-date1))/(1000*60*60*24));
+      }
+      //set date values to today on load
+       $('#departure_date').val(new Date().toDateInputValue());
+       $('#arrival_date').val(new Date().toDateInputValue());
+       
+       // calculate the total on date change
+        total= function(arrival,departure,charge){
+          var departure = $('#departure_date').val();
+          var arrival = $('#arrival_date').val();
+          var charge = 100;
+          no_of_days = findDayDifference(departure,arrival)
+          total_cost = no_of_days * charge;
+          $('#total_cost').attr('value', total_cost
+        
+        );
+        }
+        
+
+
+      });
+
+
+
+
+
     </script>
 
     {% endblock %}
