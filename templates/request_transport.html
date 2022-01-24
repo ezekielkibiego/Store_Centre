@@ -11,33 +11,44 @@
     <div class="row ">
         <div class="col-sm-2"></div>
         <div class="col-sm-8">
-            <h1 class="text-center">REQUEST TRANSPORT</h1>
-            <form method="POST" action="{%url 'request_transport'%}" class="form-group" style="margin-top: 5em;">
-                {% csrf_token %}
-                {{ form|crispy }}
-                
-                <!-- Button trigger modal -->
-                <button type="submit" class="btn btn-success">SUBMIT</button>
-                
-                <!-- Modal -->
-                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel">REQUEST CONFIRMATION</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                        <p>Submit form with the input details?</p>
-                        </div>
-                        <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-success" data-bs-dismiss="modal">EDIT</button>
-                        <button type="submit" class="btn btn-success">SUBMIT</button>
-                        </div>
-                    </div>
+            <div id="enquiry" class="mt-5">
+                <div class="card" >
+                    <div class="card-body">
+                      <h5 class="card-title">Would you Like to Request Transport Services?</h5>
+                        <button type="button" class="btn btn-primary card-link" onclick="transportFunction()">YES</button>
+                        <a href="{%url 'dashboard'%}" class="card-link btn btn-outline-danger">NO</a>
                     </div>
                 </div>
-            </form>
+            </div>
+            <div id="form" style="display: none;">
+                <h1 class="text-center">REQUEST TRANSPORT</h1>
+                <form method="POST" action="{%url 'request_transport'%}" class="form-group" style="margin-top: 5em;">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    
+                    <!-- Button trigger modal -->
+                    <button type="submit" class="btn btn-success">SUBMIT</button>
+                    
+                    <!-- Modal -->
+                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">REQUEST CONFIRMATION</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                            <p>Submit form with the input details?</p>
+                            </div>
+                            <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-success" data-bs-dismiss="modal">EDIT</button>
+                            <button type="submit" class="btn btn-success">SUBMIT</button>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </form>
+                </div>
         </div>
         <div class="col-sm-2"></div>
     </div>

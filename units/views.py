@@ -26,7 +26,7 @@ def book_unit(request):
             else:
                 print('no slots available')
                 
-        return redirect('book')
+        return redirect('request_transport')
     else:
         form = GoodsBookingForm()
 

@@ -64,3 +64,10 @@ function fillInAddress() {
     // prediction, set cursor focus on the second address line to encourage
     // entry of subpremise information such as apartment, unit, or floor number.
 }
+
+function transportFunction() {
+    var form = document.getElementById("form");
+    form.style.display = "block";
+    var enquiry = document.getElementById("enquiry");
+    enquiry.style.display = "none";
+  }
