@@ -62,15 +62,18 @@
                             </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="form-group"> <input class="form-control" type="date" name="arrival_date" required> <span
+                                <div class="form-group"> <input class="form-control" type="date" oninput="total()" name="arrival_date" id="arrival_date" required> <span
                                         class="form-label text-info">Check In Date</span> </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="form-group"> <input class="form-control" name="departure_date" type="date" required> <span
+                                <div class="form-group"> <input class="form-control" oninput="total()" name="departure_date" type="date" id="departure_date" required> <span
                                         class="form-label text-info">Check Out Date</span> </div>
                             </div>
                         </div>
-                        <div class="form-btn"> <button style="border-radius: 40px;" class="btn btn-info btn-sm btn-block" >Submit</button> </div>
+
+                        <span> Total Cost:<input type="text" id="total_cost" value="0.00"></span>
+                        <div class="form-btn"> <button style="border-radius: 40px;" class="btn btn-info btn-sm btn-block">Submit</button> </div>
+
                     </form>
                 </div>
             </div>

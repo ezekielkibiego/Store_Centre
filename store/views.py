@@ -40,7 +40,7 @@ def admin_login(request):
             login(request, user)
             if request.user.is_superuser:
 
-                return redirect("/")
+                return redirect("/admin")
 
             else:
                 return HttpResponse("You are not an admin.")
@@ -83,7 +83,7 @@ class client_register(CreateView):
     def form_valid(self, form):
         user = form.save()
         login(self.request, user)
-        return redirect('/')
+        return redirect('/client_login')
 
 
 class staff_register(CreateView):
@@ -94,7 +94,7 @@ class staff_register(CreateView):
     def form_valid(self, form):
         user = form.save()
         login(self.request, user)
-        return redirect('/')
+        return redirect('/staff_login')
 
 def client_login(request):
     if request.method=='POST':
