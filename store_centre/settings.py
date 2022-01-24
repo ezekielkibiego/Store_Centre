@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'store',
     'transport',
     'units',
+    'analytics',
     'cloudinary',
     'crispy_forms',
     'django.contrib.admin',
