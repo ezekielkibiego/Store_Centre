@@ -15,6 +15,7 @@
             <form method="POST" class="form-group">
                 {% csrf_token %}
                 {{ form|crispy }}
+                
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                     NEXT
@@ -43,5 +44,20 @@
         <div class="col-sm-2"></div>
     </div>
 </div>
+<script>
+    var onLoaded = function() {
+        var location_input = document.getElementById('autocomplete');
+        var autocomplete = new google.maps.places.Autocomplete(location_input);
 
+    }
+</script>
+
+{%endblock%}
+{%block scripts%}
+{{block.super}}
+<script src="/static/js/mapsjs/autocompleteform.js"></script>
+<script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBoOok617x253OXzJ2iEbZ-K1_DO-Wei-8&callback=initAutocomplete&libraries=places&v=weekly"
+      async
+    ></script>
 {%endblock%}

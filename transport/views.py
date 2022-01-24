@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.shortcuts import redirect, render
 from transport.models import *
 from transport.forms import *
@@ -15,6 +16,7 @@ def request_transport(request):
             pass
     else:
         form =TransportForm(request.user)
+    api_key = settings.GOOGLE_API_KEY
     context = {
         'form':form
     }
