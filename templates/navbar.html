@@ -115,7 +115,8 @@
             <li><a href="/" class="nav-link">Contact</a></li>
             {% if user.is_authenticated %}
             {% else %}
-            <li><a href="/client_registration/" class="nav-link">Register</a></li>
+            <li><a href="/client_register/" class="nav-link">Client Register</a></li>
+            <li><a href="/staff_register/" class="nav-link">Staff Register</a></li>
             {% endif %}
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
@@ -135,8 +136,8 @@
                 <a style="border-radius: 50px;" class="text-dark dropdown-item" href="/logout/">Logout</a>
                 {% else %}
                 <a style="border-radius: 50px;" class="text-dark dropdown-item" href="/admin_login/">Admin Login</a>
-                <a style="border-radius: 50px;" class="text-dark dropdown-item" href="/staff_login/">Staff Login</a>
-                <a style="border-radius: 50px;" class="text-dark dropdown-item" href="/client_login/">Client Login</a>
+                <a style="border-radius: 50px;" class="text-dark dropdown-item" href="{% url 'staff_login' %}">Staff Login</a>
+                <a style="border-radius: 50px;" class="text-dark dropdown-item" href="{% url 'client_login' %}">Client Login</a>
                 {% endif %}
               </div>
             </li>
