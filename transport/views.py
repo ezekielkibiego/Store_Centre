@@ -12,7 +12,6 @@ def request_transport(request):
         if form.is_valid():
             transport_request = form.save(commit=False)
             transport_request.user = request.user
-            
             transport_request.save()
             print("transport:", transport_request)
             return redirect('request_summary')
