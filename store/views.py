@@ -76,8 +76,8 @@ def staff_login(request):
                 return HttpResponse("You are not a staff.")
         else:
             alert = True
-            return render(request, "staff_login.html", {'alert':alert})
-    return render(request, "staff_login.html")
+            return render(request, "dashboard_with_pivot.html", {'alert':alert})
+    return render(request, "dashboard_with_pivot.html")
 
 
 def admin_login(request):
