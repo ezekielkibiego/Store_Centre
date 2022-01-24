@@ -9,7 +9,7 @@ class TransportForm(forms.ModelForm):
 
     class Meta:
         model = Transport
-        exclude= ['user']
+        exclude= ['user','distance']
         labels = {
             'transport_type': _('Type of Transport'),
         }
