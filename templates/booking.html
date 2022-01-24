@@ -7,8 +7,12 @@
 
 
 
-
-<div class="container mt-4">
+<style>
+    .booking{
+        padding-top: 5%;
+    }
+</style>
+<div class="container mt-4 booking">
     <form action="" method="POST">
         {% csrf_token %}
         {{ form|crispy }}
