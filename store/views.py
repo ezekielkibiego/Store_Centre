@@ -36,7 +36,7 @@ def admin_login(request):
             login(request, user)
             if request.user.is_superuser:
 
-                return redirect("/")
+                return redirect("/admin")
 
             else:
                 return HttpResponse("You are not an admin.")
