@@ -26,21 +26,34 @@
 
 
 
-<div class="container mt-4">
-    {% if units %}
+<div class="container mt-4" style="height: 100vh;">
+  {{storage_type|upper}}
+    {% if goods %}
     
-    <ul class="list-group list-group-flush">
-        {% for unit in units %}
-        <li class="list-group-item">{{unit.id}}.{{unit.type}}:&nbsp;{{unit.charge}}</li>
-       
-        {% endfor %}
-      </ul>
+   <table class="table table-success table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Unit_no</th>
+              <th scope="col">Owner</th>
+              <th scope="col">Description</th>
+              <th scope="col">Arrival_date</th>
+              <th scope="col">Departure_date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              {% for good in goods %}
+              <th scope="row">{{good.unit_no.pk}}</th>
+              <td>{{good.owner}}</td>
+              <td>{{good.description}}</td>
+              <td>{{good.arrival_date}}</td>
+              <td>{{good.departure_date}}</td>
+              {% endfor %}
+            </tr>
+          </tbody>
+        </table>
 
     {%endif%}
-    <form action="" method="POST">
-        {% csrf_token %}
-        {{form}}
-    <button class='btn btn-primary' type="submit">Submit</button>
-    </form>
+   
 </div>
 {% endblock %}

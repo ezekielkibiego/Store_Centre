@@ -38,36 +38,50 @@ def book_unit(request):
 
 def dashboard(request):
     normal_units = Unit.objects.filter(type='normal_storage')
+    booked_normal_units = Unit.objects.filter(type='normal_storage',booked =True).count()
     bonded_units = Unit.objects.filter(type='bonded_storage')
+    booked_bonded_units = Unit.objects.filter(type='bonded_storage',booked =True).count()
     archive_units = Unit.objects.filter(type='archive_storage')
+    booked_archive_units = Unit.objects.filter(type='archive_storage',booked =True).count()
     hazardious_units = Unit.objects.filter(type='hazardious_storage')
+    booked_hazardious_units = Unit.objects.filter(type='hazardious_storage',booked =True).count()
     cold_units = Unit.objects.filter(type='cold_storage')
-
-    args = {
-        "normal_units": normal_units,
-        "bonded_units": bonded_units,
-        "archive_units": archive_units,
-        "hazardious_units": hazardious_units,
-        "cold_units": cold_units,
-    }
-    return render(request,'staff_dashboard.html',args)
-
-def display_units(request,storage_type):
-
-    units = Unit.objects.filter(type=storage_type,booked=True)
-   
-
+    booked_cold_units = Unit.objects.filter(type='cold_storage',booked =True).count()
+    
     if request.method == 'POST':
         form = UnitForm(request.POST)
         if form.is_valid():
             form.save()
-        return redirect('units',storage_type)
+        return redirect('dashboard')
     else:
         form = UnitForm()
 
+
+        args = {
+            "normal_units": normal_units,
+            "booked_normal_units":booked_normal_units,
+            "bonded_units": bonded_units,
+            "booked_bonded_units":booked_bonded_units,
+            "archive_units": archive_units,
+            "booked_archive_units":booked_archive_units,
+            "hazardious_units": hazardious_units,
+            "booked_hazardious_units":booked_hazardious_units,
+            "cold_units": cold_units,
+            "booked_cold_units":booked_cold_units,
+            "form":form
+        }
+        return render(request,'staff_dashboard.html',args)
+
+def display_units(request,storage_type):
+
+    
+    goods = Goods.objects.filter(storage_type=storage_type)
+
+    form = UnitForm()
+
     context = {
-        "units": units,
-        "form": form
+        "goods": goods,
+        "storage_type":storage_type,
     }
 
     return render(request,'units.html',context)
