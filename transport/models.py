@@ -15,11 +15,8 @@ class Transport(models.Model):
         default=PICKUP
     )
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='request_owner')
-    county =models.CharField(max_length=50)
-    town = models.CharField(max_length=50)
     address = models.CharField(max_length=100)
     phone_number = models.CharField(max_length=15, null=True)
-    transport_goods = models.ManyToManyField('units.Goods')
     
     def __str__(self):
         return self.county

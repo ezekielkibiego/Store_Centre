@@ -5,7 +5,6 @@ from django.contrib.auth import authenticate, login, logout
 from . import *
 from datetime import date
 from django.contrib.auth.decorators import login_required
-
 # Create your views here.
 
 def IndexView(request):

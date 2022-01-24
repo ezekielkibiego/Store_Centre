@@ -7,7 +7,6 @@ function initAutocomplete() {
     autocomplete = new google.maps.places.Autocomplete(address1Field, {
       componentRestrictions: { country: ["ke"] },
       fields: ["address_components", "geometry"],
-      types: ["address"],
     });
     address1Field.focus();
     // When the user selects an address from the drop-down, populate the

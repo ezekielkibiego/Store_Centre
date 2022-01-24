@@ -3,6 +3,7 @@ from django.shortcuts import redirect, render
 from transport.models import *
 from transport.forms import *
 from django.contrib.auth.decorators import login_required
+import requests
 
 @login_required(login_url='client_login')
 def request_transport(request):
@@ -18,7 +19,8 @@ def request_transport(request):
         form =TransportForm(request.user)
     api_key = settings.GOOGLE_API_KEY
     context = {
-        'form':form
+        'form':form,
+        'api_key': api_key
     }
     return render(request,'request_transport.html', context)
 
