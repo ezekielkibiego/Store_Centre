@@ -5,13 +5,14 @@ from . import views
 
 urlpatterns = [
     path('', IndexView, name='index'),
+    path('records/', views.records, name='records'),
+    path('services/', views.services, name='services'),
     path('register/',views.register, name='register'),
     path('client_register/',views.client_register.as_view(), name='client_register'),
     path('staff_register/',views.staff_register.as_view(), name='staff_register'),
     path('client_login/',views.client_login, name='client_login'),
     path('staff_login/',views.staff_login, name='staff_login'),
     path('logout/',views.logout_view, name='logout'),
-
 
 
     path("change_password/", views.change_password, name="change_password"),

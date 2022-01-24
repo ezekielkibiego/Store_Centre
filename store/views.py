@@ -22,7 +22,10 @@ def records(request):
 
     return render(request, "records.html",{records:'records'})
 
-
+def services(request):
+    
+    
+    return render(request, "services.html")
 
 
 
