@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'store',
     'transport',
     'units',
+    'analytics',
     'bootstrap4',
     'cloudinary',
     'crispy_forms',

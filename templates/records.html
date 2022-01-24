@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+
+{% load static %}
+
+{% block content %} 
+<div class="container" style="height:100vh;">
+  <div class="records "  style="padding-top:20%;">
+    {% if records %}
+
+        <table class="table table-success table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Unit_no</th>
+              <th scope="col">Storage_Type</th>
+              <th scope="col">Description</th>
+              <th scope="col">Arrival_date</th>
+              <th scope="col">Departure_date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              {% for record in records %}
+              <th scope="row">{{record.unit_no.pk}}</th>
+              <td>{{record.storage_type}}</td>
+              <td>{{record.description}}</td>
+              <td>{{record.arrival_date}}</td>
+              <td>{{record.departure_date}}</td>
+              {% endfor %}
+            </tr>
+          </tbody>
+        </table>
+      
+
+
+      {% else %}
+      <p>You don't have any records of bookings </p>
+    {%endif%}
+    </div>
+</div>
+{% endblock %}

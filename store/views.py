@@ -18,11 +18,15 @@ def IndexView(request):
 
 @login_required(login_url = '/client_login')
 def records(request):
-    records = Goods.objects.filter(owner=request.user).all()
+    storage_records = Goods.objects.filter(owner=request.user).all
+    print(type(storage_records))
 
-    return render(request, "records.html",{records:'records'})
+    return render(request, "records.html",{'records':storage_records})
 
-
+def services(request):
+    
+    
+    return render(request, "services.html")
 
 
 
