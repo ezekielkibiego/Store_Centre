@@ -10,16 +10,16 @@ class Transport(models.Model):
         
     )
     transport_type = models.CharField(
-        max_length=10,
+        max_length=50,
         choices=TRANSPORT_CHOICES,
         default=PICKUP
     )
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='request_owner')
-    county =models.CharField(max_length=50)
-    town = models.CharField(max_length=50)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='request_owner')
     address = models.CharField(max_length=100)
     phone_number = models.CharField(max_length=15, null=True)
-    transport_goods = models.ManyToManyField('units.Goods')
+    distance = models.IntegerField(null=True)
+    is_approved = models.BooleanField(default=False)
+    
     
     def __str__(self):
-        return self.county
+        return self.transport_type
