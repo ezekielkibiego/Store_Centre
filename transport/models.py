@@ -10,7 +10,7 @@ class Transport(models.Model):
         
     )
     transport_type = models.CharField(
-        max_length=10,
+        max_length=50,
         choices=TRANSPORT_CHOICES,
         default=PICKUP
     )
@@ -19,4 +19,4 @@ class Transport(models.Model):
     phone_number = models.CharField(max_length=15, null=True)
     
     def __str__(self):
-        return self.county
+        return self.transport_type

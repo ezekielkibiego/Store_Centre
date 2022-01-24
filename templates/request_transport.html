@@ -12,14 +12,12 @@
         <div class="col-sm-2"></div>
         <div class="col-sm-8">
             <h1 class="text-center">REQUEST TRANSPORT</h1>
-            <form method="POST" class="form-group">
+            <form method="POST" action="{%url 'request_transport'%}" class="form-group" style="margin-top: 5em;">
                 {% csrf_token %}
                 {{ form|crispy }}
                 
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                    NEXT
-                </button>
+                <button type="submit" class="btn btn-success">SUBMIT</button>
                 
                 <!-- Modal -->
                 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -44,13 +42,6 @@
         <div class="col-sm-2"></div>
     </div>
 </div>
-<script>
-    var onLoaded = function() {
-        var location_input = document.getElementById('autocomplete');
-        var autocomplete = new google.maps.places.Autocomplete(location_input);
-
-    }
-</script>
 
 {%endblock%}
 {%block scripts%}

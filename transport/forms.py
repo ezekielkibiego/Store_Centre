@@ -9,7 +9,7 @@ class TransportForm(forms.ModelForm):
 
     class Meta:
         model = Transport
-        exclude= ['user','transport_goods']
+        exclude= ['user']
         labels = {
             'transport_type': _('Type of Transport'),
         }
@@ -19,10 +19,10 @@ class TransportForm(forms.ModelForm):
         widgets = {
             'transport_type': forms.RadioSelect(attrs={'class': "form-check-input"}),
         }
-    def __init__(self, user, *args, **kwargs):
-        """ Grants access to the request object so that only goods of the current user
-        are given as options"""
-        super(TransportForm, self).__init__(*args, **kwargs)
+    # def __init__(self, user, *args, **kwargs):
+    #     """ Grants access to the request object so that only goods of the current user
+    #     are given as options"""
+    #     super(TransportForm, self).__init__(*args, **kwargs)
         # self.fields['transport_goods'] = forms.ModelMultipleChoiceField(
         #     queryset = Goods.objects.filter(owner__id=user.id).all(),
         #     widget=forms.CheckboxSelectMultiple,

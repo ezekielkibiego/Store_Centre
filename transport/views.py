@@ -13,10 +13,12 @@ def request_transport(request):
             transport_request = form.save(commit=False)
             transport_request.user = request.user
             transport_request.save()
+            print("transport:", transport_request)
+            return redirect('request_summary')
         else:
-            pass
+            print(form.errors)
     else:
-        form =TransportForm(request.user)
+        form =TransportForm()
     api_key = settings.GOOGLE_API_KEY
     context = {
         'form':form,
