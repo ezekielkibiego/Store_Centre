@@ -14,7 +14,7 @@
 
   {% block styles %}
 
-
+  <link rel="icon" href="/static/images/pool2.png" type="image" sizes="16x16">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,7 +30,7 @@
   <link rel="stylesheet" href="/static/css/owl.theme.default.min.css">
   <link rel="stylesheet" href="/static/css/owl.theme.default.min.css">
   <link rel="stylesheet" href="/static/css/jquery.fancybox.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
   <link rel="stylesheet" href="/static/css/bootstrap-datepicker.css">
 
   <link rel="stylesheet" href="/static/fonts/flaticon/font/flaticon.css">
@@ -43,6 +43,7 @@
   <link rel="stylesheet" href="/static/css/util.css">
   <link rel="stylesheet" href="/static/css/loginform.css">
   <link rel="stylesheet" href="/static/css/form.css">
+  <link rel="stylesheet" href="/static/css/help.css">
   <link rel="stylesheet" href="/static/css/style.css">
 
   {% endblock %}
@@ -54,21 +55,19 @@
   <div class="site-wrap">
     {% include "navbar.html" %}
     {% block content %}
+
     {%endblock%}
 
 
 
     {% block scripts %}
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
-    </script>
 
     <script src="/static/js/jquery-3.3.1.min.js"></script>
-    <script src="/static/js/jquery-ui.js"></script>
     <script src="/static/js/popper.min.js"></script>
     <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
     <script src="/static/js/owl.carousel.min.js"></script>
     <script src="/static/js/jquery.countdown.min.js"></script>
     <script src="/static/js/bootstrap-datepicker.min.js"></script>
@@ -78,6 +77,7 @@
     <script src="/static/js/tilt.jquery.min.js"></script>
     <script src="/static/js/jquery.fancybox.min.js"></script>
     <script src="/static/js/jquery.sticky.js"></script>
+    <script src="/static/js/help.js"></script>
     <script src="/static/js/main.js"></script>
     <script src="/static/js/grunt.js"></script>
     <script src="/static/js/loginform.js"></script>

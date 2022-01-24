@@ -100,7 +100,7 @@
     <div class="row align-items-center">
 
       <div class="col-6 col-xl-2">
-        <h1 class="mb-0 site-logo m-0 p-0"><a href="/" class="mb-0">store</a></h1>
+        <h1 class="mb-0 site-logo m-0 p-0"><a href="/" class="mb-0"><img src="/static/images/pool2.png" width="40" alt="logo"> Store</a></h1>
       </div>
 
       <div class="col-12 col-md-10 d-none d-xl-block">
@@ -108,13 +108,11 @@
 
           <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
             <li><a href="/" class="nav-link">Home</a></li>
-            <li><a href="/" class="nav-link">About</a></li>
             <li><a href="/units/book/" class="nav-link">Book Now</a></li>
             <li><a href="services/" class="nav-link">Services</a></li>
             <li><a href="/records" class="nav-link">Records</a></li>
             <li><a href="/" class="nav-link">News</a></li>
-
-            <li><a href="/" class="nav-link">Contact</a></li>
+            <li><a href="/" class="nav-link">About</a></li>
             {% if user.is_authenticated %}
             {% else %}
             <li class="nav-item dropdown">
@@ -155,7 +153,7 @@
                 {% endif %}
               </div>
             </li>
-            <li><a href="/" class="nav-link"><strong>?</strong></a></li>
+            <li><a href="" class="nav-link open-button"><strong>?</strong></a></li>
           </ul>
         </nav>
       </div>
@@ -169,3 +167,18 @@
 
 </header>
 
+
+<section id="modal-1" class="modal-container">
+  
+  <div class="modal-dialog" id='modaldg'>    
+    <svg class="modal-svg" id="msvg" viewBox="0 0 100 100" preserveAspectRatio="none">
+      <polygon id='modalpg' class="modal-polygon" />
+    </svg>
+    
+    <div id='modalct' class="modal-content">
+      <h2>I'm a modal</h2>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis excepturi ut inventore consectetur quos rerum quibusdam accusamus, labore itaque assumenda consequatur cum saepe velit quidem ipsa facilis. Repellendus, reiciendis quam?</p>
+    </div>
+    
+  </div>
+</section>
