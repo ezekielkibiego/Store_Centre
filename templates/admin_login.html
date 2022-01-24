@@ -5,25 +5,27 @@
 {% endblock %}
 {% block content %}
 
-<div class="overlay" style="box-shadow:inset 0 0 0 2000px rgba(23, 34, 23, 0.863);background-image: url(/static/images/hero_1.jpg);color: white;" data-aos="fade" id="home-section">
+<div class="overlay"
+  style="box-shadow:inset 0 0 0 2000px rgba(23, 34, 23, 0.863);background-image: url(/static/images/hero_1.jpg);color: white;"
+  data-aos="fade" id="home-section">
 
 
-    <div class="container">
-      <div class="row align-items-center justify-content-center">
-        <div class="col-md-6 mt-lg-5 text-center">
-          <br><br>
-          <h1>Admin Login</h1> 
-          <div style="margin-bottom: 10px;">
-          </div>           
+  <div class="container">
+    <div class="row align-items-center justify-content-center">
+      <div class="col-md-6 mt-lg-5 text-center">
+        <br><br>
+        <h1>Admin Login</h1>
+        <div style="margin-bottom: 10px;">
         </div>
       </div>
     </div>
+  </div>
   <br><br>
-    <a href="#heading" class="smoothscroll arrow-down"><span class="icon-arrow_downward"></span></a>
-  </div>  
+  <a href="#heading" class="smoothscroll arrow-down"><span class="icon-arrow_downward"></span></a>
+</div>
 
 
-<div class="container">
+<!-- <div class="container">
 <br>
 <h1 class="text-center"><u></u></h1><br>
 <p><b>Note:</b> Only the admin can login from here. No Client will be allowed to login.</p>
@@ -44,4 +46,55 @@
     </div>
     <button type="submit" class="btn btn-outline-primary mt-4">Login</button>
 </div>
+ -->
+
+
+
+<div style="margin-top: -90px;" class="limiter">
+  <div class="wrap-login100">
+    <div class="login100-pic js-tilt" data-tilt>
+      <img style="margin-top: 70px;"
+        src="https://images.squarespace-cdn.com/content/v1/52797d42e4b01f648b9e8392/1455601046694-12NE4QQDGEHQ6TDTRHYJ/Blueconic__Chair_WhiteBG-trzown.gif?format=500w"
+        alt="IMG">
+    </div>
+
+    <form method="POST" enctype="multipart/form-data" class="login100-form validate-form">
+      {% csrf_token %}
+      <span class="login100-form-title">
+        <span class="badge badge-dark  text-center">ADMIN ONLY <i class="fa fa-user-circle"></i></span>
+      </span>
+      <p class="text-center"><b>Note: </b> Only the <strong>Admin</strong> can login from here. <br> No
+        <strong>Client</strong> will be allowed to login.</p><br>
+      <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+        <input style="outline: none;border: none;" class="input100" type="text" name="username"
+          placeholder="Enter your username">
+        <span class="focus-input100"></span>
+        <span class="symbol-input100">
+          <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+        </span>
+      </div>
+
+      <div class="wrap-input100 validate-input" data-validate="Password is required">
+        <input style="outline: none;border: none;" class="input100" type="password" name="password"
+          placeholder="Enter Password">
+        <span class="focus-input100"></span>
+        <span class="symbol-input100">
+          <i class="fa fa-lock" aria-hidden="true"></i>
+        </span>
+      </div>
+
+
+      <div class="container-login100-form-btn">
+        <button class="login100-form-btn">
+          Login
+        </button>
+      </div>
+
+
+    </form>
+  </div>
+</div>
+
+
+
 {% endblock %}

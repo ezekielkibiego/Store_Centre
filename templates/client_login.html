@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load widget_tweaks %}
 {% block title %} Store Centre {% endblock %}
 {% block css %}
 {% endblock %}
@@ -25,7 +26,7 @@
 </div>
 
 
-<div class="container">
+<!-- <div class="container">
     <br>
     <h1 class="text-center"><u></u></h1>
     <form method="POST"> {% csrf_token %}
@@ -44,5 +45,56 @@
             </div>
         </div>
         <button type="submit" class="btn btn-outline-primary mt-4">Login</button>
+</div> -->
+
+
+
+<div style="margin-top: -90px;" class="limiter">
+    <div class="wrap-login100">
+        <div class="login100-pic js-tilt" data-tilt>
+            <img style="margin-top: 70px;" src="https://images.squarespace-cdn.com/content/v1/52797d42e4b01f648b9e8392/1455601047413-LHBT06990IG7TFWFN330/Blueconic_Profile_WhiteBG-trzown.gif?format=500w" alt="CLIENT IMG">
+        </div>
+
+        <section>
+            <div class="container">
+              <div class="row">
+                <div class="col-md-6 mx-auto">
+                  <div class="card">
+                    <div class="card-header text-black">
+                      <h2>Client Login</h2>
+                    </div>
+                    <div class="card-body">
+                        <form action="{% url 'client_login' %}" method="POST" novalidate>
+                          {% csrf_token %}
+                             {% for field in form.visible_fields %}
+                               <div class="form-group">
+                                   {{ field.label_tag }}
+                                      {% render_field field class="form-control" %}
+                                        {% if messages%}
+                                          {% for message in messages %}
+                                            <span style="color:red">{{ message }}</span>
+                                          {% endfor %}
+                                         {% endif %}
+                             {% endfor %}
+                             <br>
+                                 <input type="submit" value="Login" class="btn btn-block btn-primary">
+                               </div>
+                        </form>
+                     </div>
+                        </div>   
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </section>
+    
+    </div>
 </div>
+
+
+
+
+
+
+
 {% endblock %}

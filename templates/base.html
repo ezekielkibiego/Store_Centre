@@ -1,4 +1,5 @@
 {% load static%}
+{% load bootstrap4 %}
 <!DOCTYPE html>
 <html>
 
@@ -28,14 +29,19 @@
   <link rel="stylesheet" href="/static/css/owl.carousel.min.css">
   <link rel="stylesheet" href="/static/css/owl.theme.default.min.css">
   <link rel="stylesheet" href="/static/css/owl.theme.default.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css">
   <link rel="stylesheet" href="/static/css/jquery.fancybox.min.css">
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"/>
   <link rel="stylesheet" href="/static/css/bootstrap-datepicker.css">
 
   <link rel="stylesheet" href="/static/fonts/flaticon/font/flaticon.css">
 
   <link rel="stylesheet" href="/static/css/aos.css">
+  <link rel="stylesheet" href="/static/css/animate.css">
+  <link rel="stylesheet" href="/static/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/static/css/hamburgers.min.css">
+  <link rel="stylesheet" href="/static/css/select2.min.css">
+  <link rel="stylesheet" href="/static/css/util.css">
+  <link rel="stylesheet" href="/static/css/loginform.css">
   <link rel="stylesheet" href="/static/css/form.css">
   <link rel="stylesheet" href="/static/css/style.css">
 
@@ -68,11 +74,18 @@
     <script src="/static/js/bootstrap-datepicker.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
     <script src="/static/js/aos.js"></script>
+    <script src="/static/js/select2.min.js"></script>
+    <script src="/static/js/tilt.jquery.min.js"></script>
     <script src="/static/js/jquery.fancybox.min.js"></script>
     <script src="/static/js/jquery.sticky.js"></script>
     <script src="/static/js/main.js"></script>
     <script src="/static/js/grunt.js"></script>
-
+    <script src="/static/js/loginform.js"></script>
+    <script>
+      $('.js-tilt').tilt({
+        scale: 1.1
+      })
+    </script>
 
     {% endblock %}
     {% include "footer.html" %}

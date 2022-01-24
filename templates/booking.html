@@ -3,16 +3,78 @@
 
 {% load static %}
 
-{% block content %} 
+{% block content %}
+
+<div class="overlay"
+    style="box-shadow:inset 0 0 0 2000px rgba(23, 34, 23, 0.863);background-image: url(/static/images/hero_1.jpg);color: white;"
+    data-aos="fade" id="home-section">
 
 
+    <div class="container">
+        <div class="row align-items-center justify-content-center">
+            <div class="col-md-6 mt-lg-5 text-center">
+                <br><br>
+                <h1>Booking Storage</h1>
+                <div style="margin-bottom: 10px;">
+                </div>
+            </div>
+        </div>
+    </div>
+    <br><br>
+    <a href="#storage" class="smoothscroll arrow-down"><span class="icon-arrow_downward"></span></a>
+</div>
 
 
-<div class="container mt-4">
-    <form action="" method="POST">
+<!-- <div class="container mt-4">
+    <form action="" method="POST" id="storage">
         {% csrf_token %}
         {{ form|crispy }}
-    <br><button class='btn btn-primary' type="submit">Submit</button>
+        <br><button class='btn btn-primary' type="submit">Submit</button>
     </form>
+</div> -->
+
+
+
+
+
+
+
+<div id="booking" class="section">
+    <div class="section-center">
+        <div class="container">
+            <div class="row">
+                <div class="booking-form">
+                    <div class="form-header">
+                        <h1>Book Storage</h1>
+                    </div>
+                    <form action="" method="POST" enctype="multipart/form-data" id="storage">
+                        {% csrf_token %}
+                        <div class="form-group"> <select class="form-control" name="storage_type" required>
+                                <option value="" selected hidden>Choose Storage Type</option>
+                                <option>normal_storage</option>
+                                <option>cold_storage</option>
+                                <option>bonded_storage</option>
+                                <option>hazardious_storage</option>
+                                <option>archive_storage</option>
+                            </select> <span class="select-arrow"></span> <span class="form-label">Storage</span> </div>
+                            <div class="form-group">
+                                <textarea style="border-radius: 5px;" name="description" id="description" class="form-control" cols="30" rows="10" placeholder="Goods description..."></textarea>
+                            </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group"> <input class="form-control" type="date" name="arrival_date" required> <span
+                                        class="form-label text-info">Check In Date</span> </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group"> <input class="form-control" name="departure_date" type="date" required> <span
+                                        class="form-label text-info">Check Out Date</span> </div>
+                            </div>
+                        </div>
+                        <div class="form-btn"> <button style="border-radius: 40px;" class="btn btn-info btn-sm btn-block">Submit</button> </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}
