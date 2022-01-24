@@ -12,6 +12,7 @@ def request_transport(request):
         if form.is_valid():
             transport_request = form.save(commit=False)
             transport_request.user = request.user
+            
             transport_request.save()
             print("transport:", transport_request)
             return redirect('request_summary')
@@ -28,8 +29,9 @@ def request_transport(request):
 
 @login_required(login_url='client_login')
 def request_summary(request):
-    transport_request = Transport.objects.filter(user=request.user).last()
+    request_transport = Transport.objects.filter(user=request.user).last()
+    print(request_transport.user.first_name)
     context = {
-        'transport_request': transport_request,
+        'request_transport': request_transport,
     }
     return render(request,'request_summary.html', context)
