@@ -37,45 +37,57 @@
 
 
 
-
-
-<div id="booking" class="section">
-    <div class="section-center">
-        <div class="container">
-            <div class="row">
-                <div class="booking-form">
-                    <div class="form-header">
-                        <h1>Book Storage</h1>
-                    </div>
-                    <form action="" method="POST" enctype="multipart/form-data" id="storage">
-                        {% csrf_token %}
-                        <div class="form-group"> <select class="form-control" name="storage_type" required>
-                                <option value="" selected hidden>Choose Storage Type</option>
-                                <option>normal_storage</option>
-                                <option>cold_storage</option>
-                                <option>bonded_storage</option>
-                                <option>hazardious_storage</option>
-                                <option>archive_storage</option>
-                            </select> <span class="select-arrow"></span> <span class="form-label">Storage</span> </div>
-                            <div class="form-group">
-                                <textarea style="border-radius: 5px;" name="description" id="description" class="form-control" cols="30" rows="10" placeholder="Goods description..."></textarea>
-                            </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group"> <input class="form-control" type="date" oninput="total()" name="arrival_date" id="arrival_date" required> <span
-                                        class="form-label text-info">Check In Date</span> </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group"> <input class="form-control" oninput="total()" name="departure_date" type="date" id="departure_date" required> <span
-                                        class="form-label text-info">Check Out Date</span> </div>
-                            </div>
+<div class="container-fluid" style="background-color: rgb(213, 255, 255);">
+    <div id="booking" class="section">
+        <div class="section-center">
+            <div class="container">
+                <div class="row">
+                    <div class="booking-form">
+                        <div class="form-header">
+                            <h1>Book Storage</h1>
                         </div>
-                        <input type="text" id="total_cost">
-                        <div class="form-btn"> <button style="border-radius: 40px;" class="btn btn-info btn-sm btn-block">Submit</button> </div>
-                    </form>
+                        <form action="" method="POST" enctype="multipart/form-data" id="storage">
+                            {% csrf_token %}
+                            <div class="form-group"> <select class="form-control" name="storage_type" required>
+                                    <option value="" selected hidden>Choose Storage Type</option>
+                                    <option>normal_storage</option>
+                                    <option>cold_storage</option>
+                                    <option>bonded_storage</option>
+                                    <option>hazardious_storage</option>
+                                    <option>archive_storage</option>
+                                </select> <span class="select-arrow"></span> <span class="form-label">Storage</span> </div>
+                            <div class="form-group">
+                                <textarea style="border-radius: 5px;" name="description" id="description"
+                                    class="form-control" cols="30" rows="10" placeholder="Goods description..."></textarea>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group"> <input class="form-control" type="date" oninput="total()"
+                                            name="arrival_date" id="arrival_date" required> <span
+                                            class="form-label text-info">Check In Date</span> </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group"> <input class="form-control" oninput="total()"
+                                            name="departure_date" type="date" id="departure_date" required> <span
+                                            class="form-label text-info">Check Out Date</span> </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <span class="form-label text-info"></span>
+                                <div class="col-sm-6">
+                                    <div class="form-group"><input class="form-control " type="text" readonly placeholder="Your Total Cost In Kshs" id="total_cost">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-btn"> <button style="border-radius: 40px;"
+                                    class="btn btn-info btn-sm btn-block">BOOK</button> </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+
 {% endblock %}
