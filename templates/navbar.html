@@ -117,14 +117,14 @@
             <li><a href="/" class="nav-link">News</a></li>
 
             <li><a href="/" class="nav-link">Contact</a></li>
+            {% if user.is_authenticated %}
+            {% else %}
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
-                {% if user.is_authenticated %}
-                {% else %}
                 Register
-                {% endif %}
               </a>
+                {% endif %}
               <div class="dropdown-menu" style="background-color: rgba(127, 255, 212, 0.671);"
                 aria-labelledby="navbarDropdown">
                 {% if user.is_authenticated %}
