@@ -135,25 +135,25 @@ def logout_view(request):
     logout(request)
     return redirect('/')
 
-# @login_required
-# def profile(request):
-#     current_user = request.user
-#     profile = Profile.objects.filter(user_id=current_user.id).first()
-#     return render(request, "profile.html", {"profile": profile})
+@login_required
+def profile(request):
+    current_user = request.user
+    profile = Profile.objects.filter(user_id=current_user.id).first()
+    return render(request, "profile.html", {"profile": profile})
 
 
-# @login_required
-# def update_profile(request,id):
-#     user = User.objects.get(id=id)
-#     profile = Profile.objects.get(user_id = user)
-#     form = UpdateProfileForm(instance=profile)
-#     if request.method == "POST":
-#             form = UpdateProfileForm(request.POST,request.FILES,instance=profile)
-#             if form.is_valid():  
+@login_required
+def update_profile(request,id):
+    user = User.objects.get(id=id)
+    profile = Profile.objects.get(user_id = user)
+    form = UpdateProfileForm(instance=profile)
+    if request.method == "POST":
+            form = UpdateProfileForm(request.POST,request.FILES,instance=profile)
+            if form.is_valid():  
                 
-#                 profile = form.save(commit=False)
-#                 profile.save()
-#                 return redirect('profile') 
+                profile = form.save(commit=False)
+                profile.save()
+                return redirect('profile') 
             
-#     return render(request, 'edit_profile.html', {"form":form})
+    return render(request, 'edit_profile.html', {"form":form})
 
