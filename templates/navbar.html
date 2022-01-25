@@ -115,12 +115,8 @@
             <li><a href="/" class="nav-link">About</a></li>
             {% if user.is_authenticated %}
             {% else %}
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-                Register
-              </a>
-                {% endif %}
+            <li><a href="/client_register/" class="nav-link">Register</a></li>
+            {% endif %}
               <div class="dropdown-menu" style="background-color: rgba(127, 255, 212, 0.671);"
                 aria-labelledby="navbarDropdown">
                 {% if user.is_authenticated %}
@@ -128,6 +124,7 @@
                 <a style="border-radius: 50px;" class="text-dark dropdown-item" href="/client_register/">As Client</a>
                 
                 {% endif %}
+
               </div>
             </li>
             <li class="nav-item dropdown">

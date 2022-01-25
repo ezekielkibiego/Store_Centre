@@ -57,7 +57,7 @@
                   </div>
                 </div>
                 <label class="fieldlabels">First Name: *</label> 
-                {{form.first_name}}
+                {{form.first_name|add_class:"flow"}}
                 <label class="fieldlabels">Last Name: *</label>
                 {{form.last_name}}
                 <label class="fieldlabels">User Name: *</label>
@@ -136,6 +136,9 @@
     </div>
   </div>
 </div>
+
+
+
 
 
 {% endblock %}
