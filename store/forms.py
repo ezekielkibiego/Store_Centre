@@ -1,8 +1,9 @@
-from pstats import Stats
+
 from django.contrib.auth.forms import UserCreationForm
 from django.db import transaction
 from django import forms
 from store.models import *
+from django.forms import ModelForm
 
 
 class ClientSignUpForm(UserCreationForm):
@@ -56,21 +57,12 @@ class StaffSignUpForm(UserCreationForm):
 
             return staff
 
-
-
-
-# class MyForm(forms.ModelForm):
+# class ProfileForm(ModelForm):
 #     class Meta:
-#         model = MyModel
+#         model = Profile
+#         exclude = ['user']
 
-#     def __init__(self, *args, **kwargs):
-#         super(MyForm, self).__init__(*args, **kwargs)
-#         self.fields['myfield'].widget.attrs.update({'class': 'myfieldclass'})
-
-
-# class MyForm(forms.ModelForm):
+# class UpdateProfileForm(forms.ModelForm):
 #     class Meta:
-#         model = MyModel
-#         widgets = {
-#             'myfield': forms.TextInput(attrs={'class': 'myfieldclass'}),
-#         }
+#         model = Profile
+#         exclude = ['user']

@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'social_django',
 ]
 
 MIDDLEWARE = [
@@ -174,6 +175,26 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 django_heroku.settings(locals())
 
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = config('S_KEY')
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = config('S_SECRET')
+
+LOGIN_REDIRECT_URL = 'index'
+
+AUTHENTICATION_BACKENDS = [
+  
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    
+
+   
+    'social_core.backends.facebook.FacebookOAuth2',
+    'social_core.backends.google.GoogleOAuth2',
+
+   
+]
 #jazzmin settings
 JAZZMIN_SETTINGS = {
       # title of the window (Will default to current_admin_site.site_title if absent or None)
@@ -207,17 +228,8 @@ JAZZMIN_SETTINGS = {
     },
     "custom_links": {
     "books": [{
-        # Any Name you like
-        "name": "Make Messages",
-
-        # url name e.g `admin:index`, relative urls e.g `/admin/index` or absolute urls e.g `https://domain.com/admin/index`
-        "url": "make_messages",
-
-        # any font-awesome icon, see list here https://fontawesome.com/icons?d=gallery&m=free&v=5.0.0,5.0.1,5.0.10,5.0.11,5.0.12,5.0.13,5.0.2,5.0.3,5.0.4,5.0.5,5.0.6,5.0.7,5.0.8,5.0.9,5.1.0,5.1.1,5.2.0,5.3.0,5.3.1,5.4.0,5.4.1,5.4.2,5.13.0,5.12.0,5.11.2,5.11.1,5.10.0,5.9.0,5.8.2,5.8.1,5.7.2,5.7.1,5.7.0,5.6.3,5.5.0,5.4.2 (optional)
-        "icon": "fas fa-comments",
-
-        # a list of permissions the user must have to see this link (optional)
-        "permissions": ["view available stores"]     
+        
+             
     }]
 },
 }

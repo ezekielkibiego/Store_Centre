@@ -20,7 +20,7 @@ urlpatterns = [
     # path('profile/', views.profile, name='profile'),
     # path('accounts/profile/', views.IndexView,name='index'),
     # path('update_profile/<int:id>',views.update_profile, name='update_profile'),
- 
+    path('social-auth/',include('social_django.urls',namespace='social')),
     
 
 ]

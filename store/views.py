@@ -23,6 +23,7 @@ def records(request):
 
     return render(request, "records.html",{'records':storage_records})
 
+@login_required(login_url = '/client_login')
 def services(request):
     
     
@@ -76,7 +77,7 @@ def register(request):
     return render(request, 'register.html')
 
 class client_register(CreateView):
-    model = Client
+    model = User
     form_class = ClientSignUpForm
     template_name = 'client_registration.html'
 
@@ -87,11 +88,9 @@ class client_register(CreateView):
 
 
 class staff_register(CreateView):
-    model = Staff
+    model = User
     form_class = StaffSignUpForm
     template_name = 'staff_registration.html'
-
-    
 
     def form_valid(self, form):
         user = form.save()
@@ -107,13 +106,11 @@ def client_login(request):
             user = authenticate(username=username, password=password)
             if user is not None :
                 login(request,user)
-                if request.user.is_client:
-                    return redirect('/')
+                return redirect('/')
             else:
-                return HttpResponse("You are not a Client.")
+                messages.error(request,"Invalid username or password")
         else:
-            alert = True
-            return render(request, "client_login.html", {'alert':alert})
+                messages.error(request,"Invalid username or password")
     return render(request, 'client_login.html',
     context={'form':AuthenticationForm()})
 
@@ -126,17 +123,37 @@ def staff_login(request):
             user = authenticate(username=username, password=password)
             if user is not None :
                 login(request,user)
-                if request.user.is_staff:
-                    return redirect('/analytics')
+                return redirect('/analytics')
             else:
-                return HttpResponse("You are not a Staff.")
+                messages.error(request,"Invalid username or password")
         else:
-            alert = True
-            return render(request, "staff_login.html", {'alert':alert})
+                messages.error(request,"Invalid username or password")
     return render(request, 'staff_login.html',
     context={'form':AuthenticationForm()})
 
 def logout_view(request):
     logout(request)
     return redirect('/')
+
+# @login_required
+# def profile(request):
+#     current_user = request.user
+#     profile = Profile.objects.filter(user_id=current_user.id).first()
+#     return render(request, "profile.html", {"profile": profile})
+
+
+# @login_required
+# def update_profile(request,id):
+#     user = User.objects.get(id=id)
+#     profile = Profile.objects.get(user_id = user)
+#     form = UpdateProfileForm(instance=profile)
+#     if request.method == "POST":
+#             form = UpdateProfileForm(request.POST,request.FILES,instance=profile)
+#             if form.is_valid():  
+                
+#                 profile = form.save(commit=False)
+#                 profile.save()
+#                 return redirect('profile') 
+            
+#     return render(request, 'edit_profile.html', {"form":form})
 

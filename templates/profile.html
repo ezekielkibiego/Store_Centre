@@ -56,7 +56,7 @@ background: #212529b8;
                 <img src="{{user.client.image.url}}" alt="Avatar" class="img img-responsive rounded-circle my-5" width="150px" height="150px"/>
                 <h5>{{user}}</h5>
                 <p>@store.com</p>
-                <a class="text-light" href="/edit_profile/"> Edit <i class="far fa-edit mb-5"></i></a>
+                
               </div>
               <div class="col-md-8">
                 <div class="card-body p-4">
@@ -100,5 +100,9 @@ background: #212529b8;
         </div>
       </div>
     </div>
+    <a href="{%url 'update_profile' user.id %}"
+                                    class="btn btn-outline-dark bg-dark text-white rounded-pill">
+                                    Edit Profile
+                                </a>
   </section>
 {% endblock %}
