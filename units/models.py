@@ -1,36 +1,50 @@
-
-
 from django.db import models
 
 from store.models import User
 
-    
-class Unit(models.Model):
+class Storage(models.Model):
     type = models.CharField(max_length=100) #type of storage
-    booked = models.BooleanField(default=False)
     charge = models.IntegerField() #cost per unit
-    
-    
-    def add_unit(self):
+    no_units = models.IntegerField(default=0) #total number of units in a storage type
+    available_units = models.IntegerField(default=0) # remaining units 
+
+    def __str__(self):
+        return self.type
+
+    def add_storage(self):
         self.save()
         
     def delete(self):
         self.delete()
+
+    
+# class Unit(models.Model):
+#     type = models.ForeignKey(Storage,on_delete=models.CASCADE,related_name='units') #type of storage
+#     booked = models.BooleanField(default=False)
+    
+
+    
+    
+#     def add_unit(self):
+#         self.save()
         
-    @classmethod   
-    def all_units(self):
-        units = Unit.objects.all()
-        return units
+#     def delete(self):
+#         self.delete()
+        
+#     @classmethod   
+#     def all_units(self):
+#         units = Unit.objects.all()
+#         return units
         
     
-    def __str__(self):
-        return  self.type     
+#     def __str__(self):
+#         return  self.type     
         
     
     
 class Goods(models.Model):
-    storage_type  = models.CharField(max_length=100) #type of storage
-    unit_no = models.ForeignKey(Unit,on_delete=models.CASCADE,related_name='store' ,null=True)
+    storage_type  = models.ForeignKey(Storage,on_delete=models.CASCADE,related_name='units') #type of storage
+    no_of_units = models.IntegerField(null=True)
     arrival_date = models.DateField()
     departure_date = models.DateField()
     description = models.TextField(max_length=500)
