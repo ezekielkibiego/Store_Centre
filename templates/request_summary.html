@@ -10,8 +10,8 @@
 {%block content%}
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-8">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
             <a class="btn btn-primary mx-5 mt-3 mb-0" href="{%url 'index'%}" role="button">BACK</a>
             <div class="card mx-5 my-3" >
                 <div class="row g-0">
@@ -23,13 +23,19 @@
                             <h3 class="card-title">Transport Request Summary</h3>
                             <p class="card-text"><strong>FIRST NAME: </strong>{{request_transport.user.first_name}}</p>
                             <p class="card-text"><strong>LAST NAME: </strong>{{request_transport.user.last_name}}</p>
-                            <p class="card-text"><strong>TYPE OF REQUEST: </strong>{{request_transport.transport_type}}</p>
+                            <p class="card-text"><strong>TYPE OF REQUEST: </strong>{{request_transport.transport_type|upper}}</p>
+                            <p class="card-text"><strong>PRICE: </strong>Ksh.{{request_transport.price}}</p>
                             <h4><strong>Address Details</strong></h4>
                             <p class="card-text"><strong>ADDRESS: </strong>{{request_transport.address}}</p>
                             <p class="card-text"><strong>DISTANCE: </strong>{{request_transport.distance|div:1000}} km</p><hr>
                             <h4><strong>Contact Details</strong></h4>
                             <p class="card-text"><strong>PHONE NUMBER: </strong>{{request_transport.phone_number}}</p>
                             <p class="card-text"><strong>EMAIL: </strong>{{request_transport.user.email}}</p><hr>
+                            {%if request_transport.is_paid == False %}
+                            <p class="card-text"><strong>STATUS: <span class="text-danger">NOT PAID</span> </strong></p>
+                            {%else%}
+                            <p class="card-text"><strong>STATUS: <span class="text-success">PAID</span> </strong></p>
+                            {%endif%}
                             {%if request_transport.is_approved == False %}
                             <p class="card-text"><strong>STATUS: <span class="text-danger">PENDING</span> </strong></p>
                             {%else%}
@@ -41,7 +47,7 @@
             </div>
             <a class="btn btn-success m-5 mt-0" href="{%url 'index'%}" role="button">DONE</a>
         </div>
-        <div class="col-md-2"></div>
+        <div class="col-md-1"></div>
     </div>
 </div>
 {% endblock %}
