@@ -23,6 +23,7 @@ def records(request):
 
     return render(request, "records.html",{'records':storage_records})
 
+@login_required(login_url = '/client_login')
 def services(request):
     
     
@@ -122,7 +123,7 @@ def staff_login(request):
             user = authenticate(username=username, password=password)
             if user is not None :
                 login(request,user)
-                return redirect('/')
+                return redirect('/analytics')
             else:
                 messages.error(request,"Invalid username or password")
         else:
@@ -133,4 +134,26 @@ def staff_login(request):
 def logout_view(request):
     logout(request)
     return redirect('/')
+
+# @login_required
+# def profile(request):
+#     current_user = request.user
+#     profile = Profile.objects.filter(user_id=current_user.id).first()
+#     return render(request, "profile.html", {"profile": profile})
+
+
+# @login_required
+# def update_profile(request,id):
+#     user = User.objects.get(id=id)
+#     profile = Profile.objects.get(user_id = user)
+#     form = UpdateProfileForm(instance=profile)
+#     if request.method == "POST":
+#             form = UpdateProfileForm(request.POST,request.FILES,instance=profile)
+#             if form.is_valid():  
+                
+#                 profile = form.save(commit=False)
+#                 profile.save()
+#                 return redirect('profile') 
+            
+#     return render(request, 'edit_profile.html', {"form":form})
 
