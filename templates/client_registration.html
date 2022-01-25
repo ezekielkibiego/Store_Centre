@@ -56,13 +56,13 @@
                   </div>
                 </div>
                 <label class="fieldlabels">First Name: *</label> 
-                {{form.first_name}}
+                {{form.first_name|add_class:"flow"}}
                 <label class="fieldlabels">Last Name: *</label>
                 {{form.last_name}}
                 <label class="fieldlabels">User Name: *</label>
                 {{form.username}}
               </div>
-              <input type="button" style="border-radius: 5px;" name="next" class="next action-button" value="Next" />
+              <input type="button" style="border-radius: 5px;" id="clog1" name="next" class="next action-button" value="Next" />
             </fieldset>
             <fieldset>
               <div class="form-card">
@@ -132,6 +132,9 @@
     </div>
   </div>
 </div>
+
+
+
 
 
 {% endblock %}
