@@ -48,14 +48,15 @@
                         </div>
                         <form action="" method="POST" enctype="multipart/form-data" id="storage">
                             {% csrf_token %}
-                            <div class="form-group"> <select class="form-control" name="storage_type" required>
-                                    <option value="" selected hidden>Choose Storage Type</option>
-                                    <option>normal_storage</option>
-                                    <option>cold_storage</option>
-                                    <option>bonded_storage</option>
-                                    <option>hazardious_storage</option>
-                                    <option>archive_storage</option>
+                            <div class="form-group"> <select class="form-control"  name="storage_type" id="storage_type" required>
+                                    <option value=""  selected hidden>Choose Storage Type</option>
+                                    {% for storage_type in storage_types %}
+                                    <option charge="{{storage_type.charge}}">{{storage_type}}</option>
+                                    {% endfor %}
                                 </select> <span class="select-arrow"></span> <span class="form-label">Storage</span> </div>
+                            <div class="form-group">
+                                <input type="number" min="1" name="no_of_units" id="no_of_units" placeholder="number of units">
+                            </div>
                             <div class="form-group">
                                 <textarea style="border-radius: 5px;" name="description" id="description"
                                     class="form-control" cols="30" rows="10" placeholder="Goods description..."></textarea>
@@ -80,7 +81,7 @@
                                 </div>
                             </div>
                             <div class="form-btn"> <button style="border-radius: 40px;"
-                                    class="btn btn-info btn-sm btn-block">BOOK</button> </div>
+                                    class="btn btn-info btn-sm btn-block" type="submit">BOOK</button> </div>
                         </form>
                     </div>
                 </div>
