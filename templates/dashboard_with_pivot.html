@@ -1,4 +1,4 @@
-{% extends "index.html" %}
+{% extends "base.html" %}
 
 {% block title %} UI Tables {% endblock %} 
 
@@ -6,12 +6,27 @@
 {% block stylesheets %}{% endblock stylesheets %}
 
 {% block content %}
+<h4 class="card-title"> staff dashboard</h4>
 
+<div class="col-md-3">
+  <div class="card">
+    {% if user.profile_picture.url %}
+    <img class="profile_picture my-4" src="{{ user.profile_picture.url }}" style="height: 10vh; width:10vh;" alt="">
+    {% else %}
+    <img class="profile_picture my-4" 
+      src="https://res.cloudinary.com/dbos9xidr/image/upload/v1626854682/zvtfufhexa8lqqqgcdt3.png"
+      style="height: 10vh; width:10vh;" alt="">
+    {% endif %}
+    <h4 class="">{{user.username}}</h4>
+    {% comment %} <div class="card-header"><a href="{% url 'update_employer' %}">Update Details</a></div>
+    <div class="card-header"><a href="{% url 'employer_profile' %}">See my Profile</a></div> {% endcomment %}
+  </div>
+</div>
 <div class="row">
   <div class="col-md-12">
     <div class="card ">
-      <div class="card-header">
-        <h4 class="card-title"> staff dashboard</h4>
+      <div class="card-header ">
+        <h4 class="card-title ">manage you store at ease</h4>
       </div>
       <div class="card-body">
         <div class="table-responsive">
@@ -137,6 +152,7 @@
       </div>
     </div>
   </div>
+  
 {% endblock content %}
 
 <!-- Specific Page JS goes HERE  -->
