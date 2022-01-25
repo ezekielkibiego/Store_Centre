@@ -2,23 +2,31 @@ from inspect import Attribute
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import Unit,Goods
+from .models import Goods,Storage
 
-class UnitForm(forms.ModelForm):
+# class UnitForm(forms.ModelForm):
     
-    type = forms.ChoiceField(choices=[('normal_storage','normal_storage'),('cold_storage','cold_storage'),('bonded_storage','bonded_storage'),('hazardious_storage','hazardious_storage'),('archive_storage','archive_storage')])
+#     type = forms.ChoiceField(choices=[('normal_storage','normal_storage'),('cold_storage','cold_storage'),('bonded_storage','bonded_storage'),('hazardious_storage','hazardious_storage'),('archive_storage','archive_storage')])
+
+#     class Meta:
+#         model = Unit
+#         fields = ('type')
+
+class StorageForm(forms.ModelForm):
+
+    # type = forms.ChoiceField(choices=[('normal_storage','normal_storage'),('cold_storage','cold_storage'),('bonded_storage','bonded_storage'),('hazardious_storage','hazardious_storage'),('archive_storage','archive_storage')])
 
     class Meta:
-        model = Unit
-        fields = ('type','charge')
+        model = Storage
+        fields = ('type','charge','no_units')
 
 class GoodsBookingForm(forms.ModelForm):
 
-    storage_type = forms.ChoiceField(choices=[('normal_storage','normal_storage'),('cold_storage','cold_storage'),('bonded_storage','bonded_storage'),('hazardious_storage','hazardious_storage'),('archive_storage','archive_storage')])
+    # storage_type = forms.ModelChoiceField(queryset=Storage.objects.all(), label="storage")
     
     class Meta:
         model = Goods
-        fields = ('storage_type','description','arrival_date','departure_date')
+        fields = ('storage_type','no_of_units','description','arrival_date','departure_date')
         widgets = {
             'arrival_date':forms.DateInput(attrs={'type':'date'}),
             'departure_date':forms.DateInput(attrs={'type':'date'}),
