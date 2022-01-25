@@ -21,10 +21,11 @@ def request_transport(request):
                    '&destinations=' + destination +
                    '&key=' + api_key)
             x=r.json()
-            print(x['rows'][0]["elements"][0]['distance']["value"])
             transport_request.distance = x['rows'][0]["elements"][0]['distance']["value"]
+            #calculate price
+            price = ((transport_request.distance)/1000)*300
+            transport_request.price = price
             transport_request.save()
-            print("transport:", transport_request.distance)
             return redirect('request_summary')
         else:
             print(form.errors)
@@ -39,6 +40,7 @@ def request_transport(request):
 @login_required(login_url='client_login')
 def request_summary(request):
     request_transport = Transport.objects.filter(user=request.user).last()
+    
     print(request_transport.user.first_name)
     context = {
         'request_transport': request_transport,
