@@ -1,8 +1,9 @@
-from pstats import Stats
+
 from django.contrib.auth.forms import UserCreationForm
 from django.db import transaction
 from django import forms
 from store.models import *
+from django.forms import ModelForm
 
 
 class ClientSignUpForm(UserCreationForm):
@@ -56,4 +57,12 @@ class StaffSignUpForm(UserCreationForm):
 
             return staff
 
+# class ProfileForm(ModelForm):
+#     class Meta:
+#         model = Profile
+#         exclude = ['user']
 
+# class UpdateProfileForm(forms.ModelForm):
+#     class Meta:
+#         model = Profile
+#         exclude = ['user']
