@@ -138,6 +138,7 @@ def logout_view(request):
 @login_required
 def profile(request):
     current_user = request.user
+   
     profile = Profile.objects.filter(user_id=current_user.id).first()
     return render(request, "profile.html", {"profile": profile})
 
@@ -145,7 +146,7 @@ def profile(request):
 @login_required
 def update_profile(request,id):
     user = User.objects.get(id=id)
-    profile = Profile.objects.get(user_id = user)
+    profile = UserProfile.objects.get(user_id = user)
     form = UpdateProfileForm(instance=profile)
     if request.method == "POST":
             form = UpdateProfileForm(request.POST,request.FILES,instance=profile)
