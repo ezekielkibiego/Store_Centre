@@ -215,7 +215,6 @@ JAZZMIN_SETTINGS = {
         # external url that opens in a new window (Permissions can be added)
 
         {"name": "Staff ", "url": "/staff_register", "new_window": True},
-=======
         {"name": "View Website", "url": "/", "new_window": True},
 
 
