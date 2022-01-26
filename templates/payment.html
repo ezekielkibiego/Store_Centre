@@ -20,7 +20,7 @@
                             <p class="card-text"><strong>TYPE OF TRANSPORT REQUEST: </strong>{{request_transport.transport_type|upper}}</p>
                             <p class="card-text"><strong>GOODS PRICE: </strong>Ksh. {{request_goods.total_cost}}</p>
                             <p class="card-text"><strong>TRANSPORT PRICE: </strong>Ksh. {{request_transport.price}}</p>
-                            <p class="card-text"><strong>TOTAL PRICE: </strong>Ksh. {{request_transport.transport_type|upper}}</p>
+                            <p class="card-text"><strong>TOTAL PRICE: </strong>Ksh. {{request_transport.price|add:request_goods.total_cost}}</p>
                             <hr>
                             {%else%}
                             <p class="card-text"><strong>TYPE OF TRANSPORT REQUEST: </strong>{{request_transport.transport_type|upper}}</p>
@@ -59,7 +59,7 @@
                             <h3 class="card-title font-weight-bold">BILL</h3><hr>
                             <p class="card-text"><strong>GOODS PRICE: </strong>Ksh. {{request_goods.total_cost}}</p>
                             <p class="card-text"><strong>TRANSPORT PRICE: </strong>Ksh.0</p>
-                            <p class="card-text"><strong>TOTAL PRICE: </strong>Ksh. {{request_goods.description}}</p>
+                            <p class="card-text"><strong>TOTAL PRICE: </strong>Ksh. {{request_goods.total_cost}}</p>
                             <hr>
                             <h4><strong>HOW TO PAY</strong></h4>
                             <ul >
