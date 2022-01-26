@@ -105,8 +105,18 @@ class client_register(CreateView):
 
     def form_valid(self, form):
         user = form.save()
-        login(self.request, user)
+        login(self.request, user, backend='django.contrib.auth.backends.ModelBackend')
         return redirect('/client_login')
+
+
+# def signup_view(request):
+#     if request.method=='POST':
+#         form = UserCreationForm(request.POST)
+#         if form.is_valid():
+#             user=form.save()
+#             login(request, user, backend='django.contrib.auth.backends.ModelBackend')
+#             return redirect('home')
+
 
 
 class staff_register(CreateView):

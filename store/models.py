@@ -76,6 +76,7 @@ class Storecentre(models.Model):
 class Client(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     phone = models.CharField(max_length=20, null=True)
+    image = CloudinaryField('image')
     location = models.CharField(max_length=50,null=True)
     email = models.CharField(max_length=50,null=True)
     last_login = models.CharField(max_length=1000,null=True)
@@ -93,6 +94,7 @@ class Client(models.Model):
 class Staff(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     phone = models.CharField(max_length=20,null=True)
+    image = CloudinaryField('image')
     email = models.CharField(max_length=50,null=True)
     designation = models.CharField(max_length=50,null=True)
     last_login = models.CharField(max_length=1000,null=True)
