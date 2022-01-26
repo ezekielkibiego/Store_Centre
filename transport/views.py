@@ -52,7 +52,7 @@ def request_summary(request):
 
 @login_required(login_url='client_login')
 def summaries(request):
-    summaries = Transport.objects.filter(user=request.user).all().order_by('-id')
+    summaries = Transport.objects.filter(user=request.user).all().order_by('-created')
     
     print(summaries)
     context = {
