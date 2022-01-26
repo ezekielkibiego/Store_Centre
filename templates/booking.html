@@ -48,8 +48,8 @@
 
 
 
-<!-- 
-<div class="container-fluid" style="background-color: rgb(213, 255, 255);">
+
+<div class="container-fluid" style="background-color: rgb(213, 255, 255); min-height:100vh;">
     <div id="booking" class="section">
         <div class="section-center">
             <div class="container">
@@ -60,21 +60,16 @@
                         </div>
                         <form action="" method="POST" enctype="multipart/form-data" id="storage">
                             {% csrf_token %}
-                            <div class="form-group"> <select class="form-control" name="storage_type" id="storage_type"
-                                    required>
-                                    <option value="" selected hidden>Choose Storage Type</option>
+                            {{form|crispy}}
+                            <div class="form-group"> <select class="form-control"  name="storage_type" id="storage_type" required>
+                                    <option value=""  selected hidden>Choose Storage Type</option>
                                     {% for storage_type in storage_types %}
                                     <option charge="{{storage_type.charge}}">{{storage_type}}</option>
                                     {% endfor %} <br>
                                 </select> <span class="select-arrow"></span> <span class="form-label">Storage</span>
                             </div>
-                            <div class="row">
-                                <span class="form-label text-info"></span>
-                                <div class="col-sm-6">
-                                    <div class="form-group"><input class="form-control" type="number" min="1"
-                                            name="no_of_units" id="no_of_units" placeholder="number of units">
-                                    </div>
-                                </div>
+                            <div class="form-group">
+                                <input type="number" min="1" name="no_of_units" id="no_of_units" placeholder="number of units">
                             </div>
                             <div class="form-group">
                                 <textarea style="border-radius: 5px;" name="description" id="description"
@@ -101,8 +96,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-btn"> <button style="border-radius: 40px;"
-                                    class="btn btn-info btn-sm btn-block" type="submit">BOOK</button> </div>
+                             <div class="form-btn"> <button style="border-radius: 40px;"
+                                    class="btn btn-info btn-sm btn-block" type="submit">BOOK</button>
+                            </div>
                         </form>
                     </div>
                 </div>
