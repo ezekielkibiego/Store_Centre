@@ -8,7 +8,7 @@ from django.db.models.signals import post_save
 
 
 class User(AbstractUser):
-  
+    USERNAME_FIELD = 'username'
     is_client = models.BooleanField('client status',default=False)
     is_staff = models.BooleanField('staff status',default=False)
     is_verified = models.BooleanField(default=False)
