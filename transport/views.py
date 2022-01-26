@@ -13,6 +13,9 @@ def request_transport(request):
         if form.is_valid():
             transport_request = form.save(commit=False)
             transport_request.user = request.user
+            #client goods logic
+            goods = Goods.objects.filter(owner=request.user).last()
+            transport_request.goods= goods
             #distance matrix logic
             source = 'Moringa School,Nairobi,Kenya'
             destination = transport_request.address
@@ -21,10 +24,13 @@ def request_transport(request):
                    '&destinations=' + destination +
                    '&key=' + api_key)
             x=r.json()
-            print(x['rows'][0]["elements"][0]['distance']["value"])
-            transport_request.distance = x['rows'][0]["elements"][0]['distance']["value"]
+            print(x)
+            distance = x['rows'][0]["elements"][0]["distance"]["value"]
+            transport_request.distance = (distance)/1000
+            #calculate price
+            price = (transport_request.distance)*200
+            transport_request.price = price
             transport_request.save()
-            print("transport:", transport_request.distance)
             return redirect('request_summary')
         else:
             print(form.errors)
@@ -39,8 +45,31 @@ def request_transport(request):
 @login_required(login_url='client_login')
 def request_summary(request):
     request_transport = Transport.objects.filter(user=request.user).last()
+    
     print(request_transport.user.first_name)
     context = {
         'request_transport': request_transport,
     }
     return render(request,'request_summary.html', context)
+
+
+@login_required(login_url='client_login')
+def summaries(request):
+    summaries = Transport.objects.filter(user=request.user).all().order_by('-created')
+    
+    print(summaries)
+    context = {
+        'summaries': summaries,
+    }
+    return render(request,'summaries.html', context)
+
+@login_required(login_url='client_login')
+def payment(request):
+    request_transport = Transport.objects.filter(user=request.user).last()
+    request_goods = Goods.objects.filter(owner=request.user).last()  
+    context = {
+        'request_transport': request_transport,
+        'request_goods': request_goods,
+        
+    }
+    return render(request,'payment.html', context)
