@@ -102,3 +102,4 @@ def display_units(request,storage_type):
     }
 
     return render(request,'units.html',context)
+
