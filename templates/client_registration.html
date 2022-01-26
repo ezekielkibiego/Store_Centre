@@ -1,24 +1,26 @@
-{%extends "base.html"%} 
+{%extends "base.html"%}
 {% load bootstrap4 %}
 {% block content %}
 {% load widget_tweaks %}
 
-<div class="overlay" style="box-shadow:inset 0 0 0 2000px rgba(23, 34, 23, 0.863);background-image: url(/static/images/hero_1.jpg);color: white;" data-aos="fade" id="home-section">
+<div class="overlay"
+  style="box-shadow:inset 0 0 0 2000px rgba(23, 34, 23, 0.863);background-image: url(/static/images/hero_1.jpg);color: white;"
+  data-aos="fade" id="home-section">
 
 
   <div class="container">
     <div class="row align-items-center justify-content-center">
       <div class="col-md-6 mt-lg-5 text-center">
         <br><br>
-        <h1>Client Registration</h1> 
+        <h1>Client Registration</h1>
         <div style="margin-bottom: 10px;">
-        </div>           
+        </div>
       </div>
     </div>
   </div>
-<br><br>
+  <br><br>
   <a href="#heading" class="smoothscroll arrow-down"><span class="icon-arrow_downward"></span></a>
-</div>  
+</div>
 
 
 
@@ -44,8 +46,8 @@
               <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemin="0"
                 aria-valuemax="100"></div>
             </div> <br>
-            
-            
+
+
             <fieldset>
               <div class="form-card">
                 <div class="row">
@@ -80,7 +82,8 @@
                 {{form.password2}}
               </div>
               <input type="button" style="border-radius: 5px;" name="next" class="next action-button" value="Next" />
-              <input type="button" style="border-radius: 5px;" name="previous" class="previous action-button-previous" value="Previous" />
+              <input type="button" style="border-radius: 5px;" name="previous" class="previous action-button-previous"
+                value="Previous" />
             </fieldset>
             <fieldset>
               <div class="form-card">
@@ -97,7 +100,8 @@
                 {% render_field form.phone|append_attr:"" placeholder="Phone No" %}
               </div>
               <input type="button" style="border-radius: 5px;" name="next" class="next action-button" value="Next" />
-              <input style="margin-left: 10px;border-radius: 5px;" type="button" name="previous" class="previous float-left action-button-previous " value="Previous" />
+              <input style="margin-left: 10px;border-radius: 5px;" type="button" name="previous"
+                class="previous float-left action-button-previous " value="Previous" />
             </fieldset>
             <fieldset>
               <div class="form-card">
@@ -120,9 +124,11 @@
                   </div>
                 </div>
               </div>
-              <button class="btn btn-primary btn-sm btn-sm mt-4 previous" style="margin-top:10px;border-radius: 0px;" type="button" name="previous">Back</button>
-              <button class="btn btn-primary btn-sm btn-sm mt-4" style="margin-top:10px;border-radius: 0px;" type="submit">Submit</button>
-              
+              <button class="btn btn-primary btn-sm btn-sm mt-4 previous" style="margin-top:10px;border-radius: 0px;"
+                type="button" name="previous">Back</button>
+              <button class="btn btn-primary btn-sm btn-sm mt-4" style="margin-top:10px;border-radius: 0px;"
+                type="submit">Submit</button>
+
             </fieldset>
           </form>
         </div>
