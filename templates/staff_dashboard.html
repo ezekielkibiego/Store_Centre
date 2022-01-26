@@ -1,75 +1,92 @@
 {% extends 'base.html' %}
 
-
+{% load widget_tweaks %}
 {% load static %}
 
 {% block content %}
 
-<div class="overlay"
-    style="box-shadow:inset 0 0 0 2000px rgba(23, 34, 23, 0.863);background-image: url(/static/images/hero_1.jpg);color: white;"
-    data-aos="fade" id="home-section">
+
+ <div class="overlay"
+ style="box-shadow:inset 0 0 0 2000px rgba(23, 34, 23, 0.863);background-image: url(/static/images/hero_1.jpg);color: white;"
+ data-aos="fade" id="home-section">
 
 
-    <div class="container">
-        <div class="row align-items-center justify-content-center">
-            <div class="col-md-6 mt-lg-5 text-center">
-                <br><br>
-                <h1>Storage Units</h1>
-                <div style="margin-bottom: 10px;">
-                </div>
-            </div>
-        </div>
-    </div>
-    <br><br>
-    <a href="#heading" class="smoothscroll arrow-down"><span class="icon-arrow_downward"></span></a>
+ <div class="container">
+     <div class="row align-items-center justify-content-center">
+         <div class="col-md-6 mt-lg-5 text-center">
+             <br><br>
+             <h1>Storage Units</h1>
+             <div style="margin-bottom: 10px;">
+             </div>
+         </div>
+     </div>
+ </div>
+ <br><br>
+ <a href="#heading" class="smoothscroll arrow-down"><span class="icon-arrow_downward"></span></a>
 </div>
 
+<div class="container-fluid">
 
-
-<div class="container" style="margin-top: 150px;margin-bottom: 150px;">
-    Add unit
-    <form action="" method="POST">
-        {% csrf_token %}
-        {{form}}
-        <button class='btn btn-primary' type="submit">Submit</button>
-    </form>
-    <div class="row">
-        <div class="col-sm">
-            <div style="width: 180px;height: 250px;" class="profile-card-2"><img src="https://images.pexels.com/photos/4969107/pexels-photo-4969107.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="img img-fluid">
-                <div style="font-size: 25px;" class="profile-name text-center"><a href="{% url 'units' 'bonded_storage' %}">Bonded <br> Storage</a></div>
-                <div class="profile-username">Units: {{bonded_units.count}} <br> Booked:&nbsp;{{booked_bonded_units}}</div>
+    <div class="container" style="margin-top: 100px;margin-bottom: 100px;">
+        <div class="col">
+            <div class="card">
+                <div class="card-body gradient-custom" style="border-radius: 5px;">
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                    <div class="col-md-4 form-group">
+                        <h3 class="text-dark">Add Unit</h3>
+                        <hr>
+                        <label for="type">Storage Type</label>
+                        {{form.type|append_attr:"class:form-control"}}
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label for="charge">Charge</label>
+                        {{form.charge|append_attr:"class:form-control"}}
+                        <br>
+                        <button class='btn btn-primary' type="submit">Submit</button>
+                    </div>
+                </form>
             </div>
         </div>
-        <div class="col-sm">
-            <div style="width: 180px;height: 250px;" class="profile-card-2"><img src="https://images.pexels.com/photos/4969107/pexels-photo-4969107.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="img img-fluid">
-                <div style="font-size: 25px;" class="profile-name"><a href="">Cold <br> Storage</a></div>
-                <div class="profile-username">Units: {{cold_units.count}} <br> Booked:&nbsp;{{booked_cold_units}}</div>
-            </div>
-        </div>
-        <div class="col-sm">
-            <div style="width: 180px;height: 250px;" class="profile-card-2"><img src="https://images.pexels.com/photos/4969107/pexels-photo-4969107.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="img img-fluid">
-                <div style="font-size: 25px;" class="profile-name text-light"><a href="{% url 'units' 'normal_storage' %}">Normal<br>Storage</a></div>
-                <div class="profile-username">Units: {{normal_units.count}} <br> Booked:&nbsp;{{booked_normal_units}}</div>
-            </div>
-        </div>
-        <div class="col-sm">
-            <div style="width: 180px;height: 250px;" class="profile-card-2"><img src="https://images.pexels.com/photos/4969107/pexels-photo-4969107.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="img img-fluid">
-                <div style="font-size: 25px;" class="profile-name"><a href="{% url 'units' 'hazardious_storage' %}">Hazardous <br> Storage</a></div>
-                <div class="profile-username">Units: {{hazardious_units.count}} <br> Booked:&nbsp;{{booked_hazardious_units}}</div>
-            </div>
-        </div>
-        <div class="col-sm">
-            <div style="width: 180px;height: 250px;" class="profile-card-2"><img src="https://images.pexels.com/photos/4969107/pexels-photo-4969107.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="img img-fluid">
-                <div style="font-size: 25px;" class="profile-name"><a href="{% url 'units' 'archive_storage' %}">Archive <br> Storage</a></div>
-                <div class="profile-username">Units: {{archives_units.count}} <br> Booked:&nbsp;{{booked_archive_units}}</div>
-            </div>
-        </div>
-
+    </div><br>
+    <h3 class="text-center">Storage Types</h3><br>
+     <div class="row">
+         <div class="col-sm">
+             <div style="width: 180px;height: 250px;" class="profile-card-2"><img src="https://images.pexels.com/photos/4969107/pexels-photo-4969107.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="img img-fluid">
+                 <div style="font-size: 25px;" class="profile-name text-center"><a href="{% url 'units' 'bonded_storage' %}">Bonded <br> Storage</a></div>
+                 <div class="profile-username">Booked Units: {{bonded_units.count}}</div>
+             </div>
+         </div>
+         <div class="col-sm">
+             <div style="width: 180px;height: 250px;" class="profile-card-2"><img src="https://images.pexels.com/photos/4969107/pexels-photo-4969107.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="img img-fluid">
+                 <div style="font-size: 25px;" class="profile-name"><a href="{% url 'units' 'cold_storage' %}">Cold <br> Storage</a></div>
+                 <div class="profile-username">Booked Units: {{cold_units.count}}</div>
+             </div>
+         </div>
+         <div class="col-sm">
+             <div style="width: 180px;height: 250px;" class="profile-card-2"><img src="https://images.pexels.com/photos/4969107/pexels-photo-4969107.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="img img-fluid">
+                 <div style="font-size: 25px;" class="profile-name text-light"><a href="{% url 'units' 'normal_storage' %}">Normal<br>Storage</a></div>
+                 <div class="profile-username">Booked Units: {{normal_units.count}}</div>
+             </div>
+         </div>
+         <div class="col-sm">
+             <div style="width: 180px;height: 250px;" class="profile-card-2"><img src="https://images.pexels.com/photos/4969107/pexels-photo-4969107.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="img img-fluid">
+                 <div style="font-size: 25px;" class="profile-name"><a href="{% url 'units' 'hazardious_storage' %}">Hazardous <br> Storage</a></div>
+                 <div class="profile-username">Booked Units: {{hazardious_units.count}}</div>
+             </div>
+         </div>
+         <div class="col-sm">
+             <div style="width: 180px;height: 250px;" class="profile-card-2"><img src="https://images.pexels.com/photos/4969107/pexels-photo-4969107.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="img img-fluid">
+                 <div style="font-size: 25px;" class="profile-name"><a href="{% url 'units' 'archive_storage' %}">Archive <br> Storage</a></div>
+                 <div class="profile-username">Booked Units: {{archive_units.count}}</div>
+             </div>
+         </div>
+    
+     </div>
     </div>
+    
+    
 </div>
-
-
-
 
 
 {% endblock %}

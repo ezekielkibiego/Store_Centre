@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'bootstrap4',
     'cloudinary',
     'crispy_forms',
+    'rest_framework.authtoken',
     'widget_tweaks',
     'mathfilters',
     'django.contrib.admin',
@@ -76,6 +77,7 @@ ROOT_URLCONF = 'store_centre.urls'
 
 AUTH_USER_MODEL = 'store.User'
 
+AUTH_PROFILE_MODULE = 'accounts.UserProfile'
 
 TEMPLATES = [
     {
@@ -119,7 +121,11 @@ DATABASES = {
     }
 }
 
-
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    )
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -175,7 +181,6 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 django_heroku.settings(locals())
 
-
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = config('S_KEY')
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = config('S_SECRET')
 
@@ -213,7 +218,11 @@ JAZZMIN_SETTINGS = {
         {"name": "Home",  "url": "admin:index", "permissions": ["auth.view_user"]},
 
         # external url that opens in a new window (Permissions can be added)
-        {"name": "Support", "url": "https://github.com/kimutaiamos", "new_window": True},
+
+        {"name": "Staff ", "url": "/staff_register", "new_window": True},
+
+        {"name": "View Website", "url": "/", "new_window": True},
+
 
         # model admin to link to (Permissions checked against model)
         {"model": "auth.User"},

@@ -22,40 +22,54 @@ class User(AbstractUser):
     def delete_user(self):
         self.delete()
 
-# PROFILE_TYPES = (
-#     (u'CLT', 'Client'),
-#     (u'STF', 'Staff'),
-# )
+PROFILE_TYPES = (
+    (u'CLT', 'Client'),
+    (u'STF', 'Staff'),
+)
 
 # # used just to define the relation between User and Profile
-# class UserProfile(models.Model):
-#     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-#     profile = models.ForeignKey('Profile',  on_delete=models.CASCADE)
-#     type = models.CharField(choices=PROFILE_TYPES, max_length=16)
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    profile = models.ForeignKey('profile',  on_delete=models.CASCADE, null=True)
+    type = models.CharField(choices=PROFILE_TYPES, max_length=16)
+
+    def __unicode__(self):
+        return u'Profile of user: %s' % self.user.username
 
 # # common fields reside here
-# class Profile(models.Model):
-#     verified = models.BooleanField(default=False)
-#     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile',null=True)
-#     profile_photo = CloudinaryField("image",null=True)
-#     bio = models.TextField(max_length=300,null=True)
-#     location = models.CharField(max_length=30,null=True)
-#     email = models.CharField(max_length=100,null=True)
-#     phone = models.CharField(max_length=100,null=True)
-#     date = models.DateTimeField(auto_now_add=True,null=True)
+class Profile(models.Model):
+    verified = models.BooleanField(default=False)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile',null=True)
+    profile_photo = CloudinaryField("image",null=True)
+    bio = models.TextField(max_length=300,null=True)
+    location = models.CharField(max_length=30,null=True)
+    email = models.CharField(max_length=100,null=True)
+    phone = models.CharField(max_length=100,null=True)
+    date = models.DateTimeField(auto_now_add=True,null=True)
     
 
-#     def __str__(self):
-#         return f'{self.user.username} profile'
+    def __str__(self):
+        return f'{self.user} profile'
 
-#     @receiver(post_save, sender=User)
-#     def create_user_profile(sender, instance, created, **kwargs):
-#         if created:
-#             Profile.objects.create(bio=instance)
+    @receiver(post_save, sender=User)
+    def create_user_profile(sender, instance, created, **kwargs):
+        if created:
+            Profile.objects.create(bio=instance)
 
-#     @receiver(post_save, sender=User)
-#     def save_user_profile(sender, instance, **kwargs):
-#         instance.profile.save()
+    @receiver(post_save, sender=User, dispatch_uid='save_new_user_profile')
+    def save_user_profile(sender, instance, created, **kwargs):
+        user = instance
+        if created:
+            profile = UserProfile(user=user)
+            profile.save()
+
+class Storecentre(models.Model):
+    name = models.CharField(max_length=40)
+    description = models.TextField()
+    price = models.DecimalField(decimal_places=2, max_digits=20)  
+    no_units = models.IntegerField(default=0) 
+
+    
 
 
 

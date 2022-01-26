@@ -61,7 +61,7 @@
                         Login
 
                     </button>
-                    <a href="{% url 'social:begin' 'google-oauth2' %}">Sign In With Google</a>
+
                 </div>
     
                 <div class="text-center p-t-12">
@@ -72,7 +72,10 @@
                         Password ?
                     </a>
                 </div>
-    
+                
+                <div class="container text-center">
+                    <a href="{% url 'social:begin' 'google-oauth2' %}"><img src="/static/images/signup/signin-button.png" width="210" alt=""></a>
+                </div>
                 <div class="text-center p-t-16">
                     <p>Don't have an account ? <a class="txt2" href="/client_register/"><strong> SignUp</strong></a></p>
                 </div>

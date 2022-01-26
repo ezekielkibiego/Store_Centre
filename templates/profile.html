@@ -52,57 +52,47 @@ background: #212529b8;
         <div class="col col-lg-6 mb-4 mb-lg-0">
           <div class="card mb-3" style="border-radius: .5rem;">
             <div class="row g-0">
-              <div class="col-md-4 gradient-custom text-center text-white" style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
-                <img src="{{user.client.image.url}}" alt="Avatar" class="img img-responsive rounded-circle my-5" width="150px" height="150px"/>
-                <h5>{{user}}</h5>
-                <p>@store.com</p>
-                
-              </div>
-              <div class="col-md-8">
-                <div class="card-body p-4">
-                  <h2>PROFILE INFORMATION</h2>
-                  <hr class="mt-2 mb-3">
-                  <div class="row pt-1">
-                    <div class="col-8 mb-3">
-                        <h6>Full Name</h6>
-                        <p class="text-dark">{{user.get_full_name}}</p>
-                      </div>
-                    <div class="col-7 mb-3">
-                      <h6>Email</h6>
-                      <p class="text-dark text-lowercase" style="font-size: 10px;">{{user.email}}</p>
-                    </div>
-                    <div class="col-4 mb-3">
-                      <h6>Phone</h6>
-                      <p class="text-dark">{{user.client.phone}}</p>
-                    </div>
-                  </div>
-                  <h6>Location & Id</h6>
-                  <hr class="mt-2 mb-3">
-                  <div class="row pt-1">
-                    <div class="col-6 mb-3">
-                      <h6>Store Number Id</h6>
-                      <p class="text-dark">{{user.id}}</p>
-                    </div>
-                    <div class="col-6 mb-3">
-                      <h6>Location</h6>
-                      <p class="text-dark">{{user.client.location}}</p>
-                    </div>
-                  </div>
-                  <div class="d-flex justify-content-start">
-                    <a class="mr-3" href="/"><i class="fab fa-facebook-f me-3 text-dark"></i></a>
-                    <a class="mr-3" href="/"><i class="fab fa-instagram  text-dark"></i></a>
-                    <a class="mr-3" href="/"><i class="fab fa-twitter me-3 text-dark"></i></a>
-                  </div>
+              {% if profile.profile_photo %}
+                <img src="{{profile.profile_photo.url}}" alt="" style="border-radius: 50%; width: 50%; height: auto;">
+                {%else%}
+                <img src="https://st2.depositphotos.com/1104517/11965/v/600/depositphotos_119659092-stock-illustration-male-avatar-profile-picture-vector.jpg"
+                    class="card-img-top" alt="My profile picture">
+                {% endif %}
+                <div class="card-body">
+
+                    <p>Username: {{ user.username }}</p>
+
+                    <p>
+                        {% if profile.bio %}
+                        <small>Bio: {{ profile.bio }}</small>
+                        {% else %}
+                        <span class="text-danger">No about me</span>
+                        {% endif %}
+                    </p>
+
+                    <p>Phone_Number: {{ profile.phone }}</p>
+                    <p>Email: {{ profile.email }}</p>
+                    <p>Location: {{ profile.location }}</p>
+                    
+                    <h6>Joined on: <span class="badge rounded-pill bg-secondary text-white">
+                            {{ user.date_joined|date }} </span></h6>
+
                 </div>
-              </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <a href="{%url 'update_profile' user.id %}"
+            <div class="col-md-6 text-center">
+                <div class="row">
+                    <div class="col-md-6 details">
+                        <div class="first">
+                            <div>
+                                <a href="{%url 'update_profile' user.id %}"
                                     class="btn btn-outline-dark bg-dark text-white rounded-pill">
                                     Edit Profile
                                 </a>
+                            </div>
+                        </div>
+                       
+                    </div>
+
+                    
   </section>
 {% endblock %}

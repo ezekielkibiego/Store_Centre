@@ -10,7 +10,29 @@ from django.contrib.auth.decorators import login_required
 from django.views.generic import CreateView
 from .forms import *
 from django.contrib.auth.forms import AuthenticationForm
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from .models import  Storecentre
+from .serializers import StoreSerializer
+from rest_framework import status
+from .permissions import IsAdminOrReadOnly
+
+
 # Create your views here.
+class Storelist(APIView):
+    def get(self, request, format=None):
+        all_store = Storecentre.objects.all()
+        serializers = StoreSerializer(all_store, many=True)
+        return Response(serializers.data)
+def post(self, request, format=None):
+        serializers = StoreSerializer(data=request.data)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data, status=status.HTTP_201_CREATED)
+        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+permission_classes = (IsAdminOrReadOnly,)
+
+
 
 def IndexView(request):
     return render(request, 'index.html')
@@ -135,25 +157,28 @@ def logout_view(request):
     logout(request)
     return redirect('/')
 
-# @login_required
-# def profile(request):
-#     current_user = request.user
-#     profile = Profile.objects.filter(user_id=current_user.id).first()
-#     return render(request, "profile.html", {"profile": profile})
+@login_required
+def profile(request):
+    current_user = request.user
+   
+    profile = Profile.objects.filter(user_id=current_user.id).first()
+    return render(request, "profile.html", {"profile": profile})
 
 
-# @login_required
-# def update_profile(request,id):
-#     user = User.objects.get(id=id)
-#     profile = Profile.objects.get(user_id = user)
-#     form = UpdateProfileForm(instance=profile)
-#     if request.method == "POST":
-#             form = UpdateProfileForm(request.POST,request.FILES,instance=profile)
-#             if form.is_valid():  
+@login_required
+def update_profile(request,id):
+    user = User.objects.get(id=id)
+    profile = UserProfile.objects.get(user_id = user)
+    form = UpdateProfileForm(instance=profile)
+    if request.method == "POST":
+            form = UpdateProfileForm(request.POST,request.FILES,instance=profile)
+            if form.is_valid():  
                 
-#                 profile = form.save(commit=False)
-#                 profile.save()
-#                 return redirect('profile') 
+                profile = form.save(commit=False)
+                profile.save()
+                return redirect('profile') 
             
-#     return render(request, 'edit_profile.html', {"form":form})
+    return render(request, 'edit_profile.html', {"form":form})
+
+    
 
