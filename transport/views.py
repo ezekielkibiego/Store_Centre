@@ -48,3 +48,14 @@ def request_summary(request):
         'request_transport': request_transport,
     }
     return render(request,'request_summary.html', context)
+
+
+@login_required(login_url='client_login')
+def summaries(request):
+    summaries = Transport.objects.filter(user=request.user).all().order_by('-id')
+    
+    print(summaries)
+    context = {
+        'summaries': summaries,
+    }
+    return render(request,'summaries.html', context)
