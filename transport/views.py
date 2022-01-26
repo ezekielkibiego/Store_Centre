@@ -62,3 +62,14 @@ def summaries(request):
         'summaries': summaries,
     }
     return render(request,'summaries.html', context)
+
+@login_required(login_url='client_login')
+def payment(request):
+    request_transport = Transport.objects.filter(user=request.user).last()
+    request_goods = Goods.objects.filter(owner=request.user).last()  
+    context = {
+        'request_transport': request_transport,
+        'request_goods': request_goods,
+        
+    }
+    return render(request,'payment.html', context)

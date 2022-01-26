@@ -19,7 +19,7 @@ class Transport(models.Model):
     phone_number = models.CharField(max_length=15, null=True)
     distance = models.DecimalField(max_digits=10,decimal_places=2,null=True)
     price = models.DecimalField(max_digits=10,decimal_places=2,null=True)
-    goods = models.ForeignKey('units.Goods', on_delete=models.CASCADE, null=True, related_name='units_goods')
+    goods = models.ForeignKey('units.Goods', on_delete=models.CASCADE, null=True, related_name='transport_goods')
     is_paid = models.BooleanField(default=False)
     is_approved = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)

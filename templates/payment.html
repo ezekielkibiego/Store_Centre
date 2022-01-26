@@ -1,0 +1,80 @@
+{%extends 'base.html'%}
+{% load static %}
+{% block title %}My Transport Summaries{% endblock %}
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10 pt-5">
+            {%if request_goods.transport_goods.count > 0 %}
+            <div class="card mt-5 mx-5 mb-1 p-0" style="border: 2px solid ; border-radius: 10px;">
+                <div class="row g-0">
+                    <div class="col-md-4 " >
+                        <img src="https://images.pexels.com/photos/4199524/pexels-photo-4199524.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" class="img-fluid rounded-start" alt="image of shipping boxes" style="height: 100%; border-radius: 10px;">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body p-5">
+                            <h3 class="card-title font-weight-bold">BILL</h3><hr>
+                            <p class="card-text"><strong>GOODS PRICE: </strong>Ksh. {{request_goods.description}}</p>
+                            <p class="card-text"><strong>TRANSPORT PRICE: </strong>Ksh. {{request_transport.price}}</p>
+                            <p class="card-text"><strong>TOTAL PRICE: </strong>Ksh. {{request_transport.transport_type|upper}}</p>
+                            <hr>
+                            <h4><strong>HOW TO PAY</strong></h4>
+                            <ul >
+                                <li>1. Go to the M-PESA Menu/App.</li>
+                                <li>2. Select Lipa na M-PESA.</li>
+                                <li>3. Select Pay Bill.</li>
+                                <li>4. Enter Business Number as "Business No".</li>
+                                <li>5. Input Account Number as your first and last name.</li>
+                                <li>6. Input Amount as total price shown above.</li>
+                                <li>7. Input your M-PESA PIN and confirm.</li>
+                                <li>8. Click on make payment below.</li>
+                            </ul><hr>
+                            <div class="d-flex justify-content-center bd-highlight">
+                                <div class="p-2 bd-highlight"><a class="btn btn-success mx-5 mb-5 mt-0" href="{%url 'payment'%}" role="button">MAKE PAYMENT</a>
+                                </div>
+                            </div>                
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {%else%}
+            <div class="card mt-5 mx-5 mb-1 p-0" style="border: 2px solid ; border-radius: 10px;">
+                <div class="row g-0">
+                    <div class="col-md-4 " >
+                        <img src="https://images.pexels.com/photos/4199524/pexels-photo-4199524.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" class="img-fluid rounded-start" alt="image of shipping boxes" style="height: 100%; border-radius: 10px;">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body p-5">
+                            <h3 class="card-title font-weight-bold">BILL</h3><hr>
+                            <p class="card-text"><strong>GOODS PRICE: </strong>Ksh. {{request_goods.description}}</p>
+                            <p class="card-text"><strong>TRANSPORT PRICE: </strong>Ksh.0</p>
+                            <p class="card-text"><strong>TOTAL PRICE: </strong>Ksh. {{request_goods.description}}</p>
+                            <hr>
+                            <h4><strong>HOW TO PAY</strong></h4>
+                            <ul >
+                                <li>1. Go to the M-PESA Menu/App.</li>
+                                <li>2. Select Lipa na M-PESA.</li>
+                                <li>3. Select Pay Bill.</li>
+                                <li>4. Enter Business Number as "Business No".</li>
+                                <li>5. Input Account Number as your first and last name.</li>
+                                <li>6. Input Amount as total price shown above.</li>
+                                <li>7. Input your M-PESA PIN and confirm.</li>
+                                <li>8. Click on make payment below.</li>
+                            </ul><hr>
+                            <div class="d-flex justify-content-center bd-highlight">
+                                <div class="p-2 bd-highlight"><a class="btn btn-success mx-5 mb-5 mt-0" href="#" role="button">MAKE PAYMENT</a>
+                                </div>
+                            </div>                
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {%endif%}
+        <div class="col-md-1"></div>
+    </div>
+</div>
+
+{% endblock %}
