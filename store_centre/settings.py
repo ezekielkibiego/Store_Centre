@@ -213,7 +213,11 @@ JAZZMIN_SETTINGS = {
         {"name": "Home",  "url": "admin:index", "permissions": ["auth.view_user"]},
 
         # external url that opens in a new window (Permissions can be added)
+
+        {"name": "Staff ", "url": "/staff_register", "new_window": True},
+=======
         {"name": "View Website", "url": "/", "new_window": True},
+
 
         # model admin to link to (Permissions checked against model)
         {"model": "auth.User"},
