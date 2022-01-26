@@ -28,14 +28,12 @@ class Migration(migrations.Migration):
             name='Goods',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-
                 ('no_of_units', models.IntegerField(null=True)),
                 ('arrival_date', models.DateField()),
                 ('departure_date', models.DateField()),
                 ('description', models.TextField(max_length=500)),
                 ('owner', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='goods', to=settings.AUTH_USER_MODEL)),
                 ('storage_type', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='units', to='units.storage')),
-
             ],
         ),
     ]

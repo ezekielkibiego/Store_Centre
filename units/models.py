@@ -16,8 +16,6 @@ class Storage(models.Model):
         
     def delete(self):
         self.delete()
-    # def __repr__(self):
-    #     return '{}with{}unitscharging{}'.format(self.type,self.no_units,self.charge)
 
     
 # class Unit(models.Model):
@@ -50,7 +48,6 @@ class Goods(models.Model):
     arrival_date = models.DateField()
     departure_date = models.DateField()
     description = models.TextField(max_length=500)
-    total_cost = models.IntegerField(null=True)
     owner = models.ForeignKey(User,on_delete=models.CASCADE,related_name='goods')
     
     def __str__(self):
