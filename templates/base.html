@@ -125,11 +125,9 @@
 
         // calculate the total on date change
         var charge = 0;
-        $("#id_storage_type").change(function () {
+        $("#storage_type").change(function () {
             var element = $(this).find('option:selected');
-            value= element.attr("value")
-            console.log(typeof value)
-            charge = parseInt(element.attr("charge"));
+            charge = element.attr("charge");
           });
           
 
@@ -139,13 +137,16 @@
           var arrival = $('#arrival_date').val();
           
           var units = $('#no_of_units').val();
-          //console.log(typeof charge);
+          console.log(charge);
 
         
-         // console.log(units);
+          console.log(units);
           no_of_days = findDayDifference(departure, arrival)
           total_cost = no_of_days * charge * units;
-          $('#total_cost').attr('value', total_cost);
+          $('#total_cost').attr('value', total_cost
+
+
+          );
 
         }
 

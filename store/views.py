@@ -1,3 +1,4 @@
+from cProfile import Profile
 from django.shortcuts import redirect, render,HttpResponse
 from django.contrib import messages
 from store.forms import ClientSignUpForm
@@ -160,14 +161,9 @@ def logout_view(request):
 @login_required
 def profile(request):
     current_user = request.user
-    profile = Client.objects.get(user_id=current_user.id)  
+    profile = Client.objects.get(user_id=current_user.id) 
+    
     return render(request, "profile.html", {"profile": profile})
-
-
-
-            
-
-
 
 def update_client_profile(request):
   if request.method == 'POST':
@@ -186,3 +182,34 @@ def update_client_profile(request):
     'form':form
   }
   return render(request,'edit_profile.html',params)
+
+
+def staffProfile(request):
+    staff = request.user
+    profile = Staff.objects.get(
+        user_id=staff.id)  # get profile
+    profile = Staff.objects.filter(user_id = staff.id).first()  # get profile
+    context = {
+        "staff": staff,
+        'profile':profile
+    }
+    return render(request, 'profile.html', context)
+
+def update_staff_profile(request):
+    if request.method == 'POST':
+        u_form = UpdateUserProfile(request.POST, request.FILES, instance=request.user)
+        p_form = UpdateStaffProfile(request.POST, instance=request.user)
+        if u_form.is_valid() and p_form.is_valid():
+            u_form.save()
+            p_form.save()
+            messages.success(
+                request, 'Your Profile account has been updated successfully')
+            return redirect('profile')
+    else:
+        u_form = UpdateUserProfile(instance=request.user)
+        p_form = UpdateStaffProfile(instance=request.user)
+    context = {
+        'u_form': u_form,
+        'p_form': p_form
+    }
+    return render(request,'staff_profile.html',context)

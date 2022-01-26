@@ -76,3 +76,8 @@ class UpdateUserProfile(forms.ModelForm):
   class Meta:
     model = Client
     exclude = ['user']
+
+class UpdateStaffProfile(forms.ModelForm):
+    class Meta:
+        model = Staff
+        exclude = ['user']
