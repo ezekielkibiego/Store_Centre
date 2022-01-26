@@ -76,6 +76,7 @@ ROOT_URLCONF = 'store_centre.urls'
 
 AUTH_USER_MODEL = 'store.User'
 
+AUTH_PROFILE_MODULE = 'accounts.UserProfile'
 
 TEMPLATES = [
     {
@@ -175,7 +176,6 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 django_heroku.settings(locals())
 
-
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = config('S_KEY')
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = config('S_SECRET')
 
@@ -213,7 +213,7 @@ JAZZMIN_SETTINGS = {
         {"name": "Home",  "url": "admin:index", "permissions": ["auth.view_user"]},
 
         # external url that opens in a new window (Permissions can be added)
-        {"name": "Support", "url": "https://github.com/kimutaiamos", "new_window": True},
+        {"name": "View Website", "url": "/", "new_window": True},
 
         # model admin to link to (Permissions checked against model)
         {"model": "auth.User"},
