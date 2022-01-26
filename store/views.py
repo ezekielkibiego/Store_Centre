@@ -15,6 +15,8 @@ from rest_framework.views import APIView
 from .models import  Storecentre
 from .serializers import StoreSerializer
 from rest_framework import status
+from .permissions import IsAdminOrReadOnly
+
 
 # Create your views here.
 class Storelist(APIView):
@@ -28,6 +30,8 @@ def post(self, request, format=None):
             serializers.save()
             return Response(serializers.data, status=status.HTTP_201_CREATED)
         return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+permission_classes = (IsAdminOrReadOnly,)
+
 
 
 def IndexView(request):
