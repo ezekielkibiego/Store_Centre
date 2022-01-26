@@ -2,6 +2,7 @@
 
 {% load widget_tweaks %}
 {% load static %}
+{% load crispy_forms_tags %}
 
 {% block content %}
 
@@ -33,7 +34,7 @@
                 <div class="card-body gradient-custom" style="border-radius: 5px;">
                     <form action="" method="POST">
                         {% csrf_token %}
-                    <div class="col-md-4 form-group">
+                    <!-- <div class="col-md-4 form-group">
                         <h3 class="text-dark">Add Unit</h3>
                         <hr>
                         <label for="type">Storage Type</label>
@@ -42,7 +43,8 @@
                     <div class="col-md-4 form-group">
                         <label for="charge">Charge</label>
                         {{form.charge|append_attr:"class:form-control"}}
-                        <br>
+                        <br> -->
+                        {{form|crispy}}
                         <button class='btn btn-primary' type="submit">Submit</button>
                     </div>
                 </form>
@@ -51,37 +53,20 @@
     </div><br>
     <h3 class="text-center">Storage Types</h3><br>
      <div class="row">
+         {% for storage in storages %}
          <div class="col-sm">
              <div style="width: 180px;height: 250px;" class="profile-card-2"><img src="https://images.pexels.com/photos/4969107/pexels-photo-4969107.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="img img-fluid">
-                 <div style="font-size: 25px;" class="profile-name text-center"><a href="{% url 'units' 'bonded_storage' %}">Bonded <br> Storage</a></div>
-                 <div class="profile-username">Booked Units: {{bonded_units.count}}</div>
+                 <div style="font-size: 25px;" class="profile-name text-center"><a href="{% url 'units' 'bonded_storage' %}">{{storage.type}} </a></div>
+                 <div class="profile-username"> Total units: {{storage.no_units}} <br> Available: {{storage.available_units}}</div>
              </div>
          </div>
+         {% endfor%}
          <div class="col-sm">
              <div style="width: 180px;height: 250px;" class="profile-card-2"><img src="https://images.pexels.com/photos/4969107/pexels-photo-4969107.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="img img-fluid">
                  <div style="font-size: 25px;" class="profile-name"><a href="{% url 'units' 'cold_storage' %}">Cold <br> Storage</a></div>
                  <div class="profile-username">Booked Units: {{cold_units.count}}</div>
              </div>
          </div>
-         <div class="col-sm">
-             <div style="width: 180px;height: 250px;" class="profile-card-2"><img src="https://images.pexels.com/photos/4969107/pexels-photo-4969107.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="img img-fluid">
-                 <div style="font-size: 25px;" class="profile-name text-light"><a href="{% url 'units' 'normal_storage' %}">Normal<br>Storage</a></div>
-                 <div class="profile-username">Booked Units: {{normal_units.count}}</div>
-             </div>
-         </div>
-         <div class="col-sm">
-             <div style="width: 180px;height: 250px;" class="profile-card-2"><img src="https://images.pexels.com/photos/4969107/pexels-photo-4969107.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="img img-fluid">
-                 <div style="font-size: 25px;" class="profile-name"><a href="{% url 'units' 'hazardious_storage' %}">Hazardous <br> Storage</a></div>
-                 <div class="profile-username">Booked Units: {{hazardious_units.count}}</div>
-             </div>
-         </div>
-         <div class="col-sm">
-             <div style="width: 180px;height: 250px;" class="profile-card-2"><img src="https://images.pexels.com/photos/4969107/pexels-photo-4969107.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="img img-fluid">
-                 <div style="font-size: 25px;" class="profile-name"><a href="{% url 'units' 'archive_storage' %}">Archive <br> Storage</a></div>
-                 <div class="profile-username">Booked Units: {{archive_units.count}}</div>
-             </div>
-         </div>
-    
      </div>
     </div>
     
