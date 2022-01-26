@@ -8,7 +8,7 @@ from django.db.models.signals import post_save
 
 
 class User(AbstractUser):
-  
+    USERNAME_FIELD = 'username'
     is_client = models.BooleanField('client status',default=False)
     is_staff = models.BooleanField('staff status',default=False)
     is_verified = models.BooleanField(default=False)
@@ -43,20 +43,20 @@ PROFILE_TYPES = (
     
 
 
-    def __str__(self):
-        return f'{self.user} profile'
+    # def __str__(self):
+    #     return f'{self.user} profile'
 
-    @receiver(post_save, sender=User)
-    def create_user_profile(sender, instance, created, **kwargs):
-        if created:
-            Profile.objects.create(bio=instance)
+    # @receiver(post_save, sender=User)
+    # def create_user_profile(sender, instance, created, **kwargs):
+    #     if created:
+    #         Profile.objects.create(bio=instance)
 
-    @receiver(post_save, sender=User, dispatch_uid='save_new_user_profile')
-    def save_user_profile(sender, instance, created, **kwargs):
-        user = instance
-        if created:
-            profile = UserProfile(user=user)
-            profile.save()
+    # @receiver(post_save, sender=User, dispatch_uid='save_new_user_profile')
+    # def save_user_profile(sender, instance, created, **kwargs):
+    #     user = instance
+    #     if created:
+    #         profile = UserProfile(user=user)
+    #         profile.save()
 
 class Storecentre(models.Model):
     name = models.CharField(max_length=40)

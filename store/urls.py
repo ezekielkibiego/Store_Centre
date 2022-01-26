@@ -18,6 +18,8 @@ urlpatterns = [
     path("change_password/", views.change_password, name="change_password"),
     path("admin_login/", views.admin_login, name="admin_login"),
     path('profile/', views.profile, name='profile'),
+    path('update_staff_profile/',views.update_staff_profile, name='update_staff_profile'),
+
     path('accounts/profile/', views.IndexView,name='index'),
     path('update_client_profile/',views.update_client_profile, name='update_client_profile'),
     path('social-auth/',include('social_django.urls',namespace='social')),
