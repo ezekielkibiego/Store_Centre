@@ -25,7 +25,7 @@ class ClientSignUpForm(UserCreationForm):
             user.last_name = self.cleaned_data.get('last_name')
             user.save()
             client = Client.objects.create(user=user)
-            client.enail = self.cleaned_data.get('email')
+            client.email = self.cleaned_data.get('email')
             client.phone = self.cleaned_data.get('phone')
             client.location = self.cleaned_data.get('location')
             client.save()
@@ -50,19 +50,29 @@ class StaffSignUpForm(UserCreationForm):
             user.last_name = self.cleaned_data.get('last_name')
             user.save()
             staff = Staff.objects.create(user=user)
-            staff.enail = self.cleaned_data.get('email')
+            staff.email = self.cleaned_data.get('email')
             staff.phone = self.cleaned_data.get('phone')
             staff.designation = self.cleaned_data.get('designation')
             staff.save()
 
             return staff
 
-class ProfileForm(ModelForm):
+# class ProfileForm(ModelForm):
+#     class Meta:
+#         model = Profile
+#         exclude = ['user']
+
+# class UpdateProfileForm(forms.ModelForm):
+#     class Meta:
+#         model = Profile
+#         exclude = ['user']
+
+class UpdateClientProfile(forms.ModelForm):
     class Meta:
-        model = Profile
+        model = Client
         exclude = ['user']
 
-class UpdateProfileForm(forms.ModelForm):
-    class Meta:
-        model = Profile
-        exclude = ['user']
+class UpdateUserProfile(forms.ModelForm):
+  class Meta:
+    model = Client
+    exclude = ['user']
