@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
-
+{% load widget_tweaks %}
 {% load static %}
 
 {% block content %}
@@ -25,11 +25,67 @@
 </div>
 
 
+<!-- <div class="container mt-4">
+    <form action="" method="POST" id="storage">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <br><button class='btn btn-primary' type="submit">Submit</button>
+    </form>
+</div> -->
 
 
 
 
 
 
+
+
+<div class="container-fluid" style="background-color: azure;" >
+    <div class="row">
+        <div class="booking-form" style="margin-top: 60px;margin-bottom: 50px;">
+            <div class="form-header">
+                <h1>Book Storage</h1>
+            </div>
+            <form action="" method="POST" enctype="multipart/form-data" id="storage">
+                {% csrf_token %}
+                <div class="form-group">
+                    {{form.storage_type}}
+                    <span class="select-arrow"></span> <span class="form-label">Storage</span></div>
+                <div class="form-group">
+                    {% render_field form.description|append_attr:"" placeholder="Description" %}
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            {{ form.no_of_units }}
+                            <span class="form-label text-info">Units</span> </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            {{ form.arrival_date }}
+                            <span class="form-label text-info">Check In Date</span> </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            {{form.departure_date}}
+                            <span class="form-label text-info">Check Out Date</span> </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            {% render_field form.total_cost|append_attr:"readonly:readonly" placeholder="Total Cost In Ksh" %}
+                            <span class="form-label text-info">Units</span> </div>
+                    </div>
+                </div>
+                <div class="form-btn"> <button style="border-radius: 40px;"
+                        class="btn btn-info btn-sm btn-block" type="submit">BOOK</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 {% endblock %}
