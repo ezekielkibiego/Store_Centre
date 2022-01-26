@@ -13,6 +13,9 @@ def request_transport(request):
         if form.is_valid():
             transport_request = form.save(commit=False)
             transport_request.user = request.user
+            #client goods logic
+            goods = Goods.objects.filter(owner=request.user).last()
+            transport_request.goods= goods
             #distance matrix logic
             source = 'Moringa School,Nairobi,Kenya'
             destination = transport_request.address
@@ -21,11 +24,11 @@ def request_transport(request):
                    '&destinations=' + destination +
                    '&key=' + api_key)
             x=r.json()
-            print(x['rows'][0]["elements"][0]["distance"]["value"])
+            print(x)
             distance = x['rows'][0]["elements"][0]["distance"]["value"]
             transport_request.distance = (distance)/1000
             #calculate price
-            price = (transport_request.distance)*300
+            price = (transport_request.distance)*200
             transport_request.price = price
             transport_request.save()
             return redirect('request_summary')
