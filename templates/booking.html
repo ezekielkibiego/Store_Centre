@@ -52,7 +52,7 @@
                                     <option value=""  selected hidden>Choose Storage Type</option>
                                     {% for storage_type in storage_types %}
                                     <option charge="{{storage_type.charge}}">{{storage_type}}</option>
-                                    {% endfor %}
+                                    {% endfor %} <br>
                                 </select> <span class="select-arrow"></span> <span class="form-label">Storage</span> </div>
                             <div class="form-group">
                                 <input type="number" min="1" name="no_of_units" id="no_of_units" placeholder="number of units">
