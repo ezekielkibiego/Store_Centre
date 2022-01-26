@@ -40,50 +40,86 @@
 
 
 
-<div class="container-fluid" style="background-color: azure;" >
+<div class="container">
     <div class="row">
-        <div class="booking-form" style="margin-top: 60px;margin-bottom: 50px;">
-            <div class="form-header">
-                <h1>Book Storage</h1>
+        <div class="col-md-6">
+            <div class="booking-form" style="margin-top: 60px;margin-bottom: 50px;">
+                <div class="form-header">
+                    <h1>Book Storage</h1>
+                </div>
+                <form action="" method="POST" enctype="multipart/form-data" id="storage">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        {{form.storage_type}}
+                        <span class="select-arrow"></span> <span class="form-label">Storage</span></div>
+                    <div class="form-group">
+                        {% render_field form.description|append_attr:"" placeholder="Description" %}
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                {{ form.no_of_units }}
+                                <span class="form-label text-info">Units</span> </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                {{ form.arrival_date }}
+                                <span class="form-label text-info">Check In Date</span> </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                {{form.departure_date}}
+                                <span class="form-label text-info">Check Out Date</span> </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                {% render_field form.total_cost|append_attr:"readonly:readonly" placeholder="Total Cost In Ksh" %}
+                                <span class="form-label text-info">Units</span> </div>
+                        </div>
+                    </div>
+                    <div class="form-btn"> <button style="border-radius: 40px;" class="btn btn-primary btn-sm btn-block"
+                            type="submit">BOOK</button>
+                    </div>
+                </form>
             </div>
-            <form action="" method="POST" enctype="multipart/form-data" id="storage">
-                {% csrf_token %}
-                <div class="form-group">
-                    {{form.storage_type}}
-                    <span class="select-arrow"></span> <span class="form-label">Storage</span></div>
-                <div class="form-group">
-                    {% render_field form.description|append_attr:"" placeholder="Description" %}
+        </div>
+        <div class="col-md-5">
+            <div class="Biography" style="margin-top: 60px;margin-bottom: 50px;">
+                <div class="header">
+                    <h1 class="text-center">Booking Form</h1>
+                    <hr><br>
                 </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            {{ form.no_of_units }}
-                            <span class="form-label text-info">Units</span> </div>
+                <div class="biograpghy">
+                    <div class="container">
+                        <div class="col-md-12">
+                            <p>
+                                "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
+                                laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi
+                                architecto
+                                beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
+                                aspernatur aut
+                                odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi
+                                nesciunt."<br><br>
+                                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eum odio molestiae nobis
+                                corrupti fugiat modi minus et ullam tempore harum, nostrum reprehenderit voluptates quod
+                                dolores quibusdam quaerat. Necessitatibus, sit similique.
+
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <img src="/static/images/yellow-forklift-with-empty-fork-parking-white-background-transportation-industrial-concept-copy-space_10307-1385.jpg"
+                                alt="">
+                        </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            {{ form.arrival_date }}
-                            <span class="form-label text-info">Check In Date</span> </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            {{form.departure_date}}
-                            <span class="form-label text-info">Check Out Date</span> </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            {% render_field form.total_cost|append_attr:"readonly:readonly" placeholder="Total Cost In Ksh" %}
-                            <span class="form-label text-info">Units</span> </div>
-                    </div>
-                </div>
-                <div class="form-btn"> <button style="border-radius: 40px;"
-                        class="btn btn-info btn-sm btn-block" type="submit">BOOK</button>
-                </div>
-            </form>
+
+            </div>
         </div>
     </div>
 </div>
