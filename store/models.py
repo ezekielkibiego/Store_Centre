@@ -42,29 +42,31 @@ PROFILE_TYPES = (
 #     date = models.DateTimeField(auto_now_add=True,null=True)
     
 
-#     def __str__(self):
-#         return f'{self.user} profile'
 
-#     @receiver(post_save, sender=User)
-#     def create_user_profile(sender, instance, created, **kwargs):
-#         if created:
-#             Profile.objects.create(bio=instance)
+    def __str__(self):
+        return f'{self.user} profile'
 
-#     @receiver(post_save, sender=User, dispatch_uid='save_new_user_profile')
-#     def save_user_profile(sender, instance, created, **kwargs):
-#         user = instance
-#         if created:
-#             profile = UserProfile(user=user)
-#             profile.save()
+    @receiver(post_save, sender=User)
+    def create_user_profile(sender, instance, created, **kwargs):
+        if created:
+            Profile.objects.create(bio=instance)
 
-# class UserProfile(models.Model):
-#     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-#     profile = models.ForeignKey(Profile,  on_delete=models.CASCADE, null=True)
-#     type = models.CharField(choices=PROFILE_TYPES, max_length=16)
+    @receiver(post_save, sender=User, dispatch_uid='save_new_user_profile')
+    def save_user_profile(sender, instance, created, **kwargs):
+        user = instance
+        if created:
+            profile = UserProfile(user=user)
+            profile.save()
 
-#     def __unicode__(self):
-#         return u'Profile of user: %s' % self.user.username
-           
+class Storecentre(models.Model):
+    name = models.CharField(max_length=40)
+    description = models.TextField()
+    price = models.DecimalField(decimal_places=2, max_digits=20)  
+    no_units = models.IntegerField(default=0) 
+
+    
+
+
 class Client(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     profile_photo = CloudinaryField("image",null=True,blank=True)

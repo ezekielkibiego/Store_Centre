@@ -2,8 +2,7 @@ let address1Field
 let autocomplete
 function initAutocomplete() {
     address1Field = document.getElementById('addressAutocomplete');
-    // Create the autocomplete object, restricting the search predictions to
-    // addresses in the US and Canada.
+    // Create the autocomplete object, restricting the search predictions to addresses in Kenya
     autocomplete = new google.maps.places.Autocomplete(address1Field, {
       componentRestrictions: { country: ["ke"] },
       fields: ["address_components", "geometry"],
