@@ -18,7 +18,7 @@
                             <h3 class="card-title font-weight-bold">BILL</h3><hr>
                             {%if request_transport.transport_type == 'Pick-Up' %}
                             <p class="card-text"><strong>TYPE OF TRANSPORT REQUEST: </strong>{{request_transport.transport_type|upper}}</p>
-                            <p class="card-text"><strong>GOODS PRICE: </strong>Ksh. {{request_goods.description}}</p>
+                            <p class="card-text"><strong>GOODS PRICE: </strong>Ksh. {{request_goods.total_cost}}</p>
                             <p class="card-text"><strong>TRANSPORT PRICE: </strong>Ksh. {{request_transport.price}}</p>
                             <p class="card-text"><strong>TOTAL PRICE: </strong>Ksh. {{request_transport.transport_type|upper}}</p>
                             <hr>
@@ -57,7 +57,7 @@
                     <div class="col-md-8">
                         <div class="card-body p-5">
                             <h3 class="card-title font-weight-bold">BILL</h3><hr>
-                            <p class="card-text"><strong>GOODS PRICE: </strong>Ksh. {{request_goods.description}}</p>
+                            <p class="card-text"><strong>GOODS PRICE: </strong>Ksh. {{request_goods.total_cost}}</p>
                             <p class="card-text"><strong>TRANSPORT PRICE: </strong>Ksh.0</p>
                             <p class="card-text"><strong>TOTAL PRICE: </strong>Ksh. {{request_goods.description}}</p>
                             <hr>
