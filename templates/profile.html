@@ -28,6 +28,27 @@ background: #212529b8;
 {% endblock %}
 {% block content %}
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <div class="overlay" style="box-shadow:inset 0 0 0 2000px rgba(23, 34, 23, 0.863);background-image: url(/static/images/hero_1.jpg);color: white;" data-aos="fade" id="home-section">
 
 
@@ -52,8 +73,8 @@ background: #212529b8;
         <div class="col col-lg-6 mb-4 mb-lg-0">
           <div class="card mb-3" style="border-radius: .5rem;">
             <div class="row g-0">
-              {% if profile.profile_photo %}
-                <img src="{{client.profile_photo.url}}" alt="" style="border-radius: 50%; width: 50%; height: auto;">
+              {% if user.client.profile_photo %}
+                <img src="{{user.client.profile_photo.url}}" alt="" style="border-radius: 50%; width: 50%; height: auto;">
                 {%else%}
                 <img src="https://st2.depositphotos.com/1104517/11965/v/600/depositphotos_119659092-stock-illustration-male-avatar-profile-picture-vector.jpg"
                     class="card-img-top" alt="My profile picture"  style="border-radius: 50%; width: 50%; height: auto;">
@@ -64,15 +85,24 @@ background: #212529b8;
 
                     <p>
                         {% if profile.bio %}
-                        <small>Bio: {{ profile.bio }}</small>
+                        <small>Bio: {{ user.client.bio }}</small>
                         {% else %}
                         <span class="text-danger">No about me</span>
                         {% endif %}
                     </p>
-
-                    <p>Phone_Number: {{ profile.phone }}</p>
-                    <p>Email: {{ profile.email }}</p>
-                    <p>Location: {{ profile.location }}</p>
+                    {% if user.client.phone %}
+                    <p>Phone_Number: {{user.client.phone }}</p>
+                    {% else %}
+                    {% endif %}
+                    {% if user.client.email %}
+                    <p>Email: {{ user.client.email }}</p>
+                    {%else%}
+                    <p>Email: {{ user.email }}</p>
+                    {% endif %}
+                    {% if user.client.phone %}
+                    <p>Location: {{ user.client.location }}</p>
+                    {% else %}
+                    {% endif %}
                     
                     <h6>Joined on: <span class="badge rounded-pill bg-secondary text-white">
                             {{ user.date_joined|date }} </span></h6>
@@ -95,4 +125,6 @@ background: #212529b8;
 
                     
   </section>
+
+
 {% endblock %}

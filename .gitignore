@@ -114,6 +114,7 @@ venv.bak/
 start.sh
 migrate.sh
 migrations.sh
+su.sh
 
 # Spyder project settings
 .spyderproject
