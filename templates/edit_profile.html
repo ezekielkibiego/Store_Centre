@@ -14,7 +14,10 @@
                 <h3 class="text-center">Update profile</h3>
                 <form action="" method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
-                    {% bootstrap_form form %}
+                    <fieldset class="form-group">
+                    
+                    {% bootstrap_form user_form %}
+                    </fieldset>
                     <div class="form-group">
                         <input type="submit" class="btn btn-outline-dark bg-dark text-white" value="Update" />
                     </div>

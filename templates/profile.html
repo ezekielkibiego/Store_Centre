@@ -77,7 +77,7 @@ background: #212529b8;
                 <img src="{{user.client.image.url}}" alt="" style="border-radius: 50%; width: 50%; height: auto;">
                 {%else%}
                 <img src="https://st2.depositphotos.com/1104517/11965/v/600/depositphotos_119659092-stock-illustration-male-avatar-profile-picture-vector.jpg"
-                    class="card-img-top" alt="My profile picture">
+                    class="card-img-top" alt="My profile picture"  style="border-radius: 50%; width: 50%; height: auto;">
                 {% endif %}
                 <div class="card-body">
 
@@ -114,7 +114,7 @@ background: #212529b8;
                     <div class="col-md-6 details">
                         <div class="first">
                             <div>
-                                <a href="{%url 'update_profile' user.id %}"
+                                <a href="{%url 'update_client_profile' %}"
                                     class="btn btn-outline-dark bg-dark text-white rounded-pill">
                                     Edit Profile
                                 </a>

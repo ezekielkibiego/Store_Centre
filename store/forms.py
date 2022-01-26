@@ -57,12 +57,22 @@ class StaffSignUpForm(UserCreationForm):
 
             return staff
 
-class ProfileForm(ModelForm):
+# class ProfileForm(ModelForm):
+#     class Meta:
+#         model = Profile
+#         exclude = ['user']
+
+# class UpdateProfileForm(forms.ModelForm):
+#     class Meta:
+#         model = Profile
+#         exclude = ['user']
+
+class UpdateClientProfile(forms.ModelForm):
     class Meta:
-        model = Profile
+        model = Client
         exclude = ['user']
 
-class UpdateProfileForm(forms.ModelForm):
-    class Meta:
-        model = Profile
-        exclude = ['user']
+class UpdateUserProfile(forms.ModelForm):
+  class Meta:
+    model = Client
+    exclude = ['user']

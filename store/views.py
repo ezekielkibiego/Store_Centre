@@ -170,25 +170,29 @@ def logout_view(request):
 @login_required
 def profile(request):
     current_user = request.user
-   
-    profile = Profile.objects.filter(user_id=current_user.id).first()
+    profile = Client.objects.get(user_id=current_user.id)  
     return render(request, "profile.html", {"profile": profile})
 
 
-@login_required
-def update_profile(request,id):
-    user = User.objects.get(id=id)
-    profile = UserProfile.objects.get(user_id = user)
-    form = UpdateProfileForm(instance=profile)
-    if request.method == "POST":
-            form = UpdateProfileForm(request.POST,request.FILES,instance=profile)
-            if form.is_valid():  
-                
-                profile = form.save(commit=False)
-                profile.save()
-                return redirect('profile') 
+
             
-    return render(request, 'edit_profile.html', {"form":form})
 
-    
 
+
+def update_client_profile(request):
+  if request.method == 'POST':
+    user_form = UpdateUserProfile(request.POST,request.FILES,instance=request.user)
+    form = UpdateClientProfile(request.POST,request.FILES,instance=request.user)
+    if user_form.is_valid() and form.is_valid():
+      user_form.save()
+      form.save()
+      messages.success(request,'Your Profile account has been updated successfully')
+      return redirect('profile')
+  else:
+    user_form = UpdateUserProfile(instance=request.user)
+    form = UpdateClientProfile(instance=request.user) 
+  params = {
+    'user_form':user_form,
+    'form':form
+  }
+  return render(request,'edit_profile.html',params)
