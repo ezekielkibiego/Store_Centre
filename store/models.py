@@ -43,20 +43,20 @@ PROFILE_TYPES = (
     
 
 
-def __str__(self):
-        return f'{self.user} profile'
+# def __str__(self):
+#         return f'{self.user} profile'
 
-@receiver(post_save, sender=User)
-def create_user_profile(sender, instance, created, **kwargs):
-        if created:
-            Profile.objects.create(bio=instance)
+# @receiver(post_save, sender=User)
+# def create_user_profile(sender, instance, created, **kwargs):
+#         if created:
+#             Profile.objects.create(bio=instance)
 
-@receiver(post_save, sender=User, dispatch_uid='save_new_user_profile')
-def save_user_profile(sender, instance, created, **kwargs):
-        user = instance
-        if created:
-            profile = UserProfile(user=user)
-            profile.save()
+# @receiver(post_save, sender=User, dispatch_uid='save_new_user_profile')
+# def save_user_profile(sender, instance, created, **kwargs):
+#         user = instance
+#         if created:
+#             profile = UserProfile(user=user)
+#             profile.save()
 
 class Storecentre(models.Model):
     name = models.CharField(max_length=40)
@@ -71,7 +71,6 @@ class Client(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     profile_photo = CloudinaryField("image",null=True,blank=True)
     phone = models.CharField(max_length=20, null=True)
-    image = CloudinaryField('image')
     location = models.CharField(max_length=50,null=True)
     email = models.CharField(max_length=50,null=True)
     last_login = models.CharField(max_length=1000,null=True)
@@ -90,7 +89,6 @@ class Staff(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     profile_photo = CloudinaryField("image",null=True,blank=True)
     phone = models.CharField(max_length=20,null=True)
-    image = CloudinaryField('image')
     email = models.CharField(max_length=50,null=True)
     designation = models.CharField(max_length=50,null=True)
     last_login = models.CharField(max_length=1000,null=True)

@@ -49,7 +49,7 @@ background: #212529b8;
 
 
 
-<!-- <div class="overlay" style="box-shadow:inset 0 0 0 2000px rgba(23, 34, 23, 0.863);background-image: url(/static/images/hero_1.jpg);color: white;" data-aos="fade" id="home-section">
+<div class="overlay" style="box-shadow:inset 0 0 0 2000px rgba(23, 34, 23, 0.863);background-image: url(/static/images/hero_1.jpg);color: white;" data-aos="fade" id="home-section">
 
 
     <div class="container">
@@ -73,8 +73,8 @@ background: #212529b8;
         <div class="col col-lg-6 mb-4 mb-lg-0">
           <div class="card mb-3" style="border-radius: .5rem;">
             <div class="row g-0">
-              {% if user.client.image %}
-                <img src="{{user.client.image.url}}" alt="" style="border-radius: 50%; width: 50%; height: auto;">
+              {% if user.client.profile_photo %}
+                <img src="{{user.client.profile_photo.url}}" alt="" style="border-radius: 50%; width: 50%; height: auto;">
                 {%else%}
                 <img src="https://st2.depositphotos.com/1104517/11965/v/600/depositphotos_119659092-stock-illustration-male-avatar-profile-picture-vector.jpg"
                     class="card-img-top" alt="My profile picture"  style="border-radius: 50%; width: 50%; height: auto;">
@@ -124,7 +124,7 @@ background: #212529b8;
                     </div>
 
                     
-  </section> -->
+  </section>
 
 
 {% endblock %}
