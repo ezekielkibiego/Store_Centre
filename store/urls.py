@@ -19,8 +19,9 @@ urlpatterns = [
     path("admin_login/", views.admin_login, name="admin_login"),
     path('profile/', views.profile, name='profile'),
     path('accounts/profile/', views.IndexView,name='index'),
-    path('update_profile/<int:id>',views.update_profile, name='update_profile'),
+    path('update_client_profile/',views.update_client_profile, name='update_client_profile'),
     path('social-auth/',include('social_django.urls',namespace='social')),
+    path('api/store/', views.Storelist.as_view()),
     
 
 ]

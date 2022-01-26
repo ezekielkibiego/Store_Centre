@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'bootstrap4',
     'cloudinary',
     'crispy_forms',
+    'rest_framework.authtoken',
     'widget_tweaks',
     'mathfilters',
     'django.contrib.admin',
@@ -120,7 +121,11 @@ DATABASES = {
     }
 }
 
-
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    )
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -190,7 +195,7 @@ AUTHENTICATION_BACKENDS = [
     
 
    
-    'social_core.backends.facebook.FacebookOAuth2',
+   
     'social_core.backends.google.GoogleOAuth2',
 
    
@@ -215,6 +220,7 @@ JAZZMIN_SETTINGS = {
         # external url that opens in a new window (Permissions can be added)
 
         {"name": "Staff ", "url": "/staff_register", "new_window": True},
+
         {"name": "View Website", "url": "/", "new_window": True},
 
 
