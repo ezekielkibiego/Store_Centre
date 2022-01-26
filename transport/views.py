@@ -21,9 +21,11 @@ def request_transport(request):
                    '&destinations=' + destination +
                    '&key=' + api_key)
             x=r.json()
-            transport_request.distance = x['rows'][0]["elements"][0]['distance']["value"]
+            print(x['rows'][0]["elements"][0]["distance"]["value"])
+            distance = x['rows'][0]["elements"][0]["distance"]["value"]
+            transport_request.distance = (distance)/1000
             #calculate price
-            price = ((transport_request.distance)/1000)*300
+            price = (transport_request.distance)*300
             transport_request.price = price
             transport_request.save()
             return redirect('request_summary')
