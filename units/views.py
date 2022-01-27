@@ -19,11 +19,13 @@ def book_unit(request):
             departure_date= form.cleaned_data.get('departure_date')
             description = form.cleaned_data.get('description')
             no_of_units= form.cleaned_data.get('no_of_units') # available units
+            total_cost = form.cleaned_data.get('total_cost') 
+        
             
             units = Storage.objects.filter(type=storage_type).first() 
             if units.available_units >= no_of_units:
                 storage =  get_object_or_404(Storage,type=storage_type)
-                booked_unit =  Goods(storage_type =storage,no_of_units=no_of_units,arrival_date=arrival_date,departure_date=departure_date,description =description,owner =request.user)
+                booked_unit =  Goods(storage_type =storage,no_of_units=no_of_units,arrival_date=arrival_date,departure_date=departure_date,description =description,owner =request.user,total_cost=total_cost)
                 booked_unit.add_goods()
                 storage = Storage.objects.filter(type=storage_type).first()
                 storage.available_units -= no_of_units
