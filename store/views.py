@@ -18,6 +18,7 @@ from .models import  Storecentre
 from .serializers import StoreSerializer
 from rest_framework import status
 from .permissions import IsAdminOrReadOnly
+import store
 
 
 # Create your views here.
@@ -33,6 +34,18 @@ def post(self, request, format=None):
             return Response(serializers.data, status=status.HTTP_201_CREATED)
         return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
 permission_classes = (IsAdminOrReadOnly,)
+def delete(self, request, pk, format=None):
+        store = self.get_store(pk)
+        store.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+def put(self, request, pk, format=None):
+        store = self.get_store(pk)
+        serializers = StoreSerializer(store, request.data)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data)
+        else:
+            return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 
