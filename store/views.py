@@ -40,7 +40,18 @@ permission_classes = (IsAdminOrReadOnly,)
 
 
 def IndexView(request):
-    return render(request, 'index.html')
+    form = SubscribeForm()
+    if request.method == 'POST':
+        form = SubscribeForm(request.POST)
+        if form.is_valid():
+            subject = 'Store Centre'
+            message = 'Welcome to Store Centre, All yor storage problems sorted by a click of a button.'
+            recipient = form.cleaned_data.get('email')
+            send_mail(subject, 
+              message, settings.EMAIL_HOST_USER, [recipient], fail_silently=False)
+            messages.success(request, 'Success!')
+            return redirect('subscribe')
+    return render(request, 'index.html',{'form': form})
 
 
 @login_required(login_url = '/client_login')
