@@ -1,4 +1,5 @@
 from cProfile import Profile
+from http import client
 from django.shortcuts import redirect, render,HttpResponse
 from django.contrib import messages
 from store.forms import ClientSignUpForm
@@ -168,12 +169,25 @@ def logout_view(request):
     logout(request)
     return redirect('/')
 
-@login_required
-def profile(request):
+@login_required(login_url = '/client_login')
+def client_profile(request):
     current_user = request.user
     profile = Client.objects.get(user_id=current_user.id) 
-    
     return render(request, "profile.html", {"profile": profile})
+
+@login_required(login_url = '/staff_login')
+def staff_profile(request):
+    current_user = request.user
+    profile = Staff.objects.filter(user_id=current_user.id).first()
+    return render(request, "profile.html", {"profile": profile})
+
+
+@login_required(login_url = '/admin_login')
+def admin_profile(request):
+    current_user = request.user
+    profile = Profile.objects.filter(user_id=current_user.id).first()
+    return render(request, "profile.html", {"profile": profile})
+
 
 def update_client_profile(request):
   if request.method == 'POST':
@@ -194,16 +208,16 @@ def update_client_profile(request):
   return render(request,'edit_profile.html',params)
 
 
-def staffProfile(request):
-    staff = request.user
-    profile = Staff.objects.get(
-        user_id=staff.id)  # get profile
-    profile = Staff.objects.filter(user_id = staff.id).first()  # get profile
-    context = {
-        "staff": staff,
-        'profile':profile
-    }
-    return render(request, 'profile.html', context)
+# def staffProfile(request):
+#     staff = request.user
+#     profile = Staff.objects.get(
+#         user_id=staff.id)  # get profile
+#     profile = Staff.objects.filter(user_id = staff.id).first()  # get profile
+#     context = {
+#         "staff": staff,
+#         'profile':profile
+#     }
+#     return render(request, 'profile.html', context)
 
 def update_staff_profile(request):
     if request.method == 'POST':
