@@ -61,5 +61,3 @@ class Goods(models.Model):
 
     def remove_goods(self):
         self.delete()
-
-

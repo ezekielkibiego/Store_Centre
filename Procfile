@@ -1,0 +1,1 @@
+web: gunicorn store_centre.wsgi
