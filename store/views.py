@@ -208,17 +208,6 @@ def update_client_profile(request):
   return render(request,'edit_profile.html',params)
 
 
-# def staffProfile(request):
-#     staff = request.user
-#     profile = Staff.objects.get(
-#         user_id=staff.id)  # get profile
-#     profile = Staff.objects.filter(user_id = staff.id).first()  # get profile
-#     context = {
-#         "staff": staff,
-#         'profile':profile
-#     }
-#     return render(request, 'profile.html', context)
-
 def update_staff_profile(request):
     if request.method == 'POST':
         u_form = UpdateUserProfile(request.POST, request.FILES, instance=request.user)
