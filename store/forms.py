@@ -81,3 +81,6 @@ class UpdateStaffProfile(forms.ModelForm):
     class Meta:
         model = Staff
         exclude = ['user']
+
+class SubscribeForm(forms.Form):
+    email = forms.EmailField()
