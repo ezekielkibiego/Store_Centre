@@ -1,7 +1,8 @@
 from cProfile import Profile
+from http import client
 from django.shortcuts import redirect, render,HttpResponse
 from django.contrib import messages
-from store.forms import ClientSignUpForm
+from store.forms import ClientSignUpForm,SubscribeForm
 from .models import *
 from units.models import *
 from django.contrib.auth import authenticate, login, logout
@@ -17,6 +18,9 @@ from .models import  Storecentre
 from .serializers import StoreSerializer
 from rest_framework import status
 from .permissions import IsAdminOrReadOnly
+from django.contrib import messages
+from django.core.mail import send_mail
+from django.conf import settings
 
 
 # Create your views here.
@@ -36,7 +40,18 @@ permission_classes = (IsAdminOrReadOnly,)
 
 
 def IndexView(request):
-    return render(request, 'index.html')
+    form = SubscribeForm()
+    if request.method == 'POST':
+        form = SubscribeForm(request.POST)
+        if form.is_valid():
+            subject = 'Store Centre'
+            message = 'Welcome to Store Centre, All yor storage problems sorted by a click of a button.'
+            recipient = form.cleaned_data.get('email')
+            send_mail(subject, 
+              message, settings.EMAIL_HOST_USER, [recipient], fail_silently=False)
+            messages.success(request, 'Success!')
+            return redirect('subscribe')
+    return render(request, 'index.html',{'form': form})
 
 
 @login_required(login_url = '/client_login')
@@ -168,12 +183,25 @@ def logout_view(request):
     logout(request)
     return redirect('/')
 
-@login_required
-def profile(request):
+@login_required(login_url = '/client_login')
+def client_profile(request):
     current_user = request.user
     profile = Client.objects.get(user_id=current_user.id) 
-    
     return render(request, "profile.html", {"profile": profile})
+
+@login_required(login_url = '/staff_login')
+def staff_profile(request):
+    current_user = request.user
+    profile = Staff.objects.filter(user_id=current_user.id).first()
+    return render(request, "profile.html", {"profile": profile})
+
+
+@login_required(login_url = '/admin_login')
+def admin_profile(request):
+    current_user = request.user
+    profile = Profile.objects.filter(user_id=current_user.id).first()
+    return render(request, "profile.html", {"profile": profile})
+
 
 def update_client_profile(request):
   if request.method == 'POST':
@@ -194,16 +222,16 @@ def update_client_profile(request):
   return render(request,'edit_profile.html',params)
 
 
-def staffProfile(request):
-    staff = request.user
-    profile = Staff.objects.get(
-        user_id=staff.id)  # get profile
-    profile = Staff.objects.filter(user_id = staff.id).first()  # get profile
-    context = {
-        "staff": staff,
-        'profile':profile
-    }
-    return render(request, 'profile.html', context)
+# def staffProfile(request):
+#     staff = request.user
+#     profile = Staff.objects.get(
+#         user_id=staff.id)  # get profile
+#     profile = Staff.objects.filter(user_id = staff.id).first()  # get profile
+#     context = {
+#         "staff": staff,
+#         'profile':profile
+#     }
+#     return render(request, 'profile.html', context)
 
 def update_staff_profile(request):
     if request.method == 'POST':
@@ -223,3 +251,18 @@ def update_staff_profile(request):
         'p_form': p_form
     }
     return render(request,'staff_profile.html',context)
+
+
+def subscribe(request):
+    form = SubscribeForm()
+    if request.method == 'POST':
+        form = SubscribeForm(request.POST)
+        if form.is_valid():
+            subject = 'Store Centre'
+            message = 'Welcome to Store Centre, All yor storage problems sorted by a click of a button.'
+            recipient = form.cleaned_data.get('email')
+            send_mail(subject, 
+              message, settings.EMAIL_HOST_USER, [recipient], fail_silently=False)
+            messages.success(request, 'Success!')
+            return redirect('subscribe')
+    return render(request, 'index.html', {'form': form})

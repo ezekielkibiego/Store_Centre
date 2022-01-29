@@ -10,8 +10,8 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('units', '__first__'),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
+        ('units', '__first__'),
     ]
 
     operations = [
