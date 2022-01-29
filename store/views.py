@@ -64,8 +64,8 @@ def records(request):
 @login_required(login_url = '/client_login')
 def services(request):
     
-    
-    return render(request, "services.html")
+    storages = Storage.objects.all()
+    return render(request, "services.html",{'storages':storages})
 
 
 
@@ -253,6 +253,23 @@ def update_staff_profile(request):
     return render(request,'staff_profile.html',context)
 
 
+
+def checkout_booking(request,records_id):
+    goods = Goods.objects.filter(id=records_id).first()
+    
+    return render(request,'checkout.html',{'goods':goods})
+
+def checkout_goods(request,goods_id):
+    goods = Goods.objects.filter(id=goods_id).first()
+    goods.remove_goods()
+    storage = Storage.objects.filter(type =goods.storage_type).first()
+    storage.available_units += goods.no_of_units
+    storage.add_storage()
+    messages.success(request,'Goods checked out successfully')
+    
+    
+    return redirect('request_transport')
+
 def subscribe(request):
     form = SubscribeForm()
     if request.method == 'POST':
@@ -266,3 +283,4 @@ def subscribe(request):
             messages.success(request, 'Success!')
             return redirect('subscribe')
     return render(request, 'index.html', {'form': form})
+

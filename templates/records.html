@@ -19,15 +19,18 @@
             </tr>
           </thead>
           <tbody>
+            {% for record in records %}
             <tr>
-              {% for record in records %}
+            
               <th scope="row">{{record.unit_no.pk}}</th>
               <td>{{record.storage_type}}</td>
               <td>{{record.description}}</td>
               <td>{{record.arrival_date}}</td>
               <td>{{record.departure_date}}</td>
-              {% endfor %}
+              <td><a href="{% url 'checkout' record.id %}"><button class="btn btn-small btn-success">checkout</button></a></td>
+            
             </tr>
+            {% endfor %}
           </tbody>
         </table>
       

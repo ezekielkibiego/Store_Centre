@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+
+{% load static %}
+
+{% block content %} 
+<div class="container" style="min-height:75vh;">
+    <div class="summary mt-5 " style="padding-top:20%;">
+    <div class="card">
+        <h2>Checkout</h2>
+        {{goods.description}}
+        <a href="{% url 'records'%}"> <button class="btn btn danger">Cancel</button></a>
+        <a href="{% url 'checkout_goods' goods.id %}"> <button class="btn btn success">Checkout</button></a>
+    </div>
+
+    </div>
+</div>
+{% endblock %}
