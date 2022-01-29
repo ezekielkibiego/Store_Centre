@@ -53,15 +53,6 @@ def book_unit(request):
 
 def dashboard(request):
     storages = Storage.objects.filter()
-    # booked_normal_units = Storage.objects.filter(type='normal_storage').count()
-    # bonded_units = Storage.objects.filter(type='bonded_storage')
-    # booked_bonded_units = Storage.objects.filter(type='bonded_storage').count()
-    # archive_units = Storage.objects.filter(type='archive_storage')
-    # booked_archive_units = Storage.objects.filter(type='archive_storage').count()
-    # hazardious_units = Storage.objects.filter(type='hazardious_storage')
-    # booked_hazardious_units = Storage.objects.filter(type='hazardious_storage').count()
-    # cold_units = Storage.objects.filter(type='cold_storage')
-    # booked_cold_units = Storage.objects.filter(type='cold_storage').count()
     
     if request.method == 'POST':
         form = StorageForm(request.POST)
@@ -78,15 +69,6 @@ def dashboard(request):
 
         args = {
             "storages": storages,
-            # "booked_normal_units":booked_normal_units,
-            # "bonded_units": bonded_units,
-            # "booked_bonded_units":booked_bonded_units,
-            # "archive_units": archive_units,
-            # "booked_archive_units":booked_archive_units,
-            # "hazardious_units": hazardious_units,
-            # "booked_hazardious_units":booked_hazardious_units,
-            # "cold_units": cold_units,
-            # "booked_cold_units":booked_cold_units,
             "form":form
         }
         return render(request,'staff_dashboard.html',args)
