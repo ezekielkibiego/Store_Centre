@@ -8,6 +8,8 @@ import requests,json
 @login_required(login_url='client_login')
 def request_transport(request):
     api_key = settings.GOOGLE_API_KEY
+    initial_units=request.session.get('initial_units')
+    final_units = request.session.get('final_units')
     if request.method == 'POST':
         form = TransportForm(request.POST)
         if form.is_valid():
@@ -21,8 +23,8 @@ def request_transport(request):
             destination = transport_request.address
             url = 'https://maps.googleapis.com/maps/api/distancematrix/json?'
             r = requests.get(url + 'origins=' + source +
-                   '&destinations=' + destination +
-                   '&key=' + api_key)
+                '&destinations=' + destination +
+                '&key=' + api_key)
             x=r.json()
             print(x)
             distance = x['rows'][0]["elements"][0]["distance"]["value"]
@@ -30,6 +32,10 @@ def request_transport(request):
             #calculate price
             price = (transport_request.distance)*200
             transport_request.price = price
+            if initial_units > final_units:
+                transport_request.transport_type = Transport.PICKUP
+            elif final_units > initial_units:
+                transport_request.transport_type= Transport.DELIVERY
             transport_request.save()
             return redirect('request_summary')
         else:
@@ -38,7 +44,9 @@ def request_transport(request):
         form =TransportForm()
     context = {
         'form':form,
-        'api_key': api_key
+        'api_key': api_key,
+        'initial_units':initial_units,
+        'final_units': final_units,
     }
     return render(request,'request_transport.html', context)
 

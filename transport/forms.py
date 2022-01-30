@@ -9,14 +9,13 @@ class TransportForm(forms.ModelForm):
 
     class Meta:
         model = Transport
-        fields= ['transport_type','address','phone_number']
+        fields= ['address','email','phone_number']
         labels = {
-            'transport_type': _('Type of Transport'),
+            'address': 'ADDRESS',
         }
         help_texts = {
 
         }
         widgets = {
-            'transport_type': forms.RadioSelect(attrs={'class': "form-check-input"}),
         }
         

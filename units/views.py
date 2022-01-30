@@ -23,6 +23,8 @@ def book_unit(request):
         
             
             units = Storage.objects.filter(type=storage_type).first() 
+            initial_units = units.available_units
+            request.session['initial_units']=initial_units
             if units.available_units >= no_of_units:
                 storage =  get_object_or_404(Storage,type=storage_type)
                 booked_unit =  Goods(storage_type =storage,no_of_units=no_of_units,arrival_date=arrival_date,departure_date=departure_date,description =description,owner =request.user,total_cost=total_cost)
@@ -30,8 +32,11 @@ def book_unit(request):
                 storage = Storage.objects.filter(type=storage_type).first()
                 storage.available_units -= no_of_units
                 storage.add_storage() 
+                final_units = storage.available_units
+                request.session['final_units']=final_units
                 messages.success(request,f'Booked successfully')
-                
+                return redirect('request_transport')
+
             else:
                 messages.error(request,f'No slots available in {storage_type} try again later')
                 return redirect('book')
@@ -39,7 +44,6 @@ def book_unit(request):
             messages.error(request,f'Something went wrong')
             return redirect('book')
 
-        return redirect('request_transport')
     else:
         form = GoodsBookingForm()
         storage_types = Storage.objects.all()
