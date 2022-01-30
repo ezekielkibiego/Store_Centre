@@ -62,10 +62,10 @@ class StaffSignUpForm(UserCreationForm):
 #         model = Profile
 #         exclude = ['user']
 
-# class UpdateProfileForm(forms.ModelForm):
-#     class Meta:
-#         model = Profile
-#         exclude = ['user']
+class UpdateProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        exclude = ['user']
 
 class UpdateClientProfile(forms.ModelForm):
     class Meta:
@@ -81,3 +81,6 @@ class UpdateStaffProfile(forms.ModelForm):
     class Meta:
         model = Staff
         exclude = ['user']
+
+class SubscribeForm(forms.Form):
+    email = forms.EmailField()
