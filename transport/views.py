@@ -80,9 +80,11 @@ def request_summary(request):
 
 @login_required(login_url='client_login')
 def summaries(request):
+    all_summaries = Transport.objects.all()
     summaries = Transport.objects.filter(user=request.user).all().order_by('-created')
     context = {
         'summaries': summaries,
+        'all_summaries': all_summaries,
     }
     
     
@@ -98,3 +100,25 @@ def payment(request):
         
     }
     return render(request,'payment.html', context)
+
+def approval(request, request_summary_id):
+    request_summary = Transport.objects.filter(id=request_summary_id).first()
+    request_summary.is_approved = True
+    request_summary.save()
+    context ={
+        'request_summary':request_summary
+    }
+    #email logic
+    subject = 'TRANSPORT REQUEST APPROVAL'
+    message = get_template('transport_approval_email.html').render(context)
+    msg = EmailMessage(
+        subject,
+        message,
+        settings.EMAIL_HOST_USER,
+        [request_summary.email],
+    )
+    msg.content_subtype = 'html'
+    msg.send()
+
+    return redirect('transport_summaries')
+    

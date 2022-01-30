@@ -6,69 +6,101 @@
     <div class="row">
         <div class="col-md-1"></div>
         <div class="col-md-10 pt-5 mt-5">
-            <h1 class="text-center font-weight-bold m-5" >My Transport Request Summaries</h1>
-            {%if summaries%}
-            {%for request_transport in summaries%}
-            <div class="card text-center mt-5 mx-5 mb-3 pt-3" style="border: 2px solid ; border-radius: 10px;">
-                <div class="card-title ">
-                    <h4 class="font-weight-bold">Transport Request ID#{{request_transport.id}}</h4> <span>
-                        {%if request_transport.is_approved == False %}
-                        <h4><strong>APPROVAL STATUS: <span class="text-danger">PENDING</span> </strong></h4>
-                        {%else%}
-                        <h4><strong>APPROVAL STATUS: <span class="text-success">APPROVED</span> </strong></h4>
-                        {%endif%}</span>
-                </div>
-                <div class="card-body">
-                    <button type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">View Details 
-                        <br><span>
-                            <i class='fas fa-angle-double-down'></i>
-                        </span></button>
-                </div>
-            </div>
-            <div class="collapse" id="collapseExample">
-                <div class="card mx-5 mb-1 p-0" style="border: 2px solid ; border-radius: 10px;">
-                    <div class="row g-0">
-                        <div class="col-md-4 " >
-                            <img src="https://images.pexels.com/photos/6170154/pexels-photo-6170154.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" class="img-fluid rounded-start" alt="image of shipping boxes" style="height: 100%; border-radius: 10px;">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body p-5">
-                                <h3 class="card-title">Transport Request Summary</h3><hr>
-                                <p class="card-text"><strong>FIRST NAME: </strong>{{request_transport.user.first_name}}</p>
-                                <p class="card-text"><strong>LAST NAME: </strong>{{request_transport.user.last_name}}</p>
-                                <p class="card-text"><strong>TYPE OF REQUEST: </strong>{{request_transport.transport_type|upper}}</p>
-                                <p class="card-text"><strong>DATE: </strong>{{request_transport.created}}</p>
-                                <hr>
-                                <h4><strong>Address Details</strong></h4>
-                                <p class="card-text"><strong>ADDRESS: </strong>{{request_transport.address}}</p>
-                                <p class="card-text"><strong>DISTANCE: </strong>{{request_transport.distance}} km</p><hr>
-                                <h4><strong>Contact Details</strong></h4>
-                                <p class="card-text"><strong>PHONE NUMBER: </strong>{{request_transport.phone_number}}</p>
-                                <p class="card-text"><strong>EMAIL: </strong>{{request_transport.user.email}}</p><hr>
-                                <h4><strong>Payment Details</strong></h4>
-                                <p class="card-text"><strong>PRICE: </strong>Ksh.{{request_transport.price}}</p>
-                                {%if request_transport.is_paid == False %}
-                                <p class="card-text"><strong>PAYMENT STATUS: <span class="text-danger">NOT PAID</span> </strong></p><hr>
-                                {%else%}
-                                <p class="card-text"><strong>PAYMENT STATUS: <span class="text-success">PAID</span> </strong></p><hr>
-                                {%endif%}
+            {%if request.user.is_staff == True %}
+                <h1 class="text-center font-weight-bold m-5" >Transport Request Summaries</h1>
+                {%if all_summaries%}
+                    {%for request_transport in all_summaries%}
+                        <div class="card text-center mt-5 mx-5 mb-3 pt-3" style="border: 2px solid ; border-radius: 10px;">
+                            <div class="card-title ">
+                                <h4 class="font-weight-bold">Transport Request ID#{{request_transport.id}} <span>
+                                    {%if request_transport.is_approved == False %}
+                                    <h3><strong>APPROVAL STATUS: <span class="text-danger">PENDING</span> </strong></h3>
+                                    {%elif request_transport.is_approved == True %}
+                                    <h3><strong>APPROVAL STATUS: <span class="text-success">APPROVED</span> </strong></h3>
+                                    {%endif%}</span>
+                                </h4>
+                            </div>
+                            <div class="card-body">
                                 {%if request_transport.is_approved == False %}
-                                <p class="card-text"><strong>APPROVAL STATUS: <span class="text-danger">PENDING</span> </strong></p>
-                                {%else%}
-                                <p class="card-text"><strong>APPROVAL STATUS: <span class="text-success">APPROVED</span> </strong></p>
-                                {%endif%}
+                                <a class="btn btn-success mx-5 mb-5 mt-0" href="{%url 'approval' request_transport.id %}" role="button">APPROVE</a>
+                                {%elif request_transport.is_approved == True %}
+                                <p>{{request.user.first_name}} Staff Id {{request.user.id}} approved this request</p>
+                                {%endif%}</span>
                             </div>
                         </div>
+                    {%endfor%}
+                {%else%}
+                    <div class="card text-center m-5 p-5" style="border: 2px solid ; border-radius: 10px;">
+                        <div class="card-title">
+                        <h3>There are No Transport Requests Yet.</h3>
+                        </div>
+                    </div>
+                {%endif%}
+            {%else%}
+                {%if summaries%}
+                    {%for request_transport in summaries%}
+                        <div class="card text-center mt-5 mx-5 mb-3 pt-3" style="border: 2px solid ; border-radius: 10px;">
+                            <div class="card-title ">
+                                <h4 class="font-weight-bold">Transport Request ID#{{request_transport.id}} <span>
+                                    {%if request_transport.is_approved == False %}
+                                    <h3><strong>APPROVAL STATUS: <span class="text-danger">PENDING</span> </strong></h3>
+                                    {%elif request_transport.is_approved == True %}
+                                    <h3><strong>APPROVAL STATUS: <span class="text-success">APPROVED</span> </strong></h3>
+                                    {%endif%}</span>
+                                </h4>
+                            </div>
+                            <div class="card-body">
+                                <button type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">View Details 
+                                    <br><span>
+                                        <i class='fas fa-angle-double-down'></i>
+                                    </span></button>
+                            </div>
+                        </div>
+                        <div class="collapse" id="collapseExample">
+                            <div class="card mx-5 mb-1 p-0" style="border: 2px solid ; border-radius: 10px;">
+                                <div class="row g-0">
+                                    <div class="col-md-4 " >
+                                        <img src="https://images.pexels.com/photos/6170154/pexels-photo-6170154.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" class="img-fluid rounded-start" alt="image of shipping boxes" style="height: 100%; border-radius: 10px;">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body p-5">
+                                            <h3 class="card-title">Transport Request Summary</h3><hr>
+                                            <p class="card-text"><strong>FIRST NAME: </strong>{{request_transport.user.first_name}}</p>
+                                            <p class="card-text"><strong>LAST NAME: </strong>{{request_transport.user.last_name}}</p>
+                                            <p class="card-text"><strong>TYPE OF REQUEST: </strong>{{request_transport.transport_type|upper}}</p>
+                                            <p class="card-text"><strong>DATE: </strong>{{request_transport.created}}</p>
+                                            <hr>
+                                            <h4><strong>Address Details</strong></h4>
+                                            <p class="card-text"><strong>ADDRESS: </strong>{{request_transport.address}}</p>
+                                            <p class="card-text"><strong>DISTANCE: </strong>{{request_transport.distance}} km</p><hr>
+                                            <h4><strong>Contact Details</strong></h4>
+                                            <p class="card-text"><strong>PHONE NUMBER: </strong>{{request_transport.phone_number}}</p>
+                                            <p class="card-text"><strong>EMAIL: </strong>{{request_transport.user.email}}</p><hr>
+                                            <h4><strong>Payment Details</strong></h4>
+                                            <p class="card-text"><strong>PRICE: </strong>Ksh.{{request_transport.price}}</p>
+                                            {%if request_transport.is_paid == False %}
+                                            <p class="card-text"><strong>PAYMENT STATUS: <span class="text-danger">NOT PAID</span> </strong></p><hr>
+                                            {%else%}
+                                            <p class="card-text"><strong>PAYMENT STATUS: <span class="text-success">PAID</span> </strong></p><hr>
+                                            {%endif%}
+                                            {%if request_transport.is_approved == False %}
+                                            <p class="card-text"><strong>APPROVAL STATUS: <span class="text-danger">PENDING</span> </strong></p>
+                                            {%else%}
+                                            <p class="card-text"><strong>APPROVAL STATUS: <span class="text-success">APPROVED</span> </strong></p>
+                                            {%endif%}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {%endfor%}
+                {%else%}
+                <div class="card text-center m-5 p-5" style="border: 2px solid ; border-radius: 10px;">
+                    <div class="card-title">
+                    <h3>You have no Transport Requests Yet.</h3>
                     </div>
                 </div>
-            </div>
-            {%endfor%}
-            {%else%}
-            <div class="card text-center m-5 p-5" style="border: 2px solid ; border-radius: 10px;">
-                <div class="card-title">
-                  <h3>You have no Transport Requests Yet.</h3>
-                </div>
-            </div>
+                {%endif%}
             {%endif%}
         </div>
         <div class="col-md-1"></div>
