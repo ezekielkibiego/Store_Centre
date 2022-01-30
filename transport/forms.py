@@ -17,5 +17,10 @@ class TransportForm(forms.ModelForm):
 
         }
         widgets = {
+            'email': forms.EmailInput(attrs={'placeholder': 'Input your email'}),
+            'phone_number': forms.TextInput(attrs={'placeholder': 'Input phone number'})
+        }
+        error_messages={
+            'phoneNumberRegex': _('Use the required formart +254712345678')
         }
         

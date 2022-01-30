@@ -32,6 +32,7 @@ def request_transport(request):
             #calculate price
             price = (transport_request.distance)*200
             transport_request.price = price
+            #transport_type logic
             if initial_units > final_units:
                 transport_request.transport_type = Transport.PICKUP
             elif final_units > initial_units:

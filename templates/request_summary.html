@@ -18,7 +18,7 @@
                         <img src="https://images.pexels.com/photos/6170154/pexels-photo-6170154.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" class="img-fluid rounded-start" alt="image of shipping boxes" style="height: 100%; border-radius: 10px;">
                     </div>
                     <div class="col-md-8">
-                        <div class="card-body p-5">
+                        <div class="card-body p-4">
                             <h3 class="card-title">Transport Request Summary</h3><hr>
                             <p class="card-text"><strong>FIRST NAME: </strong>{{request_transport.user.first_name}}</p>
                             <p class="card-text"><strong>LAST NAME: </strong>{{request_transport.user.last_name}}</p>
@@ -30,7 +30,7 @@
                             <p class="card-text"><strong>DISTANCE: </strong>{{request_transport.distance}} km</p><hr>
                             <h4><strong>Contact Details</strong></h4>
                             <p class="card-text"><strong>PHONE NUMBER: </strong>{{request_transport.phone_number}}</p>
-                            <p class="card-text"><strong>EMAIL: </strong>{{request_transport.user.email}}</p><hr>
+                            <p class="card-text"><strong>EMAIL: </strong>{{request_transport.email}}</p><hr>
                             <h4><strong>Payment Details</strong></h4>
                             <p class="card-text"><strong>PRICE: </strong>Ksh.{{request_transport.price}}</p>
                             {%if request_transport.is_paid == False %}
