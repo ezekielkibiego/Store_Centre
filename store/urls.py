@@ -18,7 +18,7 @@ urlpatterns = [
 
 
     path("change_password/", views.change_password, name="change_password"),
-    # path("admin_login/", views.admin_login, name="admin_login"),
+    path("admin_login/", views.admin_login, name="admin_login"),
     # path('client_profile/', views.client_profile, name='client_profile'),
     path('subscribe/', views.subscribe, name='subscribe'),
     
