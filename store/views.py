@@ -1,5 +1,6 @@
 from cProfile import Profile
 from http import client
+from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, render,HttpResponse
 from django.contrib import messages
 from store.forms import ClientSignUpForm,SubscribeForm
@@ -197,7 +198,7 @@ def staff_profile(request):
 
 
 @login_required(login_url = '/admin_login')
-def admin_profile(request):
+def profile(request):
     current_user = request.user
     profile = Profile.objects.filter(user_id=current_user.id).first()
     return render(request, "profile.html", {"profile": profile})
@@ -252,7 +253,20 @@ def update_staff_profile(request):
     }
     return render(request,'staff_profile.html',context)
 
-
+@login_required
+def update_profile(request,id):
+    user = User.objects.get(id=id)
+    profile = Profile.objects.get(user_id = user)
+    form = UpdateProfileForm(instance=profile)
+    if request.method == "POST":
+            form = UpdateProfileForm(request.POST,request.FILES,instance=profile)
+            if form.is_valid():  
+                
+                profile = form.save(commit=False)
+                profile.save()
+                return redirect('profile') 
+            
+    return render(request, 'edit_profile.html', {"form":form, 'profile':profile})
 
 def checkout_booking(request,records_id):
     goods = Goods.objects.filter(id=records_id).first()
