@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+
+{% load static %}
+
+{% block content %}
+<div class="container" style="min-height:75vh;">
+    <div class="summary mt-5 row" style="padding-top:20%;">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+            <div class="card">
+                <div class="card-body">
+                <h2 class="card-title">Checkout</h2>
+                <p class="card-text">{{goods.description}}</p>
+                <a class="card-link btn btn-outline-danger" href="{% url 'records'%}">Cancel</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-primary card-link"
+                    href="{% url 'checkout_goods' goods.id %}"> Checkout</a>
+            </div>
+        </div>
+        </div>
+        <div class="col-sm-2"></div>
+
+    </div>
+</div>
+{% endblock %}
