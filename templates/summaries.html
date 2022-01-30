@@ -37,6 +37,7 @@
                     </div>
                 {%endif%}
             {%else%}
+                <h1 class="text-center font-weight-bold m-5" >My Transport Request Summaries</h1>
                 {%if summaries%}
                     {%for request_transport in summaries%}
                         <div class="card text-center mt-5 mx-5 mb-3 pt-3" style="border: 2px solid ; border-radius: 10px;">
@@ -50,7 +51,11 @@
                                 </h4>
                             </div>
                             <div class="card-body">
-                                <button type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">View Details 
+                                {%if request_transport.is_approved == False %}
+                                {%elif request_transport.is_approved == True %}
+                                <a class="btn btn-success " href="{%url 'payment'%}" role="button">PROCEED TO PAYMENT</a>                                
+                                {%endif%}
+                                <br><button type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">View Details 
                                     <br><span>
                                         <i class='fas fa-angle-double-down'></i>
                                     </span></button>
