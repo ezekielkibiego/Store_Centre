@@ -73,13 +73,18 @@ Open the application on your browser `127.0.0.1:8000`.
   
 ## Support and Contact Information 
 
-To make a contribution to the code used or for any queries feel free to contact us via our email addresses kibiezekiel@gmail.com
+To make a contribution to the code used or for any queries feel free to contact us via our email addresses; <br>
+kibiezekiel@gmail.com <br>
+joankirui99@gmail.com <br>
+joywambuindegwa@gmail.com <br>
+Kipsang1998@gmail.com <br>
+desastrecaliente@gmail.com <br>
 
 ## License
 
 ### MIT LICENCE
 
-#### Copyright (c) 2022  ~ Moringa School
+#### Copyright (c) 2022 
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
