@@ -1,0 +1,53 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Transport Request Summary</title>
+
+  <link rel="icon" href="/favicon.ico">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+</head>
+
+<body>
+    <p>Dear {{request_transport.user.first_name|title}}, <br>
+        Find a summary of your transport request below. Your request is yet to be approved. Check your email for an update to the approval status. Once your request has been approved, procced to payment.</p><hr>
+    <div class="col-md-6">
+        <div class="card mt-5 mx-5 mb-1 p-0" style="border: 2px solid ; border-radius: 10px;">
+            <div class="row g-0">
+                <div class="card-body p-4">
+                    <h3 class="card-title">Transport Request Summary</h3><hr>
+                    <p class="card-text"><strong>FIRST NAME: </strong>{{request_transport.user.first_name}}</p>
+                    <p class="card-text"><strong>LAST NAME: </strong>{{request_transport.user.last_name}}</p>
+                    <p class="card-text"><strong>TYPE OF REQUEST: </strong>{{request_transport.transport_type|upper}}</p>
+                    <p class="card-text"><strong>DATE: </strong>{{request_transport.created}}</p>
+                    <hr>
+                    <h4><strong>Address Details</strong></h4>
+                    <p class="card-text"><strong>ADDRESS: </strong>{{request_transport.address}}</p>
+                    <p class="card-text"><strong>DISTANCE: </strong>{{request_transport.distance}} km</p><hr>
+                    <h4><strong>Contact Details</strong></h4>
+                    <p class="card-text"><strong>PHONE NUMBER: </strong>{{request_transport.phone_number}}</p>
+                    <p class="card-text"><strong>EMAIL: </strong>{{request_transport.email}}</p><hr>
+                    <h4><strong>Payment Details</strong></h4>
+                    <p class="card-text"><strong>PRICE: </strong>Ksh.{{request_transport.price}}</p>
+                    {%if request_transport.is_paid == False %}
+                    <p class="card-text"><strong>PAYMENT STATUS: <span class="text-danger">NOT PAID</span> </strong></p><hr>
+                    {%else%}
+                    <p class="card-text"><strong>PAYMENT STATUS: <span class="text-success">PAID</span> </strong></p><hr>
+                    {%endif%}
+                    {%if request_transport.is_approved == False %}
+                    <p class="card-text"><strong>APPROVAL STATUS: <span class="text-danger">PENDING</span> </strong></p>
+                    {%else%}
+                    <p class="card-text"><strong>APPROVAL STATUS: <span class="text-success">APPROVED</span> </strong></p>
+                    {%endif%}
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr><p>Kind regards,<br>StoreCentre254 Management</p>
+</body>
+</html>

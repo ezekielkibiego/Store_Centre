@@ -1,9 +1,12 @@
+
 from django.conf import settings
 from django.shortcuts import redirect, render
 from transport.models import *
 from transport.forms import *
 from django.contrib.auth.decorators import login_required
 import requests,json
+from django.template.loader import render_to_string, get_template
+from django.core.mail import EmailMessage
 
 @login_required(login_url='client_login')
 def request_transport(request):
@@ -59,17 +62,30 @@ def request_summary(request):
     context = {
         'request_transport': request_transport,
     }
+    
+    #email logic
+    subject = 'TRANSPORT REQUEST SUMMARY'
+    message = get_template('transport_summary_email.html').render(context)
+    msg = EmailMessage(
+        subject,
+        message,
+        settings.EMAIL_HOST_USER,
+        [request_transport.email],
+    )
+    msg.content_subtype = 'html'
+    msg.send()
+    
     return render(request,'request_summary.html', context)
 
 
 @login_required(login_url='client_login')
 def summaries(request):
     summaries = Transport.objects.filter(user=request.user).all().order_by('-created')
-    
-    print(summaries)
     context = {
         'summaries': summaries,
     }
+    
+    
     return render(request,'summaries.html', context)
 
 @login_required(login_url='client_login')
