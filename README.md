@@ -14,6 +14,13 @@
 ## Description
 Store Centre is a storage facility that helps users to store either personal belongings or business goods in a secure location.
 
+## Screenshots 
+
+### Landing Page
+
+<img src="static/images/Screenshot (1).png">
+
+
 ##  Live Link  
  
 https://storecentre254.herokuapp.com/  
