@@ -18,7 +18,7 @@ class Transport(models.Model):
     address = models.CharField(max_length=100)
     email = models.CharField(max_length=50,null=True)
     phoneNumberRegex = RegexValidator(regex=r"^\+?1?\d{8,15}$")
-    phone_number = models.CharField(validators=[phoneNumberRegex],max_length=16,verbose_name='Input your Phone Number ',help_text='Formart +254712345678')
+    phone_number = models.CharField(validators=[phoneNumberRegex],max_length=10,verbose_name='Input your Phone Number ',help_text='Formart 0712345678')
     distance = models.DecimalField(max_digits=10,decimal_places=2,null=True)
     price = models.DecimalField(max_digits=10,decimal_places=2,null=True)
     goods = models.ForeignKey('units.Goods', on_delete=models.CASCADE, null=True, related_name='transport_goods')
