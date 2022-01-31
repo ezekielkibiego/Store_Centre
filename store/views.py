@@ -191,9 +191,9 @@ def staff_login(request):
                 login(request,user)
                 return redirect('/analytics')
             else:
-                messages.error(request,"Invalid username or password")
+                messages.error(request,"You are not a staff.")
         else:
-                messages.error(request,"Invalid username or password")
+                messages.error(request,"You are not a staff.")
     return render(request, 'staff_login.html',
     context={'form':AuthenticationForm()})
 
