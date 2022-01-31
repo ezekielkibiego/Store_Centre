@@ -45,7 +45,32 @@ cd Store_Centre
  pip install -r requirements.txt 
 ```  
  ##### Setup Database  
-  SetUp your database User,Password, Host then make migrate  
+Create a database
+  
+   ```bash 
+        -psql
+
+        -CREATE DATABASE sent;
+  
+  ```
+- create  .env file and have the following filling where appropriate:
+
+            SECRET_KEY='your secret key'
+            DEBUG=True
+            MODE='dev'
+            DB_NAME='sent'
+            DB_USER='username'
+            DB_PASSWORD='password'
+            DB_HOST='127.0.0.1'
+            CD_NAME='cloudinary name'
+            CD_API='cloudinary api key'
+            CD_SECRET='cloudinary secret key'
+            CD_SECURE='True'
+            GOOGLE_API_KEY='Google API key'
+            E_PASS='email password'
+            E_USER='email'
+
+  SetUp your database User,Password, Host then make migrations 
  ```bash 
 python manage.py makemigrations store/analytics/units/transport
  ``` 
