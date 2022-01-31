@@ -91,7 +91,7 @@ def request_summary(request):
 
 @login_required(login_url='client_login')
 def summaries(request):
-    all_summaries = Transport.objects.all()
+    all_summaries = Transport.objects.all().order_by('-created')
     summaries = Transport.objects.filter(user=request.user).all().order_by('-created')
     context = {
         'summaries': summaries,
@@ -161,7 +161,8 @@ def payment(request):
 
 
         stk_push_success(request, ph_number, totalAmount)
-
+        request_transport.is_paid = True
+        request_transport.save()
         return render (request,'success.html')
 
 
