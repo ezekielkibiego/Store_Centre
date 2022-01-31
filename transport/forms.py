@@ -10,12 +10,12 @@ class TransportForm(forms.ModelForm):
     class Meta:
         model = Transport
         fields= ['transport_type','address','phone_number']
-        labels = {
-            'transport_type': _('Type of Transport'),
-        }
-        help_texts = {
+        # labels = {
+        #     'transport_type': _('Type of Transport'),
+        # }
+        # help_texts = {
 
-        }
+        # }
         widgets = {
             'transport_type': forms.RadioSelect(attrs={'class': "form-check-input"}),
         }
