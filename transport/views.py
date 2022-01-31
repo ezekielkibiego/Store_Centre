@@ -7,6 +7,8 @@ from django.contrib.auth.decorators import login_required
 import requests,json
 from django.template.loader import render_to_string, get_template
 from django.core.mail import EmailMessage
+from decimal import Decimal
+from paypal.standard.forms import PayPalPaymentsForm
 
 @login_required(login_url='client_login')
 def request_transport(request):
@@ -94,6 +96,15 @@ def summaries(request):
 def payment(request):
     request_transport = Transport.objects.filter(user=request.user).last()
     request_goods = Goods.objects.filter(owner=request.user).last()  
+    host = request.get_host()
+    if request_goods.transport_goods.exists():
+        if request_transport.transport_type == Transport.PICKUP:
+            print('pickup')
+        elif request_transport.transport_type == Transport.DELIVERY:
+            print('Delivery')
+    else:
+        print('no')
+    
     context = {
         'request_transport': request_transport,
         'request_goods': request_goods,

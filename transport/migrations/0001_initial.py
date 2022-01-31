@@ -19,8 +19,8 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Transport',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('transport_type', models.CharField(choices=[('Pick-Up', 'Pick-Up'), ('Delivery', 'Delivery')], max_length=50)),
+                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('transport_type', models.CharField(choices=[('Pick-Up', 'Pick-Up'), ('Delivery', 'Delivery')], default='Pick-Up', max_length=50)),
                 ('address', models.CharField(max_length=100)),
                 ('email', models.CharField(max_length=50, null=True)),
                 ('phone_number', models.CharField(help_text='Formart +254712345678', max_length=16, validators=[django.core.validators.RegexValidator(regex='^\\+?1?\\d{8,15}$')], verbose_name='Input your Phone Number ')),
@@ -29,7 +29,7 @@ class Migration(migrations.Migration):
                 ('is_paid', models.BooleanField(default=False)),
                 ('is_approved', models.BooleanField(default=False)),
                 ('created', models.DateTimeField(auto_now_add=True)),
-                ('goods', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, related_name='transport_goods', to='units.goods')),
+                ('goods', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, related_name='transport_goods', to='units.Goods')),
                 ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='request_owner', to=settings.AUTH_USER_MODEL)),
             ],
         ),
