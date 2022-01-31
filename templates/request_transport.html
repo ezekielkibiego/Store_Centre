@@ -26,7 +26,7 @@
                 <form method="POST" action="{%url 'request_transport'%}" class="form-group" style="margin-top: 5em;">
                     {%if initial_units > final_units %}
                     <h3>TRANSPORT REQUEST: PICK-UP</h3><br>
-                    {%elif final_units > initial_units %}
+                    {%elif initial_units < final_units %}
                     <h3>DELIVERY TRANSPORT REQUEST: DELIVERY</h3><br>
                     
                     {%endif%}

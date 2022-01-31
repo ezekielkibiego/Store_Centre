@@ -23,6 +23,7 @@ def book_unit(request):
         
             
             units = Storage.objects.filter(type=storage_type).first() 
+            #transport logic
             initial_units = units.available_units
             request.session['initial_units']=initial_units
             if units.available_units >= no_of_units:
@@ -32,6 +33,7 @@ def book_unit(request):
                 storage = Storage.objects.filter(type=storage_type).first()
                 storage.available_units -= no_of_units
                 storage.add_storage() 
+                #transport logic
                 final_units = storage.available_units
                 request.session['final_units']=final_units
                 messages.success(request,f'Booked successfully')
