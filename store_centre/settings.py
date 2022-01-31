@@ -196,6 +196,14 @@ AUTHENTICATION_BACKENDS = [
 
    
 ]
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = config('E_USER') # your gmail account
+EMAIL_HOST_PASSWORD = config('E_PASS')  # your  password
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
 #jazzmin settings
 JAZZMIN_SETTINGS = {
       # title of the window (Will default to current_admin_site.site_title if absent or None)
