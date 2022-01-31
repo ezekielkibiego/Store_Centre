@@ -1,0 +1,108 @@
+
+
+@import "bootstrap/functions";
+@import "bootstrap/variables";
+@import "bootstrap/mixins";
+
+$font-family-sans-serif-2: 'Poppins', sans-serif;
+$font-family-serif: 'Source Serif Pro', serif;
+
+.content {
+	height: 100vh;
+}
+
+
+// Modal 1
+.modal {
+	border-radius: 7px;
+	overflow: hidden;
+	background-color: transparent;
+	
+	.logo {
+		a {
+			img {
+				width: 30px;
+			}
+		}
+	}
+	.modal-content {
+		background-color: transparent;
+		
+		border: none;
+		border-radius: 7px;
+		
+
+		.modal-body {
+			border-radius: 7px;
+			overflow: hidden;
+			background-color: $white; 
+			padding-left: 0px;
+			padding-right: 0px;
+			box-shadow: 0 10px 50px -10px rgba($black, .9);
+			h2 {
+				font-size: 18px;
+			}
+			p {
+				color: #777;
+				font-size: 14px;
+			}
+			h3 {
+				color: #000;
+				font-size: 22px;
+			}
+			.close-btn {
+				color: $black;
+			}
+			
+			.promo-img {
+				flex: 0 0 50%;
+			}
+			
+		}
+	}
+
+	.main-content {
+	}
+
+	
+
+	.cancel {
+		color: darken(#ccc, 30%);
+		font-size: 14px;
+	}
+
+	.btn-primary {
+		padding-top: 10px;
+		padding-bottom: 10px;
+	}
+}
+
+.form-control {
+	border: transparent;
+	border: 1px solid #ccc;
+	&:active, &:focus, &:hover {
+		box-shadow: none!important;
+	}
+}
+
+
+
+.bg-image {
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.logo {
+	img {
+		width: 70px;
+	}
+}
+
+.custom-note {
+	color: #999;
+	a {
+		color: #555;
+		font-weight: 900!important;
+	}
+}

@@ -3,10 +3,29 @@
 {% block title %}My Transport Summaries{% endblock %}
 {% block content %}
 
-<div class="container-fluid">
+<div class="overlay" style="box-shadow:inset 0 0 0 2000px rgba(23, 34, 23, 0.863);background-image: url(/static/images/hero_1.jpg);color: white;" data-aos="fade" id="home-section">
+
+
+    <div class="container">
+      <div class="row align-items-center justify-content-center">
+        <div class="col-md-6 mt-lg-5 text-center">
+          <br><br>
+          <h1>Billing</h1> 
+          <div style="margin-bottom: 10px;">
+          </div>           
+        </div>
+      </div>
+    </div>
+  <br><br>
+    <a href="#heading" class="smoothscroll arrow-down"><span class="icon-arrow_downward"></span></a>
+  </div>  
+
+
+
+<div class="">
     <div class="row">
         <div class="col-md-1"></div>
-        <div class="col-md-10 pt-5">
+        <div class="col-md-10 pt-5" style="margin-bottom:40px;">
             {%if request_goods.transport_goods.count > 0 %}
             <div class="card mt-5 mx-5 mb-1 p-0" style="border: 2px solid ; border-radius: 10px;">
                 <div class="row g-0">
@@ -29,21 +48,36 @@
                             <p class="card-text"><strong>TOTAL PRICE: </strong>Ksh. {{request_transport.price}}</p>
                             <hr>
                             {%endif%}
-                            <h4><strong>HOW TO PAY</strong></h4>
-                            <ul >
-                                <li>1. Go to the M-PESA Menu/App.</li>
-                                <li>2. Select Lipa na M-PESA.</li>
-                                <li>3. Select Pay Bill.</li>
-                                <li>4. Enter Business Number as "Business No".</li>
-                                <li>5. Input Account Number as your first and last name.</li>
-                                <li>6. Input Amount as total price shown above.</li>
-                                <li>7. Input your M-PESA PIN and confirm.</li>
-                                <li>8. Click on make payment below.</li>
-                            </ul><hr>
-                            <div class="d-flex justify-content-center bd-highlight">
+                            <h4><strong>LIPA NA M-PESA</strong></h4>
+                            <form action="{% url 'payment' %}" method="post">
+                                {% csrf_token %}
+                                <div class="col-md-5">
+                                    <input style="border-radius: 0;" name='fname' class="form-control" type="text" id="example-email-input" value="{{request_transport.user.first_name}}" disabled>
+                                </div><br>
+                                <div class="col-md-5">
+                                {%if request_goods.transport_goods.count > 0 %}
+                                    {%if request_transport.transport_type == 'Pick-Up' %}
+                                    <input style="border-radius: 0;" name='amount' class="form-control" type="text" required id="example-total-input" value={{request_transport.price|add:request_goods.total_cost}} disabled>
+                                    {%else%}
+                                    <input style="border-radius: 0;" name='amount' class="form-control" type="text" required id="example-total-input" value={{request_transport.price}} disabled>
+                                    {%endif%}
+                                    {%else%}
+                                    <input style="border-radius: 0;" name='amount' class="form-control" type="text" required id="example-total-input" value={{request_goods.total_cost}} disabled>
+                                    {%endif%}
+                                </div><br>
+                                <div class="col-md-5">
+                                    <input style="border-radius: 0;" name='phone_number' class="form-control" type="tel" required value="{{request_transport.phone_number}}">
+                                </div><br>
+                                <div class="col-md-5">
+                                    <button style="border-radius: 0;" type="submit" class="btn btn-dark">
+                                        LIPA NA MPESA 
+                                    </button>
+                                </div><br>
+                            </form>
+                            <!-- <div class="d-flex justify-content-center bd-highlight">
                                 <div class="p-2 bd-highlight"><a class="btn btn-success mx-5 mb-5 mt-0" href="{%url 'payment'%}" role="button">MAKE PAYMENT</a>
                                 </div>
-                            </div>                
+                            </div>                 -->
                         </div>
                     </div>
                 </div>
@@ -61,21 +95,36 @@
                             <p class="card-text"><strong>TRANSPORT PRICE: </strong>Ksh.0</p>
                             <p class="card-text"><strong>TOTAL PRICE: </strong>Ksh. {{request_goods.total_cost}}</p>
                             <hr>
-                            <h4><strong>HOW TO PAY</strong></h4>
-                            <ul >
-                                <li>1. Go to the M-PESA Menu/App.</li>
-                                <li>2. Select Lipa na M-PESA.</li>
-                                <li>3. Select Pay Bill.</li>
-                                <li>4. Enter Business Number as "Business No".</li>
-                                <li>5. Input Account Number as your first and last name.</li>
-                                <li>6. Input Amount as total price shown above.</li>
-                                <li>7. Input your M-PESA PIN and confirm.</li>
-                                <li>8. Click on make payment below.</li>
-                            </ul><hr>
-                            <div class="d-flex justify-content-center bd-highlight">
+                            <h4 ><strong>LIPA NA M-PESA</strong></h4>
+                            <form action="{% url 'payment' %}" method="post">
+                                {% csrf_token %}
+                                <div class="col-md-5">
+                                    <input style="border-radius: 0;" name='fname' class="form-control" type="text" id="example-email-input" value="{{request_transport.user.first_name}}" disabled>
+                                </div><br>
+                                <div class="col-md-5">
+                                {%if request_goods.transport_goods.count > 0 %}
+                                    {%if request_transport.transport_type == 'Pick-Up' %}
+                                    <input style="border-radius: 0;" name='amount' class="form-control" type="text" required id="example-total-input" value={{request_transport.price|add:request_goods.total_cost}} disabled>
+                                    {%else%}
+                                    <input style="border-radius: 0;" name='amount' class="form-control" type="text" required id="example-total-input" value={{request_transport.price}} disabled>
+                                    {%endif%}
+                                    {%else%}
+                                    <input style="border-radius: 0;" name='amount' class="form-control" type="text" required id="example-total-input" value={{request_goods.total_cost}} disabled>
+                                    {%endif%}
+                                </div><br>
+                                <div class="col-md-5">
+                                    <input style="border-radius: 0;" name='phone_number' class="form-control" type="tel" required value="{{request_transport.phone_number}}">
+                                </div><br>
+                                <div class="col-md-5">
+                                    <button style="border-radius: 0;" type="submit" class="btn btn-dark">
+                                        LIPA NA MPESA 
+                                    </button>
+                                </div><br>
+                            </form>
+                            <!-- <div class="d-flex justify-content-center bd-highlight">
                                 <div class="p-2 bd-highlight"><a class="btn btn-success mx-5 mb-5 mt-0" href="#" role="button">MAKE PAYMENT</a>
                                 </div>
-                            </div>                
+                            </div>                 -->
                         </div>
                     </div>
                 </div>
@@ -85,5 +134,10 @@
         <div class="col-md-1"></div>
     </div>
 </div>
+
+
+
+
+
 
 {% endblock %}

@@ -15,6 +15,7 @@ dj3-cloudinary-storage==0.0.6
 Django==2.2.24
 django-bootstrap4==21.1
 django-crispy-forms==1.13.0
+django-daraja==1.2.0
 django-emoji-picker==0.0.6
 django-extensions==2.2.5
 django-heroku==0.3.1
