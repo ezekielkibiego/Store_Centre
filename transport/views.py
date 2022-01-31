@@ -96,14 +96,6 @@ def summaries(request):
 def payment(request):
     request_transport = Transport.objects.filter(user=request.user).last()
     request_goods = Goods.objects.filter(owner=request.user).last()  
-    host = request.get_host()
-    if request_goods.transport_goods.exists():
-        if request_transport.transport_type == Transport.PICKUP:
-            print('pickup')
-        elif request_transport.transport_type == Transport.DELIVERY:
-            print('Delivery')
-    else:
-        print('no')
     
     context = {
         'request_transport': request_transport,

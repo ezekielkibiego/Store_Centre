@@ -12,20 +12,28 @@
                     {%for request_transport in all_summaries%}
                         <div class="card text-center mt-5 mx-5 mb-3 pt-3" style="border: 2px solid ; border-radius: 10px;">
                             <div class="card-title ">
-                                <h4 class="font-weight-bold">Transport Request ID#{{request_transport.id}} <span>
-                                    {%if request_transport.is_approved == False %}
-                                    <h3><strong>APPROVAL STATUS: <span class="text-danger">PENDING</span> </strong></h3>
-                                    {%elif request_transport.is_approved == True %}
-                                    <h3><strong>APPROVAL STATUS: <span class="text-success">APPROVED</span> </strong></h3>
-                                    {%endif%}</span>
-                                </h4>
+                                <h3 class="font-weight-bold">Transport Request ID#{{request_transport.id}}</h3>
+                                {%if request_transport.is_paid == False %}
+                                <h4><strong>PAYMENT STATUS: <span class="text-danger">NOT PAID</span> </strong></h4>
+                                {%elif request_transport.is_paid == True %}
+                                <h4><strong>PAYMENT STATUS: <span class="text-success">PAID</span> </strong></h4>
+                                {%endif%}
+                                {%if request_transport.is_approved == False %}
+                                <h4><strong>APPROVAL STATUS: <span class="text-danger">PENDING</span> </strong></h4>
+                                {%elif request_transport.is_approved == True %}
+                                <h4><strong>APPROVAL STATUS: <span class="text-success">APPROVED</span> </strong></h4>
+                                {%endif%}
                             </div>
                             <div class="card-body">
-                                {%if request_transport.is_approved == False %}
-                                <a class="btn btn-success mx-5 mb-5 mt-0" href="{%url 'approval' request_transport.id %}" role="button">APPROVE</a>
-                                {%elif request_transport.is_approved == True %}
-                                <p>{{request.user.first_name}} Staff Id {{request.user.id}} approved this request</p>
-                                {%endif%}</span>
+                                {%if request_transport.is_paid == False %}
+                                <p>CLIENT IS YET TO PAY</p>
+                                {%elif request_transport.is_paid == True %}
+                                    {%if request_transport.is_approved == False %}
+                                    <a class="btn btn-success mx-5 mb-5 mt-0" href="{%url 'approval' request_transport.id %}" role="button">APPROVE</a>
+                                    {%elif request_transport.is_approved == True %}
+                                    <p>REQUEST APPROVED</p>
+                                    {%endif%}</span>
+                                {%endif%}
                             </div>
                         </div>
                     {%endfor%}
@@ -42,19 +50,19 @@
                     {%for request_transport in summaries%}
                         <div class="card text-center mt-5 mx-5 mb-3 pt-3" style="border: 2px solid ; border-radius: 10px;">
                             <div class="card-title ">
-                                <h4 class="font-weight-bold">Transport Request ID#{{request_transport.id}} <span>
-                                    {%if request_transport.is_approved == False %}
-                                    <h3><strong>APPROVAL STATUS: <span class="text-danger">PENDING</span> </strong></h3>
-                                    {%elif request_transport.is_approved == True %}
-                                    <h3><strong>APPROVAL STATUS: <span class="text-success">APPROVED</span> </strong></h3>
-                                    {%endif%}</span>
-                                </h4>
+                                <h3 class="font-weight-bold">Transport Request ID#{{request_transport.id}}</h3>
+                                {%if request_transport.is_paid == False %}
+                                <h4><strong>PAYMENT STATUS: <span class="text-danger">NOT PAID</span> </strong></h4>
+                                {%elif request_transport.is_paid == True %}
+                                <h4><strong>PAYMENT STATUS: <span class="text-success">PAID</span> </strong></h4>
+                                {%endif%}
+                                {%if request_transport.is_approved == False %}
+                                <h4><strong>APPROVAL STATUS: <span class="text-danger">PENDING</span> </strong></h4>
+                                {%elif request_transport.is_approved == True %}
+                                <h4><strong>APPROVAL STATUS: <span class="text-success">APPROVED</span> </strong></h4>
+                                {%endif%}
                             </div>
                             <div class="card-body">
-                                {%if request_transport.is_approved == False %}
-                                {%elif request_transport.is_approved == True %}
-                                <a class="btn btn-success " href="{%url 'payment'%}" role="button">PROCEED TO PAYMENT</a>                                
-                                {%endif%}
                                 <br><button type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">View Details 
                                     <br><span>
                                         <i class='fas fa-angle-double-down'></i>
