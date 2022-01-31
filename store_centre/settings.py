@@ -230,6 +230,8 @@ JAZZMIN_SETTINGS = {
         # {"name": "Staff ", "url": "/staff_register", "new_window": True},
 
         {"name": "View Website", "url": "/", "new_window": True},
+        {"name": "Register Staff", "url": "/staff_register/", "new_window": True},
+        
 
 
         # model admin to link to (Permissions checked against model)

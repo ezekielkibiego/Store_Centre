@@ -157,9 +157,10 @@ class staff_register(CreateView):
     form_class = StaffSignUpForm
     template_name = 'staff_registration.html'
 
+    
     def form_valid(self, form):
         user = form.save()
-        login(self.request, user)
+        login(self.request, user,backend='django.contrib.auth.backends.ModelBackend')
         return redirect('/staff_login')
 
 def client_login(request):

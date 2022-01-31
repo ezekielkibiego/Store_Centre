@@ -36,6 +36,7 @@ class StaffSignUpForm(UserCreationForm):
     first_name = forms.CharField(required=True)
     last_name = forms.CharField(required=True)
     email = forms.CharField(required=True)
+    phone = forms.CharField(required=True)
     designation = forms.CharField(required=True)
 
     class Meta(UserCreationForm.Meta):
