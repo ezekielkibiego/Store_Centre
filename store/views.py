@@ -282,8 +282,14 @@ def checkout_goods(request,goods_id):
     goods = Goods.objects.filter(id=goods_id).first()
     goods.remove_goods()
     storage = Storage.objects.filter(type =goods.storage_type).first()
+    #transport logic
+    initial_units = storage.available_units
+    request.session['initial_units']=initial_units
     storage.available_units += goods.no_of_units
     storage.add_storage()
+    final_units = storage.available_units
+    request.session['final_units']=final_units
+    print(initial_units,final_units)
     messages.success(request,'Goods checked out successfully')
     
     

@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'social_django',
+    'paypal.standard.ipn',
 ]
 
 MIDDLEWARE = [
@@ -107,6 +108,9 @@ cloudinary.config(
 #GOOGLE API
 GOOGLE_API_KEY= config('GOOGLE_API_KEY')
 BASE_COUNTRY='KE'
+#PAYPAL API
+PAYPAL_RECEIVER_EMAIL = 'youremail@mail.com'
+PAYPAL_TEST = True
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases

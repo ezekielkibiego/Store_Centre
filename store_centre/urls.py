@@ -24,6 +24,7 @@ urlpatterns = [
     path('units/',include('units.urls')),
     path('analytics/', include('analytics.urls')),
     path('api-token-auth/', obtain_auth_token),
+    path('paypal/', include('paypal.standard.ipn.urls')),
 
   
     

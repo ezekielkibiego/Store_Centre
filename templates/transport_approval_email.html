@@ -1,0 +1,21 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Transport Request Summary</title>
+
+  <link rel="icon" href="/favicon.ico">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+</head>
+
+<body>
+    <p>Dear {{request_summary.user.first_name|title}}, <br>
+        Your {{request_summary.transport_type|title}} transport request ID#{{request_summary.id}} has been approved. Your request is on its way!</p><br>
+    <br><p>Kind regards,<br>StoreCentre254 Management</p>
+</body>
+</html>
