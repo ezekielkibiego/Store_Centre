@@ -27,3 +27,5 @@ class Transport(models.Model):
     
     def __str__(self):
         return self.transport_type
+
+

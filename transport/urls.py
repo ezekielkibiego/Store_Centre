@@ -8,4 +8,5 @@ urlpatterns=[
     path('transport-summaries/',views.summaries,name='transport_summaries'),
     path('payment/',views.payment,name='payment'),
 
+
 ]

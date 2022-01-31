@@ -5,6 +5,7 @@ from transport.forms import *
 from django.contrib.auth.decorators import login_required
 import requests,json
 
+
 @login_required(login_url='client_login')
 def request_transport(request):
     api_key = settings.GOOGLE_API_KEY
@@ -73,3 +74,5 @@ def payment(request):
         
     }
     return render(request,'payment.html', context)
+
+
