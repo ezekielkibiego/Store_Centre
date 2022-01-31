@@ -10,6 +10,7 @@ from django.core.mail import EmailMessage
 from decimal import Decimal
 from paypal.standard.forms import PayPalPaymentsForm
 
+
 @login_required(login_url='client_login')
 def request_transport(request):
     api_key = settings.GOOGLE_API_KEY
