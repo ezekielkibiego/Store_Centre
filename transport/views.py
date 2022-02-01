@@ -9,6 +9,7 @@ from django.template.loader import render_to_string, get_template
 from django.core.mail import EmailMessage
 from decimal import Decimal
 from paypal.standard.forms import PayPalPaymentsForm
+import re
 from django_daraja.mpesa.core import MpesaClient
 from django.http import HttpResponse, HttpResponseRedirect
 from django.http.response import JsonResponse

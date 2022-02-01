@@ -60,7 +60,14 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'social_django',
+<<<<<<< HEAD
+<<<<<<< HEAD
     'paypal.standard.ipn',
+=======
+>>>>>>> 0dfa50aa701df5dfd0d65d9cac245e1a5dc39d41
+=======
+    'paypal.standard.ipn',
+>>>>>>> 2b81c9e80091ad14a356e8e7ab62d6a8e54e6f89
     'django_daraja'
 ]
 
