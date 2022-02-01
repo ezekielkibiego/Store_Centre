@@ -9,25 +9,11 @@ class TransportForm(forms.ModelForm):
 
     class Meta:
         model = Transport
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 2b81c9e80091ad14a356e8e7ab62d6a8e54e6f89
         fields= ['address','email','phone_number']
         labels = {
             'address': 'ADDRESS',
         }
         help_texts = {
-<<<<<<< HEAD
-=======
-        fields= ['transport_type','address','phone_number']
-        # labels = {
-        #     'transport_type': _('Type of Transport'),
-        # }
-        # help_texts = {
->>>>>>> 0dfa50aa701df5dfd0d65d9cac245e1a5dc39d41
-=======
->>>>>>> 2b81c9e80091ad14a356e8e7ab62d6a8e54e6f89
 
         }
         widgets = {
@@ -37,4 +23,3 @@ class TransportForm(forms.ModelForm):
         error_messages={
             'phoneNumberRegex': _('Use the required formart +254712345678')
         }
-        
