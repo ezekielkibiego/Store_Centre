@@ -24,7 +24,7 @@ Store Centre is a storage facility that helps users to store either personal bel
 
 ##  Live Link  
  
-https://storecentre254.herokuapp.com/  
+ 
 
 ## Setup and Installation  
   
