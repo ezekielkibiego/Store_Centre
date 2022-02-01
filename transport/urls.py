@@ -9,6 +9,7 @@ urlpatterns=[
     path('<int:request_summary_id>/approve/',views.approval,name='approval'),
     path('access/token', views.getAccessToken, name='get_mpesa_access_token'),
     path('payment/',views.payment,name='payment'),
+    path('<int:request_summary_id>/approve/',views.approval,name='approval'),
     path('access/token', views.getAccessToken, name='get_mpesa_access_token'),
 
 ]

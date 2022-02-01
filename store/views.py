@@ -1,9 +1,13 @@
 from cProfile import Profile
 from http import client
 <<<<<<< HEAD
+<<<<<<< HEAD
 from django.http import HttpResponseRedirect
 =======
 >>>>>>> 0dfa50aa701df5dfd0d65d9cac245e1a5dc39d41
+=======
+from django.http import HttpResponseRedirect
+>>>>>>> 2b81c9e80091ad14a356e8e7ab62d6a8e54e6f89
 from django.shortcuts import redirect, render,HttpResponse
 from django.contrib import messages
 from store.forms import ClientSignUpForm,SubscribeForm
@@ -22,6 +26,9 @@ from .models import  Storecentre
 from .serializers import StoreSerializer
 from rest_framework import status
 from .permissions import IsAdminOrReadOnly
+
+import store
+
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.conf import settings
@@ -31,6 +38,7 @@ import store
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.conf import settings
+
 
 
 
@@ -222,10 +230,14 @@ def staff_profile(request):
 
 @login_required(login_url = '/admin_login')
 <<<<<<< HEAD
+<<<<<<< HEAD
 def profile(request):
 =======
 def admin_profile(request):
 >>>>>>> 0dfa50aa701df5dfd0d65d9cac245e1a5dc39d41
+=======
+def profile(request):
+>>>>>>> 2b81c9e80091ad14a356e8e7ab62d6a8e54e6f89
     current_user = request.user
     profile = Profile.objects.filter(user_id=current_user.id).first()
     return render(request, "profile.html", {"profile": profile})
@@ -251,6 +263,7 @@ def update_client_profile(request):
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 # def staffProfile(request):
 #     staff = request.user
@@ -264,6 +277,8 @@ def update_client_profile(request):
 #     return render(request, 'profile.html', context)
 
 >>>>>>> 0dfa50aa701df5dfd0d65d9cac245e1a5dc39d41
+=======
+>>>>>>> 2b81c9e80091ad14a356e8e7ab62d6a8e54e6f89
 def update_staff_profile(request):
     if request.method == 'POST':
         u_form = UpdateUserProfile(request.POST, request.FILES, instance=request.user)
@@ -284,6 +299,9 @@ def update_staff_profile(request):
     return render(request,'staff_profile.html',context)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2b81c9e80091ad14a356e8e7ab62d6a8e54e6f89
 @login_required
 def update_profile(request,id):
     user = User.objects.get(id=id)
@@ -320,8 +338,11 @@ def checkout_goods(request,goods_id):
     
     
     return redirect('request_transport')
+<<<<<<< HEAD
 =======
 >>>>>>> 0dfa50aa701df5dfd0d65d9cac245e1a5dc39d41
+=======
+>>>>>>> 2b81c9e80091ad14a356e8e7ab62d6a8e54e6f89
 
 def subscribe(request):
     form = SubscribeForm()
@@ -336,8 +357,13 @@ def subscribe(request):
             messages.success(request, 'Success!')
             return redirect('subscribe')
 <<<<<<< HEAD
+<<<<<<< HEAD
     return render(request, 'index.html', {'form': form})
 
 =======
     return render(request, 'index.html', {'form': form})
 >>>>>>> 0dfa50aa701df5dfd0d65d9cac245e1a5dc39d41
+=======
+    return render(request, 'index.html', {'form': form})
+
+>>>>>>> 2b81c9e80091ad14a356e8e7ab62d6a8e54e6f89
