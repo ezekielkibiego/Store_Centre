@@ -30,33 +30,33 @@ PROFILE_TYPES = (
 
 # # used just to define the relation between User and Profile
 
-# # common fields reside here
-# class Profile(models.Model):
-#     verified = models.BooleanField(default=False)
-#     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile',null=True)
-#     profile_photo = CloudinaryField("image",null=True)
-#     bio = models.TextField(max_length=300,null=True)
-#     location = models.CharField(max_length=30,null=True)
-#     email = models.CharField(max_length=100,null=True)
-#     phone = models.CharField(max_length=100,null=True)
-#     date = models.DateTimeField(auto_now_add=True,null=True)
+# common fields reside here
+class Profile(models.Model):
+    verified = models.BooleanField(default=False)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile',null=True)
+    profile_photo = CloudinaryField("image",null=True)
+    bio = models.TextField(max_length=300,null=True)
+    location = models.CharField(max_length=30,null=True)
+    email = models.CharField(max_length=100,null=True)
+    phone = models.CharField(max_length=100,null=True)
+    date = models.DateTimeField(auto_now_add=True,null=True)
     
 
 
-# def __str__(self):
-#         return f'{self.user} profile'
+def __str__(self):
+        return f'{self.user} profile'
 
-# @receiver(post_save, sender=User)
-# def create_user_profile(sender, instance, created, **kwargs):
-#         if created:
-#             Profile.objects.create(bio=instance)
+@receiver(post_save, sender=User)
+def create_user_profile(sender, instance, created, **kwargs):
+        if created:
+            Profile.objects.create(bio=instance)
 
-# @receiver(post_save, sender=User, dispatch_uid='save_new_user_profile')
-# def save_user_profile(sender, instance, created, **kwargs):
-#         user = instance
-#         if created:
-#             profile = UserProfile(user=user)
-#             profile.save()
+@receiver(post_save, sender=User, dispatch_uid='save_new_user_profile')
+def save_user_profile(sender, instance, created, **kwargs):
+        user = instance
+        if created:
+            profile = Profile(user=user)
+            profile.save()
 
 class Storecentre(models.Model):
     name = models.CharField(max_length=40)

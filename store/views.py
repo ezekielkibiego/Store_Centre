@@ -1,7 +1,9 @@
 from cProfile import Profile
+from http import client
+from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, render,HttpResponse
 from django.contrib import messages
-from store.forms import ClientSignUpForm
+from store.forms import ClientSignUpForm,SubscribeForm
 from .models import *
 from units.models import *
 from django.contrib.auth import authenticate, login, logout
@@ -18,6 +20,13 @@ from .serializers import StoreSerializer
 from rest_framework import status
 from .permissions import IsAdminOrReadOnly
 
+import store
+
+from django.contrib import messages
+from django.core.mail import send_mail
+from django.conf import settings
+
+
 
 # Create your views here.
 class Storelist(APIView):
@@ -32,11 +41,34 @@ def post(self, request, format=None):
             return Response(serializers.data, status=status.HTTP_201_CREATED)
         return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
 permission_classes = (IsAdminOrReadOnly,)
+def delete(self, request, pk, format=None):
+        store = self.get_store(pk)
+        store.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+def put(self, request, pk, format=None):
+        store = self.get_store(pk)
+        serializers = StoreSerializer(store, request.data)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data)
+        else:
+            return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 
 def IndexView(request):
-    return render(request, 'index.html')
+    form = SubscribeForm()
+    if request.method == 'POST':
+        form = SubscribeForm(request.POST)
+        if form.is_valid():
+            subject = 'Store Centre'
+            message = 'Welcome to Store Centre, All yor storage problems sorted by a click of a button.'
+            recipient = form.cleaned_data.get('email')
+            send_mail(subject, 
+              message, settings.EMAIL_HOST_USER, [recipient], fail_silently=False)
+            messages.success(request, 'Success!')
+            return redirect('subscribe')
+    return render(request, 'index.html',{'form': form})
 
 
 @login_required(login_url = '/client_login')
@@ -49,8 +81,8 @@ def records(request):
 @login_required(login_url = '/client_login')
 def services(request):
     
-    
-    return render(request, "services.html")
+    storages = Storage.objects.all()
+    return render(request, "services.html",{'storages':storages})
 
 
 
@@ -125,9 +157,10 @@ class staff_register(CreateView):
     form_class = StaffSignUpForm
     template_name = 'staff_registration.html'
 
+    
     def form_valid(self, form):
         user = form.save()
-        login(self.request, user)
+        login(self.request, user,backend='django.contrib.auth.backends.ModelBackend')
         return redirect('/staff_login')
 
 def client_login(request):
@@ -158,9 +191,9 @@ def staff_login(request):
                 login(request,user)
                 return redirect('/analytics')
             else:
-                messages.error(request,"Invalid username or password")
+                messages.error(request,"You are not a staff.")
         else:
-                messages.error(request,"Invalid username or password")
+                messages.error(request,"You are not a staff.")
     return render(request, 'staff_login.html',
     context={'form':AuthenticationForm()})
 
@@ -168,12 +201,25 @@ def logout_view(request):
     logout(request)
     return redirect('/')
 
-@login_required
-def profile(request):
+@login_required(login_url = '/client_login')
+def client_profile(request):
     current_user = request.user
     profile = Client.objects.get(user_id=current_user.id) 
-    
     return render(request, "profile.html", {"profile": profile})
+
+@login_required(login_url = '/staff_login')
+def staff_profile(request):
+    current_user = request.user
+    profile = Staff.objects.filter(user_id=current_user.id).first()
+    return render(request, "profile.html", {"profile": profile})
+
+
+@login_required(login_url = '/admin_login')
+def profile(request):
+    current_user = request.user
+    profile = Profile.objects.filter(user_id=current_user.id).first()
+    return render(request, "profile.html", {"profile": profile})
+
 
 def update_client_profile(request):
   if request.method == 'POST':
@@ -194,17 +240,6 @@ def update_client_profile(request):
   return render(request,'edit_profile.html',params)
 
 
-def staffProfile(request):
-    staff = request.user
-    profile = Staff.objects.get(
-        user_id=staff.id)  # get profile
-    profile = Staff.objects.filter(user_id = staff.id).first()  # get profile
-    context = {
-        "staff": staff,
-        'profile':profile
-    }
-    return render(request, 'profile.html', context)
-
 def update_staff_profile(request):
     if request.method == 'POST':
         u_form = UpdateUserProfile(request.POST, request.FILES, instance=request.user)
@@ -223,3 +258,55 @@ def update_staff_profile(request):
         'p_form': p_form
     }
     return render(request,'staff_profile.html',context)
+
+@login_required
+def update_profile(request,id):
+    user = User.objects.get(id=id)
+    profile = Profile.objects.get(user_id = user)
+    form = UpdateProfileForm(instance=profile)
+    if request.method == "POST":
+            form = UpdateProfileForm(request.POST,request.FILES,instance=profile)
+            if form.is_valid():  
+                
+                profile = form.save(commit=False)
+                profile.save()
+                return redirect('profile') 
+            
+    return render(request, 'edit_profile.html', {"form":form, 'profile':profile})
+
+def checkout_booking(request,records_id):
+    goods = Goods.objects.filter(id=records_id).first()
+    
+    return render(request,'checkout.html',{'goods':goods})
+
+def checkout_goods(request,goods_id):
+    goods = Goods.objects.filter(id=goods_id).first()
+    goods.remove_goods()
+    storage = Storage.objects.filter(type =goods.storage_type).first()
+    #transport logic
+    initial_units = storage.available_units
+    request.session['initial_units']=initial_units
+    storage.available_units += goods.no_of_units
+    storage.add_storage()
+    final_units = storage.available_units
+    request.session['final_units']=final_units
+    print(initial_units,final_units)
+    messages.success(request,'Goods checked out successfully')
+    
+    
+    return redirect('request_transport')
+
+def subscribe(request):
+    form = SubscribeForm()
+    if request.method == 'POST':
+        form = SubscribeForm(request.POST)
+        if form.is_valid():
+            subject = 'Store Centre'
+            message = 'Welcome to Store Centre, All yor storage problems sorted by a click of a button.'
+            recipient = form.cleaned_data.get('email')
+            send_mail(subject, 
+              message, settings.EMAIL_HOST_USER, [recipient], fail_silently=False)
+            messages.success(request, 'Success!')
+            return redirect('subscribe')
+    return render(request, 'index.html', {'form': form})
+

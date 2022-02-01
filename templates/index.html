@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load bootstrap4 %}
 
 
 {% load static %}
@@ -19,7 +20,7 @@
             <h1 class="text-shadow">Secure <br> Storage For Your goods</h1>
             <p class="mb-5 text-shadow">Keeping goods safe from damage,loss or theft ...<a href="" target="_blank">store.com</a>
             </p>
-            <p><a href="/" target="_blank" class="btn btn-primary btn-sm">Get Started</a></p>
+            <p><a href="/units/book/" target="_blank" class="btn btn-primary btn-sm">Get Started</a></p>
 
           </div>
         </div>
@@ -130,7 +131,19 @@
 
   </div>
 </div>
-
+<div class="container-fluid text-center">
+  <h1>Subscribe To Our Emailing Service</h1>
+    {% if messages %}
+        {% for message in messages %}
+            <p style="color:green">{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+    <form action="{% url 'subscribe' %}" method="POST">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <input type="submit" value="Submit">
+    </form>
+</div>
 
 
 <section class="site-section" id="about-section">

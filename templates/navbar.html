@@ -142,7 +142,9 @@
               <div class="dropdown-menu" style="background-color: rgba(127, 255, 212, 0.671);"
                 aria-labelledby="navbarDropdown">
                 {% if user.is_authenticated %}
+                <!-- <a style="border-radius: 50px;" class="text-dark dropdown-item" href="/client_profile/">Client Profile</a> -->
                 <a style="border-radius: 50px;" class="text-dark dropdown-item" href="/profile/">Profile</a>
+                <!-- <a style="border-radius: 50px;" class="text-dark dropdown-item" href="/staff_profile/">Staff Profile</a> -->
                 <a style="border-radius: 50px;" class="text-dark dropdown-item" href="/change_password/">Change Password</a>
                 <a style="border-radius: 50px;" class="text-dark dropdown-item" href="/logout/">Logout</a>
                 {% else %}
