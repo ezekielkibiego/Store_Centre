@@ -1,5 +1,6 @@
 # Store_Centre
 
+<<<<<<< HEAD
 ### 21st Jan. 2022
 
 ## Contributors 
@@ -12,6 +13,8 @@
 [Victor Wairiguini](https://github.com/Dhyder)  <br>
 
 ## Description
+=======
+>>>>>>> 0dfa50aa701df5dfd0d65d9cac245e1a5dc39d41
 Store Centre is a storage facility that helps users to store either personal belongings or business goods in a secure location.
 
 ## Screenshots 

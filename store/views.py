@@ -1,6 +1,9 @@
 from cProfile import Profile
 from http import client
+<<<<<<< HEAD
 from django.http import HttpResponseRedirect
+=======
+>>>>>>> 0dfa50aa701df5dfd0d65d9cac245e1a5dc39d41
 from django.shortcuts import redirect, render,HttpResponse
 from django.contrib import messages
 from store.forms import ClientSignUpForm,SubscribeForm
@@ -19,6 +22,9 @@ from .models import  Storecentre
 from .serializers import StoreSerializer
 from rest_framework import status
 from .permissions import IsAdminOrReadOnly
+from django.contrib import messages
+from django.core.mail import send_mail
+from django.conf import settings
 
 import store
 
@@ -215,7 +221,11 @@ def staff_profile(request):
 
 
 @login_required(login_url = '/admin_login')
+<<<<<<< HEAD
 def profile(request):
+=======
+def admin_profile(request):
+>>>>>>> 0dfa50aa701df5dfd0d65d9cac245e1a5dc39d41
     current_user = request.user
     profile = Profile.objects.filter(user_id=current_user.id).first()
     return render(request, "profile.html", {"profile": profile})
@@ -240,6 +250,20 @@ def update_client_profile(request):
   return render(request,'edit_profile.html',params)
 
 
+<<<<<<< HEAD
+=======
+# def staffProfile(request):
+#     staff = request.user
+#     profile = Staff.objects.get(
+#         user_id=staff.id)  # get profile
+#     profile = Staff.objects.filter(user_id = staff.id).first()  # get profile
+#     context = {
+#         "staff": staff,
+#         'profile':profile
+#     }
+#     return render(request, 'profile.html', context)
+
+>>>>>>> 0dfa50aa701df5dfd0d65d9cac245e1a5dc39d41
 def update_staff_profile(request):
     if request.method == 'POST':
         u_form = UpdateUserProfile(request.POST, request.FILES, instance=request.user)
@@ -259,6 +283,7 @@ def update_staff_profile(request):
     }
     return render(request,'staff_profile.html',context)
 
+<<<<<<< HEAD
 @login_required
 def update_profile(request,id):
     user = User.objects.get(id=id)
@@ -295,6 +320,8 @@ def checkout_goods(request,goods_id):
     
     
     return redirect('request_transport')
+=======
+>>>>>>> 0dfa50aa701df5dfd0d65d9cac245e1a5dc39d41
 
 def subscribe(request):
     form = SubscribeForm()
@@ -308,5 +335,9 @@ def subscribe(request):
               message, settings.EMAIL_HOST_USER, [recipient], fail_silently=False)
             messages.success(request, 'Success!')
             return redirect('subscribe')
+<<<<<<< HEAD
     return render(request, 'index.html', {'form': form})
 
+=======
+    return render(request, 'index.html', {'form': form})
+>>>>>>> 0dfa50aa701df5dfd0d65d9cac245e1a5dc39d41

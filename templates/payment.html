@@ -145,6 +145,40 @@
 
 
 
+<<<<<<< HEAD
+=======
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <form action="{% url 'payment' %}" method="post">
+                {% csrf_token %}
+                <div class="col-md-5">
+                    <input style="border-radius: 0;" name='fname' class="form-control" type="text" id="example-email-input" value="{{request_transport.user.first_name}}">
+                </div><br>
+                <div class="col-md-5">
+                {%if request_goods.transport_goods.count > 0 %}
+                    {%if request_transport.transport_type == 'Pick-Up' %}
+                    <input style="border-radius: 0;" name='amount' class="form-control" type="text" required id="example-total-input" value={{request_transport.price|add:request_goods.total_cost}}>
+                    {%else%}
+                    <input style="border-radius: 0;" name='amount' class="form-control" type="text" required id="example-total-input" value={{request_transport.price}}>
+                    {%endif%}
+                    {%else%}
+                    <input style="border-radius: 0;" name='amount' class="form-control" type="text" required id="example-total-input" value={{request_goods.total_cost}}>
+                    {%endif%}
+                </div><br>
+                <div class="col-md-5">
+                    <input style="border-radius: 0;" name='phone_number' class="form-control" type="tel" required value="{{request_transport.phone_number}}">
+                </div><br>
+                <div class="col-md-5">
+                    <button style="border-radius: 0;" type="submit" class="btn btn-dark">
+                        LIPA NA MPESA 
+                    </button>
+                </div><br>
+            </form>
+        </div>
+    </div>
+</div>
+>>>>>>> 0dfa50aa701df5dfd0d65d9cac245e1a5dc39d41
 
 
 {% endblock %}

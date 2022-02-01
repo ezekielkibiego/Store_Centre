@@ -38,4 +38,8 @@ class AccessToken(models.Model):
         get_latest_by = 'created_at'
 
     def __str__(self):
+<<<<<<< HEAD
 	    return self.token
+=======
+	    return self.token
+>>>>>>> 0dfa50aa701df5dfd0d65d9cac245e1a5dc39d41
