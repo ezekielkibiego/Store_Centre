@@ -23,7 +23,6 @@
 </div>
 
 
-<<<<<<< HEAD
 <div class="container-fluid" style="background-color: azure;">
     <div class="row justify-content-center">
       <div class="col-11 col-sm-10 col-md-10 col-lg-6 col-xl-5 text-center p-0 mt-3 mb-2">
@@ -136,27 +135,4 @@
 
 
 
-=======
-
-
-
-<div class="container-fluid" style="background-color: azure;">
-    <div class="row justify-content-center">
-        <div class="col-11 col-sm-10 col-md-10 col-lg-6 col-xl-5 text-center p-0 mt-3 mb-2">
-            <div class="card px-0 pt-4 pb-0 mt-3 mb-3" style="box-shadow: 0px 0px 2px black;">
-                <div class="container">
-                    <h2 id="heading">Staff Registration</h2>
-                    <p>Make Sure To Fill All The Form fields</p>
-                    <form action="{% url 'staff_register' %}" method="post" id="msform">
-                        {% csrf_token %}
-                        {% bootstrap_form form %}
-                        <button class="btn btn-primary btn-sm btn-sm mt-4" style="margin-top:10px;border-radius: 0px;"
-                            type="submit">Submit</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
->>>>>>> 2b81c9e80091ad14a356e8e7ab62d6a8e54e6f89
 {% endblock %}
