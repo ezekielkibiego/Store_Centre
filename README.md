@@ -9,7 +9,7 @@
 [Joy Ndegwa](https://github.com/JoyWambui)  <br>
 [Joan Kirui](https://github.com/joankirui )  <br>
 [Enock Kipsang](https://github.com/kipsang01)  <br>
-[Victor Wairiguini](https://github.com/Dhyder)  <br>
+[Victor Wachira](https://github.com/Dhyder)  <br>
 
 ## Description
 Store Centre is a storage facility that helps users to store either personal belongings or business goods in a secure location.
