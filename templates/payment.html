@@ -53,20 +53,20 @@
                                 {% csrf_token %}
                                 <div class="col-md-5">
 
-                                    <input style="border-radius: 0;" name='fname' class="form-control" type="text" id="example-email-input" value="{{request_transport.user.first_name}}" >
+                                    <input style="border-radius: 0;" name='fname' class="form-control" type="text" id="example-email-input" value="{{request_transport.user.first_name}}" readonly>
 
                                 </div><br>
                                 <div class="col-md-5">
                                 {%if request_goods.transport_goods.count > 0 %}
                                     {%if request_transport.transport_type == 'Pick-Up' %}
-                   
-                                    <input style="border-radius: 0;" name='amount' class="form-control" type="text" required id="example-total-input" value={{request_transport.price|add:request_goods.total_cost}}>
+
+                                    <input style="border-radius: 0;" name='amount' class="form-control" type="text" required id="example-total-input" value={{request_transport.price|add:request_goods.total_cost}} readonly>
                                     {%else%}
-                                    <input style="border-radius: 0;" name='amount' class="form-control" type="text" required id="example-total-input" value={{request_transport.price}} >
+                                    <input style="border-radius: 0;" name='amount' class="form-control" type="text" required id="example-total-input" value={{request_transport.price}} readonly>
 
                                     {%endif%}
                                     {%else%}
-                                    <input style="border-radius: 0;" name='amount' class="form-control" type="text" required id="example-total-input" value={{request_goods.total_cost}}>
+                                    <input style="border-radius: 0;" name='amount' class="form-control" type="text" required id="example-total-input" value={{request_goods.total_cost}} readonly>
                                     {%endif%}
                                 </div><br>
                                 <div class="col-md-5">
@@ -104,21 +104,18 @@
                                 {% csrf_token %}
                                 <div class="col-md-5">
 
-                                   
-                                    <input style="border-radius: 0;" name='fname' class="form-control" type="text" id="example-email-input" value="{{request_transport.user.first_name}}" >
-
+                                    <input style="border-radius: 0;" name='fname' class="form-control" type="text" id="example-email-input" value="{{request_transport.user.first_name}}" readonly>
                                 </div><br>
                                 <div class="col-md-5">
                                 {%if request_goods.transport_goods.count > 0 %}
                                     {%if request_transport.transport_type == 'Pick-Up' %}
-                                    <input style="border-radius: 0;" name='amount' class="form-control" type="text" required id="example-total-input" value={{request_transport.price|add:request_goods.total_cost}}>
+                                    <input style="border-radius: 0;" name='amount' class="form-control" type="text" required id="example-total-input" value={{request_transport.price|add:request_goods.total_cost}} readonly>
                                     {%else%}
 
-                                    
-                                    <input style="border-radius: 0;" name='amount' class="form-control" type="text" required id="example-total-input" value={{request_transport.price}} >
+                                    <input style="border-radius: 0;" name='amount' class="form-control" type="text" required id="example-total-input" value={{request_transport.price}} readonly>
                                     {%endif%}
                                     {%else%}
-                                    <input style="border-radius: 0;" name='amount' class="form-control" type="text" required id="example-total-input" value={{request_goods.total_cost}} >
+                                    <input style="border-radius: 0;" name='amount' class="form-control" type="text" required id="example-total-input" value={{request_goods.total_cost}} readonly>
 
                                     {%endif%}
                                 </div><br>
