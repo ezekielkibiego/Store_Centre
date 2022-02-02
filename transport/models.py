@@ -1,4 +1,5 @@
 from django.db import models
+from django.http import Http404
 from store.models import User
 from django.core.validators import RegexValidator
 
@@ -25,6 +26,21 @@ class Transport(models.Model):
     is_paid = models.BooleanField(default=False)
     is_approved = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
+    
+    def create_request(self):
+        self.save()
+    
+    @classmethod
+    def get_requests(cls):
+        return cls.objects.all()
+    
+    @classmethod
+    def find_request(cls,request_id):
+        try:
+            return cls.objects.get(id=request_id)
+        except Transport.DoesNotExist:
+            return Http404
+
     
     
     def __str__(self):
