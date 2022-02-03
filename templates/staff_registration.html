@@ -59,7 +59,7 @@
                   {% render_field form.last_name|append_attr:"" placeholder="Last Name" %}
                   {% render_field form.username|append_attr:"" placeholder="User Name" %}
                   <small class="text-left">Already have an account ?</small>
-                  <a class="text-info" href="{% url 'client_login' %}">Login</a>
+                  <a class="text-info" href="{% url 'staff_login' %}">Login</a>
                 </div>
                 <input type="button" style="border-radius: 5px;" name="next" class="next action-button" value="Next" />
               </fieldset>
