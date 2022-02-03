@@ -19,7 +19,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='AccessToken',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('token', models.CharField(max_length=30)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
             ],
@@ -30,7 +30,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Transport',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('transport_type', models.CharField(choices=[('Pick-Up', 'Pick-Up'), ('Delivery', 'Delivery')], max_length=50)),
                 ('address', models.CharField(max_length=100)),
                 ('email', models.CharField(max_length=50, null=True)),
@@ -40,7 +40,7 @@ class Migration(migrations.Migration):
                 ('is_paid', models.BooleanField(default=False)),
                 ('is_approved', models.BooleanField(default=False)),
                 ('created', models.DateTimeField(auto_now_add=True)),
-                ('goods', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, related_name='transport_goods', to='units.Goods')),
+                ('goods', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, related_name='transport_goods', to='units.goods')),
                 ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='request_owner', to=settings.AUTH_USER_MODEL)),
             ],
         ),
