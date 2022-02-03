@@ -54,4 +54,5 @@ class AccessToken(models.Model):
         get_latest_by = 'created_at'
 
     def __str__(self):
+
 	    return self.token
