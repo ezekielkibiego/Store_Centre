@@ -16,7 +16,7 @@ from decouple import config,Csv
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
-import django_heroku
+# import django_heroku
 
 MODE=config("MODE", default="dev")
 
@@ -184,7 +184,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-django_heroku.settings(locals())
+# django_heroku.settings(locals())
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = config('S_KEY')
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = config('S_SECRET')
