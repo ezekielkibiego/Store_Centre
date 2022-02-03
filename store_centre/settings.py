@@ -61,7 +61,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'social_django',
     'paypal.standard.ipn',
-    'django_daraja',
+    'django_daraja'
 ]
 
 MIDDLEWARE = [
@@ -174,6 +174,9 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 
 ]
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -295,3 +298,5 @@ MPESA_INITIATOR_USERNAME = 'initiator_username'
 # Plaintext password for initiator (to be used in B2C, B2B, AccountBalance and TransactionStatusQuery Transactions)
 
 MPESA_INITIATOR_SECURITY_CREDENTIAL = 'initiator_security_credential'
+
+PAYPAL_CLIENT_ID=config('PAYPAL_CLIENT_ID')
