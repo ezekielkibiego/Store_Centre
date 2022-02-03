@@ -4,106 +4,246 @@
 
 {% block css %}
 <style>
-.profile{
-padding: 3%;
-margin-top: 3%;
-margin-bottom: 3%;
-border-radius: 0.5rem;
-background: #fff;
-}
-.profile-img{
-text-align: center;
-}
-.profile-img .file {
-position: relative;
-overflow: hidden;
-margin-top: -20%;
-width: 70%;
-border: none;
-border-radius: 0;
-font-size: 15px;
-background: #212529b8;
-}
+    .profile {
+        padding: 3%;
+        margin-top: 3%;
+        margin-bottom: 3%;
+        border-radius: 0.5rem;
+        background: #fff;
+    }
+
+    .profile-img {
+        text-align: center;
+    }
+
+    .profile-img .file {
+        position: relative;
+        overflow: hidden;
+        margin-top: -20%;
+        width: 70%;
+        border: none;
+        border-radius: 0;
+        font-size: 15px;
+        background: #212529b8;
+    }
 </style>
 {% endblock %}
 {% block content %}
 
-<div class="overlay" style="box-shadow:inset 0 0 0 2000px rgba(23, 34, 23, 0.863);background-image: url(/static/images/hero_1.jpg);color: white;" data-aos="fade" id="home-section">
+<div class="overlay"
+    style="box-shadow:inset 0 0 0 2000px rgba(23, 34, 23, 0.863);background-image: url(/static/images/hero_1.jpg);color: white;"
+    data-aos="fade" id="home-section">
 
 
     <div class="container">
-      <div class="row align-items-center justify-content-center">
-        <div class="col-md-6 mt-lg-5 text-center">
-          <br><br>
-          <h1>Profile</h1> 
-          <div style="margin-bottom: 10px;">
-          </div>           
+        <div class="row align-items-center justify-content-center">
+            <div class="col-md-6 mt-lg-5 text-center">
+                <br><br>
+                <h1>Profile</h1>
+                <div style="margin-bottom: 10px;">
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  <br><br>
-    <a href="#heading" class="smoothscroll arrow-down"><span class="icon-arrow_downward"></span></a>
-  </div>  
+    <br><br>
+    <a href="#red" class="smoothscroll arrow-down"><span class="icon-arrow_downward"></span></a>
+</div>
 
-
+<!-- 
 <section class="vh-100" style="background-color: #f4f5f7;">
     <div class="container py-5 h-100">
-      <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col col-lg-6 mb-4 mb-lg-0">
-          <div class="card mb-3" style="border-radius: .5rem;">
-            <div class="row g-0">
-              {% if profile.profile_photo %}
-                <img src="{{profile.profile_photo.url}}" alt="" style="border-radius: 50%; width: 50%; height: auto;">
-                {%else%}
-                <img src="https://st2.depositphotos.com/1104517/11965/v/600/depositphotos_119659092-stock-illustration-male-avatar-profile-picture-vector.jpg"
-                    class="card-img-top" alt="My profile picture"  style="border-radius: 50%; width: 50%; height: auto;">
-                {% endif %}
-                <div class="card-body">
-
-                    <p>Username: {{ user.username }}</p>
-
-                    <p>
-                        {% if profile.bio %}
-                        <small>Bio: {{ profile.bio }}</small>
-                        {% else %}
-                        <span class="text-danger">No about me</span>
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col col-lg-6 mb-4 mb-lg-0">
+                <div class="card mb-3" style="border-radius: .5rem;">
+                    <div class="row g-0">
+                        {% if profile.profile_photo %}
+                        <img src="{{profile.profile_photo.url}}" alt=""
+                            style="border-radius: 50%; width: 50%; height: auto;">
+                        {%else%}
+                        <img src="https://st2.depositphotos.com/1104517/11965/v/600/depositphotos_119659092-stock-illustration-male-avatar-profile-picture-vector.jpg"
+                            class="card-img-top" alt="My profile picture"
+                            style="border-radius: 50%; width: 50%; height: auto;">
                         {% endif %}
-                    </p>
-                    {% if profile.phone %}
-                    <p>Phone_Number: {{profile.phone }}</p>
-                    {% else %}
-                    {% endif %}
-                    {% if profile.email %}
-                    <p>Email: {{ profile.email }}</p>
-                    {%else%}
-                    <p>Email: {{ profile.email }}</p>
-                    {% endif %}
-                    {% if profile.phone %}
-                    <p>Location: {{ profile.location }}</p>
-                    {% else %}
-                    {% endif %}
-                    
-                    <h6>Joined on: <span class="badge rounded-pill bg-secondary text-white">
-                            {{ user.date_joined|date }} </span></h6>
+                        <div class="card-body">
+
+                            <p>Username: {{ user.username }}</p>
+
+                            <p>
+                                {% if profile.bio %}
+                                <small>Bio: {{ profile.bio }}</small>
+                                {% else %}
+                                <span class="text-danger">No about me</span>
+                                {% endif %}
+                            </p>
+                            {% if profile.phone %}
+                            <p>Phone_Number: {{profile.phone }}</p>
+                            {% else %}
+                            {% endif %}
+                            {% if profile.email %}
+                            <p>Email: {{ profile.email }}</p>
+                            {%else%}
+                            <p>Email: {{ profile.email }}</p>
+                            {% endif %}
+                            {% if profile.phone %}
+                            <p>Location: {{ profile.location }}</p>
+                            {% else %}
+                            {% endif %}
+
+                            <h6>Joined on: <span class="badge rounded-pill bg-secondary text-white">
+                                    {{ user.date_joined|date }} </span></h6>
+
+                        </div>
+                    </div>
+                    <div class="col-md-6 text-center">
+                        <div class="row">
+                            <div class="col-md-6 details">
+                                <div class="first">
+                                    <div>
+                                        <a href="{%url 'update_profile' user.id %}"
+                                            class="btn btn-outline-dark bg-dark text-white rounded-pill">
+                                            Edit Profile
+                                        </a>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+</section>
+ -->
+
+
+<!-- <section class="section about-section gray-bg" id="about">
+    <div class="container">
+        <div class="row align-items-center flex-row-reverse">
+            <div class="col-lg-6">
+                <div class="about-text go-to">
+                    <h3 class="dark-color">About Me</h3>
+                    <h6 class="theme-color lead">A Lead UX &amp; UI designer based in Canada</h6>
+                    <p>I <mark>design and develop</mark> services for customers of all sizes, specializing in creating stylish, modern websites, web services and online stores. My passion is to design digital user experiences through the bold interface and meaningful interactions.</p>
+                    <div class="row about-list">
+                        <div class="col-md-6">
+                            <div class="media">
+                                <label>Birthday</label>
+                                <p>4th april 1998</p>
+                            </div>
+                            <div class="media">
+                                <label>Age</label>
+                                <p>22 Yr</p>
+                            </div>
+                            <div class="media">
+                                <label>Residence</label>
+                                <p>Canada</p>
+                            </div>
+                            <div class="media">
+                                <label>Address</label>
+                                <p>California, USA</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="media">
+                                <label>E-mail</label>
+                                <p>info@domain.com</p>
+                            </div>
+                            <div class="media">
+                                <label>Phone</label>
+                                <p>820-885-3321</p>
+                            </div>
+                            <div class="media">
+                                <label>Skype</label>
+                                <p>skype.0404</p>
+                            </div>
+                            <div class="media">
+                                <label>Freelance</label>
+                                <p>Available</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="about-avatar">
+                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" title="" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</section> -->
+
+
+
+<div class="container" style="margin-top: 100px;margin-bottom: 100px;">
+    <h1 class="text-center" id="red">MY PROFILE</h1>
+    <div class="row d-flex justify-content-center">
+        <div class="container">
+            <div class="row align-items-center flex-row-reverse">
+                <div class="col-lg-6">
+                    <div class="about-avatar">
+                        {% if profile.profile_photo %}
+                        <img src="{{profile.profile_photo.url}}" class="rounded-circle img-fluid" width="400" title="" alt="">
+                        {%else%}
+                        <img src="https://bootdey.com/img/Content/avatar/avatar7.png" class="rounded-circle" title="" alt="">
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="about-text go-to">
+                        <h3 class="dark-color text-black">{{ user.username }} <a href="{%url 'update_profile' user.id %}">
+                            <img src="/static/images/hoverable/PngItem_1169514.png" width="70" alt=""></a></h3>
+                            <h4>Name: <small class="text-danger">{{user.get_full_name}}</small></h4><br>
+                        <h5 class="text-info">
+                            Verified: <small class="theme-color lead">{{ profile.verified }}</small>
+                        </h5>
+                        {% if profile.bio %}
+                        <p>{{ profile.bio }}</p>
+                        {% else %}
+                        <span>Chuck Norris doesn't churn butter. He roundhouse kicks the cows and
+                            the butter comes straight out. When the Boogeyman goes to sleep every night, he checks his
+                            closet for Chuck Norris CNN was originally created as the "Chuck Norris Network" to update
+                            Americans with on-the-spot ass kicking in real-time.</span>
+                        {% endif %}
+                        <div class="row about-list">
+                            <div class="col-md-6">
+                                <div class="media">
+                                    <label class="text-info">Email </label>
+                                    <p>: {{ profile.email }}</p>
+                                </div>
+                                <div class="media">
+                                    <label class="text-info">Location </label>
+                                    <p>: {{ profile.location }}</p>
+                                </div>
+                                <div class="media">
+                                    <label class="text-info">Address </label>
+                                    <p>: Not Set</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="media">
+                                    <label class="text-info">Joined </label>
+                                    <p>: {{ user.date_joined|date }}</p>
+                                </div>
+                                <div class="media">
+                                    <label class="text-info">Phone </label>
+                                    <p>: {{ profile.phone }}</p>
+                                </div>
+                                <div class="media">
+                                    <a href="{%url 'update_profile' user.id %}"><img
+                                            src="/static/images/hoverable/PngItem_4026850.png" width="80" alt=""></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="counter">
+                <div class="row">
 
                 </div>
             </div>
-            <div class="col-md-6 text-center">
-                <div class="row">
-                    <div class="col-md-6 details">
-                        <div class="first">
-                            <div>
-                                <a href="{%url 'update_profile' user.id %}"
-                                    class="btn btn-outline-dark bg-dark text-white rounded-pill">
-                                    Edit Profile
-                                </a>
-                            </div>
-                        </div>
-                       
-                    </div>
-
-                    
-  </section>
+        </div>
+    </div>
+</div>
 
 
 {% endblock %}

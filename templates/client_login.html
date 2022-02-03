@@ -28,63 +28,67 @@
 
 
 
-    <div style="margin-top: -90px;" class="limiter">
-        <div class="wrap-login100">
-            <div class="login100-pic js-tilt" data-tilt>
-                <img style="margin-top: 70px;" src="https://images.squarespace-cdn.com/content/v1/52797d42e4b01f648b9e8392/1455601047413-LHBT06990IG7TFWFN330/Blueconic_Profile_WhiteBG-trzown.gif?format=500w" alt="CLIENT IMG">
-            </div>
-    
-            <form method="POST" enctype="multipart/form-data" class="login100-form validate-form">
-                {% csrf_token %}
-                <span class="login100-form-title">
-                    <span class="badge badge-dark  text-center">CLIENT <i class="fa fa-user"></i></span>
-                  </span>
-    
-                <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-                    <input style="outline: none;border: none;" class="input100" type="text" name="username" placeholder="Enter your username">
-                    <span class="focus-input100"></span>
-                    <span class="symbol-input100">
-                        <i class="fa fa-user-circle-o" aria-hidden="true"></i>
-                    </span>
-                </div>
-    
-                <div class="wrap-input100 validate-input" data-validate="Password is required">
-                    <input style="outline: none;border: none;" class="input100" type="password" name="password" placeholder="Enter Password">
-                    <span class="focus-input100"></span>
-                    <span class="symbol-input100">
-                        <i class="fa fa-lock" aria-hidden="true"></i>
-                    </span>
-                </div>
-    
-                <div class="container-login100-form-btn">
-                    <button class="login100-form-btn">
-                        Login
-
-                    </button>
-
-                </div>
-    
-                <div class="text-center p-t-12">
-                    <span class="txt1">
-                        Forgot
-                    </span>
-                    <a class="txt2" href="#">
-                        Password ?
-                    </a>
-                </div>
-                
-                <!-- <div class="container text-center">
-                    <a href="{% url 'social:begin' 'google-oauth2' %}"><img src="/static/images/signup/signin-button.png" width="210" alt=""></a>
-                </div> -->
-                <div class="text-center p-t-16">
-                    <p>Don't have an account ? <a class="txt2" href="/client_register/"><strong> SignUp</strong></a></p>
-                </div>
-            </form>
+<div style="margin-top: -90px;" class="limiter">
+    <div class="wrap-login100">
+        <div class="login100-pic js-tilt" data-tilt>
+            <img style="margin-top: 70px;"
+                src="https://images.squarespace-cdn.com/content/v1/52797d42e4b01f648b9e8392/1455601047413-LHBT06990IG7TFWFN330/Blueconic_Profile_WhiteBG-trzown.gif?format=500w"
+                alt="CLIENT IMG">
         </div>
+
+        <form method="POST" enctype="multipart/form-data" class="login100-form validate-form">
+            {% csrf_token %}
+            <span class="login100-form-title">
+                <span class="badge badge-dark  text-center">CLIENT <i class="fa fa-user"></i></span>
+            </span>
+
+            <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                <input style="outline: none;border: none;" class="input100" type="text" name="username"
+                    placeholder="Enter your username">
+                <span class="focus-input100"></span>
+                <span class="symbol-input100">
+                    <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                </span>
+            </div>
+
+            <div class="wrap-input100 validate-input" data-validate="Password is required">
+                <input style="outline: none;border: none;" class="input100" type="password" name="password"
+                    placeholder="Enter Password">
+                <span class="focus-input100"></span>
+                <span class="symbol-input100">
+                    <i class="fa fa-lock" aria-hidden="true"></i>
+                </span>
+            </div>
+            <div class="container-login100-form-btn">
+                <button class="login100-form-btn">
+                    Login
+
+                </button>
+
+            </div>
+
+            <div class="text-center p-t-12">
+                <span class="txt1">
+                    Forgot
+                </span>
+                <a class="txt2" href="#">
+                    Password ?
+                </a>
+            </div>
+
+            <div class="container text-center">
+                <a href="{% url 'social:begin' 'google-oauth2' %}"><img src="/static/images/signup/signin-button.png"
+                        width="210" alt=""></a>
+            </div>
+            <div class="text-center p-t-16">
+                <p>Don't have an account ? <a class="txt2" href="/client_register/"><strong> SignUp</strong></a></p>
+            </div>
+        </form>
     </div>
-    
-    
-    
+</div>
+
+
+
 
 
 

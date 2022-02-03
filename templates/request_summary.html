@@ -23,53 +23,56 @@
     <a href="#heading" class="smoothscroll arrow-down"><span class="icon-arrow_downward"></span></a>
   </div> 
 
+  <section class="mt-5" style="background-image: url(/static/images/image1.png);background-repeat: no-repeat;background-size: contain;">
+    <div class="container-fluid">
+      <div class="row">
+          <div class="col-md-1"></div>
+          <div class="col-md-10 pt-5">
+              <p class="mt-5 text-center text-dark" style="border: 1px solid gray;background-color: rgb(196, 250, 153);">Check your e-mail for a copy of this transport summary and further instructions.</p>
+              <div class="card mt-5 mx-5 mb-1 p-0" style="border: 2px solid ; border-radius: 10px;">
+                  <div class="row g-0">
+                      <div class="col-md-4 " >
+                          <img src="https://images.pexels.com/photos/6170154/pexels-photo-6170154.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" class="img-fluid rounded-start" alt="image of shipping boxes" style="height: 100%; border-radius: 10px;">
+                      </div>
+                      <div class="col-md-8">
+                          <div class="card-body p-4">
+                              <h3 class="card-title">Transport Request Summary</h3><hr>
+                              <p class="card-text"><strong>FIRST NAME: </strong>{{request_transport.user.first_name}}</p>
+                              <p class="card-text"><strong>LAST NAME: </strong>{{request_transport.user.last_name}}</p>
+                              <p class="card-text"><strong>TYPE OF REQUEST: </strong>{{request_transport.transport_type|upper}}</p>
+                              <p class="card-text"><strong>DATE: </strong>{{request_transport.created}}</p>
+                              <hr>
+                              <h4><strong>Address Details</strong></h4>
+                              <p class="card-text"><strong>ADDRESS: </strong>{{request_transport.address}}</p>
+                              <p class="card-text"><strong>DISTANCE: </strong>{{request_transport.distance}} km</p><hr>
+                              <h4><strong>Contact Details</strong></h4>
+                              <p class="card-text"><strong>PHONE NUMBER: </strong>{{request_transport.phone_number}}</p>
+                              <p class="card-text"><strong>EMAIL: </strong>{{request_transport.email}}</p><hr>
+                              <h4><strong>Payment Details</strong></h4>
+                              <p class="card-text"><strong>PRICE: </strong>Ksh.{{request_transport.price}}</p>
+                              {%if request_transport.is_paid == False %}
+                              <p class="card-text"><strong>PAYMENT STATUS: <span class="text-danger">NOT PAID</span> </strong></p><hr>
+                              {%else%}
+                              <p class="card-text"><strong>PAYMENT STATUS: <span class="text-success">PAID</span> </strong></p><hr>
+                              {%endif%}
+                              {%if request_transport.is_approved == False %}
+                              <p class="card-text"><strong>APPROVAL STATUS: <span class="text-danger">PENDING</span> </strong></p>
+                              {%else%}
+                              <p class="card-text"><strong>APPROVAL STATUS: <span class="text-success">APPROVED</span> </strong></p>
+                              {%endif%}
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="d-flex flex-row-reverse bd-highlight">
+                  <div class="p-2 bd-highlight"><a class="btn btn-success mx-5 mb-5 mt-0" href="{%url 'payment'%}" role="button">PROCEED TO PAYMENT</a>
+                  </div>
+              </div>
+          </div>
+          <div class="col-md-1"></div>
+      </div>
+  </div>
+  </section>
 
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-1"></div>
-        <div class="col-md-10 pt-5">
-            <p class="mt-5 text-center text-success" style="border: 1px solid gray;">Check your e-mail for a copy of this transport summary and further instructions.</p>
-            <div class="card mt-5 mx-5 mb-1 p-0" style="border: 2px solid ; border-radius: 10px;">
-                <div class="row g-0">
-                    <div class="col-md-4 " >
-                        <img src="https://images.pexels.com/photos/6170154/pexels-photo-6170154.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" class="img-fluid rounded-start" alt="image of shipping boxes" style="height: 100%; border-radius: 10px;">
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body p-4">
-                            <h3 class="card-title">Transport Request Summary</h3><hr>
-                            <p class="card-text"><strong>FIRST NAME: </strong>{{request_transport.user.first_name}}</p>
-                            <p class="card-text"><strong>LAST NAME: </strong>{{request_transport.user.last_name}}</p>
-                            <p class="card-text"><strong>TYPE OF REQUEST: </strong>{{request_transport.transport_type|upper}}</p>
-                            <p class="card-text"><strong>DATE: </strong>{{request_transport.created}}</p>
-                            <hr>
-                            <h4><strong>Address Details</strong></h4>
-                            <p class="card-text"><strong>ADDRESS: </strong>{{request_transport.address}}</p>
-                            <p class="card-text"><strong>DISTANCE: </strong>{{request_transport.distance}} km</p><hr>
-                            <h4><strong>Contact Details</strong></h4>
-                            <p class="card-text"><strong>PHONE NUMBER: </strong>{{request_transport.phone_number}}</p>
-                            <p class="card-text"><strong>EMAIL: </strong>{{request_transport.email}}</p><hr>
-                            <h4><strong>Payment Details</strong></h4>
-                            <p class="card-text"><strong>PRICE: </strong>Ksh.{{request_transport.price}}</p>
-                            {%if request_transport.is_paid == False %}
-                            <p class="card-text"><strong>PAYMENT STATUS: <span class="text-danger">NOT PAID</span> </strong></p><hr>
-                            {%else%}
-                            <p class="card-text"><strong>PAYMENT STATUS: <span class="text-success">PAID</span> </strong></p><hr>
-                            {%endif%}
-                            {%if request_transport.is_approved == False %}
-                            <p class="card-text"><strong>APPROVAL STATUS: <span class="text-danger">PENDING</span> </strong></p>
-                            {%else%}
-                            <p class="card-text"><strong>APPROVAL STATUS: <span class="text-success">APPROVED</span> </strong></p>
-                            {%endif%}
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="d-flex flex-row-reverse bd-highlight">
-                <div class="p-2 bd-highlight"><a class="btn btn-success mx-5 mb-5 mt-0" href="{%url 'payment'%}" role="button">PROCEED TO PAYMENT</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-1"></div>
-    </div>
-</div>
+
 {% endblock %}

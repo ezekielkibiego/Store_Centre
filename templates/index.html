@@ -131,19 +131,6 @@
 
   </div>
 </div>
-<div class="container-fluid text-center">
-  <h1>Subscribe To Our Emailing Service</h1>
-    {% if messages %}
-        {% for message in messages %}
-            <p style="color:green">{{ message }}</p>
-        {% endfor %}
-    {% endif %}
-    <form action="{% url 'subscribe' %}" method="POST">
-        {% csrf_token %}
-        {% bootstrap_form form %}
-        <input type="submit" value="Submit">
-    </form>
-</div>
 
 
 <section class="site-section" id="about-section">
