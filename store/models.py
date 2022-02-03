@@ -35,7 +35,7 @@ class Profile(models.Model):
     verified = models.BooleanField(default=False)
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile',null=True)
     profile_photo = CloudinaryField("image",null=True)
-    bio = models.TextField(max_length=300,null=True)
+    bio = models.TextField(max_length=800,null=True)
     location = models.CharField(max_length=30,null=True)
     email = models.CharField(max_length=100,null=True)
     phone = models.CharField(max_length=100,null=True)

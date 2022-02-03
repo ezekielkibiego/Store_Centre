@@ -46,7 +46,7 @@
         </div>
     </div>
     <br><br>
-    <a href="#heading" class="smoothscroll arrow-down"><span class="icon-arrow_downward"></span></a>
+    <a href="#red" class="smoothscroll arrow-down"><span class="icon-arrow_downward"></span></a>
 </div>
 
 <!-- 
@@ -172,14 +172,15 @@
 
 
 
-<div class="container" style="margin-top: 200px;margin-bottom: 200px;">
+<div class="container" style="margin-top: 100px;margin-bottom: 100px;">
+    <h1 class="text-center" id="red">MY PROFILE</h1>
     <div class="row d-flex justify-content-center">
         <div class="container">
             <div class="row align-items-center flex-row-reverse">
                 <div class="col-lg-6">
                     <div class="about-avatar">
                         {% if profile.profile_photo %}
-                        <img src="{{profile.profile_photo.url}}" class="rounded-circle" title="" alt="">
+                        <img src="{{profile.profile_photo.url}}" class="rounded-circle img-fluid" width="400" title="" alt="">
                         {%else%}
                         <img src="https://bootdey.com/img/Content/avatar/avatar7.png" class="rounded-circle" title="" alt="">
                         {% endif %}
@@ -188,9 +189,11 @@
 
                 <div class="col-lg-6">
                     <div class="about-text go-to">
-                        <h3 class="dark-color">{{ user.username }} <a href="{%url 'update_profile' user.id %}"><img
-                                    src="/static/images/hoverable/PngItem_1169514.png" width="70" alt=""></a></h3>
-                        <h5 class="text-info">Verified: <small class="theme-color lead">{{ profile.verified }}</small>
+                        <h3 class="dark-color text-black">{{ user.username }} <a href="{%url 'update_profile' user.id %}">
+                            <img src="/static/images/hoverable/PngItem_1169514.png" width="70" alt=""></a></h3>
+                            <h4>Name: <small class="text-danger">{{user.get_full_name}}</small></h4><br>
+                        <h5 class="text-info">
+                            Verified: <small class="theme-color lead">{{ profile.verified }}</small>
                         </h5>
                         {% if profile.bio %}
                         <p>{{ profile.bio }}</p>
@@ -203,26 +206,26 @@
                         <div class="row about-list">
                             <div class="col-md-6">
                                 <div class="media">
-                                    <label class="text-info">Email</label>
-                                    <p>{{ profile.email }}</p>
+                                    <label class="text-info">Email </label>
+                                    <p>: {{ profile.email }}</p>
                                 </div>
                                 <div class="media">
-                                    <label class="text-info">Location</label>
-                                    <p>{{ profile.location }}</p>
+                                    <label class="text-info">Location </label>
+                                    <p>: {{ profile.location }}</p>
                                 </div>
                                 <div class="media">
-                                    <label class="text-info">Address</label>
-                                    <p>Not Set</p>
+                                    <label class="text-info">Address </label>
+                                    <p>: Not Set</p>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="media">
-                                    <label class="text-info">Joined</label>
-                                    <p>{{ user.date_joined|date }}</p>
+                                    <label class="text-info">Joined </label>
+                                    <p>: {{ user.date_joined|date }}</p>
                                 </div>
                                 <div class="media">
-                                    <label class="text-info">Phone</label>
-                                    <p>{{ profile.phone }}</p>
+                                    <label class="text-info">Phone </label>
+                                    <p>: {{ profile.phone }}</p>
                                 </div>
                                 <div class="media">
                                     <a href="{%url 'update_profile' user.id %}"><img

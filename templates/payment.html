@@ -20,131 +20,143 @@
     <a href="#heading" class="smoothscroll arrow-down"><span class="icon-arrow_downward"></span></a>
   </div>  
 
-
-
-<div class="">
-    <div class="row">
-        <div class="col-md-1"></div>
-        <div class="col-md-10 pt-5" style="margin-bottom:40px;">
-            {%if request_goods.transport_goods.count > 0 %}
-            <div class="card mt-5 mx-5 mb-1 p-0" style="border: 2px solid ; border-radius: 10px;">
-                <div class="row g-0">
-                    <div class="col-md-4 " >
-                        <img src="https://images.pexels.com/photos/4199524/pexels-photo-4199524.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" class="img-fluid rounded-start" alt="image of payment" style="height: 100%; border-radius: 10px;">
+<section class="mt-5" style="background-image: url(/static/images/image1.png);background-size: contain;background-repeat: no-repeat;">
+    <div class="">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10 pt-5" style="margin-bottom:40px;">
+                {%if request_goods.transport_goods.count > 0 %}
+                <div class="card mt-5 mx-5 mb-1 p-0" style="border: 2px solid ; border-radius: 10px;">
+                    <div class="row g-0">
+                        <div class="col-md-4 " >
+                            <img src="https://images.pexels.com/photos/4199524/pexels-photo-4199524.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" class="img-fluid rounded-start" alt="image of payment" style="height: 100%; border-radius: 0;">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body p-5">
+                                <h3 class="card-title font-weight-bold">BILL</h3><hr>
+                                {%if request_transport.transport_type == 'Pick-Up' %}
+                                <p class="card-text"><strong>TYPE OF TRANSPORT REQUEST: </strong>{{request_transport.transport_type|upper}}</p>
+                                <p class="card-text"><strong>GOODS PRICE: </strong>Ksh. {{request_goods.total_cost}}</p>
+                                <p class="card-text"><strong>TRANSPORT PRICE: </strong>Ksh. {{request_transport.price}}</p>
+                                <p class="card-text"><strong>TOTAL PRICE: </strong>Ksh. {{request_transport.price|add:request_goods.total_cost}}</p>
+                                <hr>
+                                {%else%}
+                                <p class="card-text"><strong>TYPE OF TRANSPORT REQUEST: </strong>{{request_transport.transport_type|upper}}</p>
+                                <p class="card-text"><strong>GOODS PRICE: </strong>Ksh. 0</p>
+                                <p class="card-text"><strong>TRANSPORT PRICE: </strong>Ksh. {{request_transport.price}}</p>
+                                <p class="card-text"><strong>TOTAL PRICE: </strong>Ksh. {{request_transport.price}}</p>
+                                <hr>
+                                {%endif%}
+                                <form action="{% url 'payment' %}" method="post">
+                                    {% csrf_token %}
+                                    <div class="col-md-5">
+    
+                                        <input style="border-radius: 0;display: none;" name='fname' class="form-control" type="text" id="example-email-input" value="{{request_transport.user.first_name}}" readonly>
+    
+                                    </div><br>
+                                    <div class="col-md-5">
+                                    {%if request_goods.transport_goods.count > 0 %}
+                                        {%if request_transport.transport_type == 'Pick-Up' %}
+    
+                                        <input style="border-radius: 0;display: none;" name='amount' class="form-control" type="text" required id="example-total-input" value={{request_transport.price|add:request_goods.total_cost}} readonly>
+                                        {%else%}
+                                        <input style="border-radius: 0;display: none;" name='amount' class="form-control" type="text" required id="example-total-input" value={{request_transport.price}} readonly>
+    
+                                        {%endif%}
+                                        {%else%}
+                                        <input style="border-radius: 0;display: none;" name='amount' class="form-control" type="text" required id="example-total-input" value={{request_goods.total_cost}} readonly>
+                                        {%endif%}
+                                    </div><br>
+                                    <h1 class="mb-4">Lipa Na M-pesa</h1>
+                                    <p class="mb-2">Please fill in or confirm the Mobile ID digits below with which you will use to carry out the payment transaction.</p>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <input style="border-radius: 5px;background-color: rgb(255, 255, 255);color: rgb(0, 0, 0);" name='phone_number' class="form-control" type="tel" placeholder="M-pesa No." required value="{{request_transport.phone_number}}">
+                                        </div><br>
+                                        <div class="col-md-12 mt-3">
+                                            <button style="border-radius: 10;font-size: 10px;" type="submit" class="btn btn-sm btn-dark">
+                                                Lipa na M-PESA
+                                               <img src="https://www.mobilemoneyafrica.com/media/photos/shares/mpesa.png" class="img-fluid" width="20" alt="">
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="col-md">
+                                        <img style="margin-left: 250px;margin-top: -100px;" src="https://www.safaricom.co.ke/personal/images/till.png" width="300" alt="">
+                                    </div>
+                                    <br>
+                                </form>
+                                <!-- <div class="d-flex justify-content-center bd-highlight">
+                                    <div class="p-2 bd-highlight"><a class="btn btn-success mx-5 mb-5 mt-0" href="{%url 'payment'%}" role="button">MAKE PAYMENT</a>
+                                    </div>
+                                </div>                 -->
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-md-8">
-                        <div class="card-body p-5">
-                            <h3 class="card-title font-weight-bold">BILL</h3><hr>
-                            {%if request_transport.transport_type == 'Pick-Up' %}
-                            <p class="card-text"><strong>TYPE OF TRANSPORT REQUEST: </strong>{{request_transport.transport_type|upper}}</p>
-                            <p class="card-text"><strong>GOODS PRICE: </strong>Ksh. {{request_goods.total_cost}}</p>
-                            <p class="card-text"><strong>TRANSPORT PRICE: </strong>Ksh. {{request_transport.price}}</p>
-                            <p class="card-text"><strong>TOTAL PRICE: </strong>Ksh. {{request_transport.price|add:request_goods.total_cost}}</p>
-                            <hr>
-                            {%else%}
-                            <p class="card-text"><strong>TYPE OF TRANSPORT REQUEST: </strong>{{request_transport.transport_type|upper}}</p>
-                            <p class="card-text"><strong>GOODS PRICE: </strong>Ksh. 0</p>
-                            <p class="card-text"><strong>TRANSPORT PRICE: </strong>Ksh. {{request_transport.price}}</p>
-                            <p class="card-text"><strong>TOTAL PRICE: </strong>Ksh. {{request_transport.price}}</p>
-                            <hr>
-                            {%endif%}
-                            <h4><strong>LIPA NA M-PESA</strong></h4>
-                            <form action="{% url 'payment' %}" method="post">
-                                {% csrf_token %}
-                                <div class="col-md-5">
-
-                                    <input style="border-radius: 0;" name='fname' class="form-control" type="text" id="example-email-input" value="{{request_transport.user.first_name}}" readonly>
-
-                                </div><br>
-                                <div class="col-md-5">
-                                {%if request_goods.transport_goods.count > 0 %}
-                                    {%if request_transport.transport_type == 'Pick-Up' %}
-
-                                    <input style="border-radius: 0;" name='amount' class="form-control" type="text" required id="example-total-input" value={{request_transport.price|add:request_goods.total_cost}} readonly>
-                                    {%else%}
-                                    <input style="border-radius: 0;" name='amount' class="form-control" type="text" required id="example-total-input" value={{request_transport.price}} readonly>
-
-                                    {%endif%}
-                                    {%else%}
-                                    <input style="border-radius: 0;" name='amount' class="form-control" type="text" required id="example-total-input" value={{request_goods.total_cost}} readonly>
-                                    {%endif%}
-                                </div><br>
-                                <div class="col-md-5">
-                                    <input style="border-radius: 0;" name='phone_number' class="form-control" type="tel" required value="{{request_transport.phone_number}}">
-                                </div><br>
-                                <div class="col-md-5">
-                                    <button style="border-radius: 0;" type="submit" class="btn btn-dark">
-                                        LIPA NA MPESA 
-                                    </button>
-                                </div><br>
-                            </form>
-                            <!-- <div class="d-flex justify-content-center bd-highlight">
-                                <div class="p-2 bd-highlight"><a class="btn btn-success mx-5 mb-5 mt-0" href="{%url 'payment'%}" role="button">MAKE PAYMENT</a>
-                                </div>
-                            </div>                 -->
+                </div>
+                {%else%}
+                <div class="card mt-5 mx-5 mb-1 p-0" style="border: 2px solid ; border-radius: 10px;">
+                    <div class="row g-0">
+                        <div class="col-md-4 " >
+                            <img src="https://images.pexels.com/photos/4199524/pexels-photo-4199524.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" class="img-fluid rounded-start" alt="image of shipping boxes" style="height: 100%; border-radius: 10px;">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body p-5">
+                                <h3 class="card-title font-weight-bold">BILL</h3><hr>
+                                <p class="card-text"><strong>GOODS PRICE: </strong>Ksh. {{request_goods.total_cost}}</p>
+                                <p class="card-text"><strong>TRANSPORT PRICE: </strong>Ksh.0</p>
+                                <p class="card-text"><strong>TOTAL PRICE: </strong>Ksh. {{request_goods.total_cost}}</p>
+                                <hr>
+                                <form action="{% url 'payment' %}" method="post">
+                                    {% csrf_token %}
+                                    <div class="col-md-5">
+    
+                                        <input style="border-radius: 0;display: none;" name='fname' class="form-control" type="text" id="example-email-input" value="{{request_transport.user.first_name}}" readonly>
+                                    </div><br>
+                                    <div class="col-md-5">
+                                    {%if request_goods.transport_goods.count > 0 %}
+                                        {%if request_transport.transport_type == 'Pick-Up' %}
+                                        <input style="border-radius: 0;display: none;" name='amount' class="form-control" type="text" required id="example-total-input" value={{request_transport.price|add:request_goods.total_cost}} readonly>
+                                        {%else%}
+    
+                                        <input style="border-radius: 0;display: none;" name='amount' class="form-control" type="text" required id="example-total-input" value={{request_transport.price}} readonly>
+                                        {%endif%}
+                                        {%else%}
+                                        <input style="border-radius: 0;display: none;" name='amount' class="form-control" type="text" required id="example-total-input" value={{request_goods.total_cost}} readonly>
+    
+                                        {%endif%}
+                                    </div><br>
+                                    <h1 class="mb-4">Lipa Na M-pesa</h1>
+                                    <p class="mb-2">Please fill in or confirm the Mobile ID digits below with which you will use to carry out the payment transaction.</p>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <input style="border-radius: 5px;background-color: rgb(255, 255, 255);color: rgb(0, 0, 0);" name='phone_number' class="form-control" type="tel" placeholder="M-pesa No." required value="{{request_transport.phone_number}}">
+                                        </div><br>
+                                        <div class="col-md-12 mt-3">
+                                            <button style="border-radius: 10;font-size: 10px;" type="submit" class="btn btn-sm btn-dark">
+                                                Lipa na M-PESA
+                                               <img src="https://www.mobilemoneyafrica.com/media/photos/shares/mpesa.png" class="img-fluid" width="20" alt="">
+                                            </button>
+                                        </div>
+                                        <div class="col-md">
+                                            <img style="margin-left: 250px;margin-top: -100px;" src="https://www.safaricom.co.ke/personal/images/till.png" width="300" alt="">
+                                        </div>
+                                    </div><br>
+                                </form>
+                                <!-- <div class="d-flex justify-content-center bd-highlight">
+                                    <div class="p-2 bd-highlight"><a class="btn btn-success mx-5 mb-5 mt-0" href="#" role="button">MAKE PAYMENT</a>
+                                    </div>
+                                </div>                 -->
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            {%else%}
-            <div class="card mt-5 mx-5 mb-1 p-0" style="border: 2px solid ; border-radius: 10px;">
-                <div class="row g-0">
-                    <div class="col-md-4 " >
-                        <img src="https://images.pexels.com/photos/4199524/pexels-photo-4199524.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" class="img-fluid rounded-start" alt="image of shipping boxes" style="height: 100%; border-radius: 10px;">
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body p-5">
-                            <h3 class="card-title font-weight-bold">BILL</h3><hr>
-                            <p class="card-text"><strong>GOODS PRICE: </strong>Ksh. {{request_goods.total_cost}}</p>
-                            <p class="card-text"><strong>TRANSPORT PRICE: </strong>Ksh.0</p>
-                            <p class="card-text"><strong>TOTAL PRICE: </strong>Ksh. {{request_goods.total_cost}}</p>
-                            <hr>
-                            <h4 ><strong>LIPA NA M-PESA</strong></h4>
-                            <form action="{% url 'payment' %}" method="post">
-                                {% csrf_token %}
-                                <div class="col-md-5">
-
-                                    <input style="border-radius: 0;" name='fname' class="form-control" type="text" id="example-email-input" value="{{request_transport.user.first_name}}" readonly>
-                                </div><br>
-                                <div class="col-md-5">
-                                {%if request_goods.transport_goods.count > 0 %}
-                                    {%if request_transport.transport_type == 'Pick-Up' %}
-                                    <input style="border-radius: 0;" name='amount' class="form-control" type="text" required id="example-total-input" value={{request_transport.price|add:request_goods.total_cost}} readonly>
-                                    {%else%}
-
-                                    <input style="border-radius: 0;" name='amount' class="form-control" type="text" required id="example-total-input" value={{request_transport.price}} readonly>
-                                    {%endif%}
-                                    {%else%}
-                                    <input style="border-radius: 0;" name='amount' class="form-control" type="text" required id="example-total-input" value={{request_goods.total_cost}} readonly>
-
-                                    {%endif%}
-                                </div><br>
-                                <div class="col-md-5">
-                                    <input style="border-radius: 0;" name='phone_number' class="form-control" type="tel" required value="{{request_transport.phone_number}}">
-                                </div><br>
-                                <div class="col-md-5">
-                                    <button style="border-radius: 0;" type="submit" class="btn btn-dark">
-                                        LIPA NA MPESA 
-                                    </button>
-                                </div><br>
-                            </form>
-                            <!-- <div class="d-flex justify-content-center bd-highlight">
-                                <div class="p-2 bd-highlight"><a class="btn btn-success mx-5 mb-5 mt-0" href="#" role="button">MAKE PAYMENT</a>
-                                </div>
-                            </div>                 -->
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {%endif%}
+            <div class="col-md-1"></div>
         </div>
-        {%endif%}
-        <div class="col-md-1"></div>
     </div>
-</div>
-
-
-
-
+    
+</section>
 
 
 {% endblock %}

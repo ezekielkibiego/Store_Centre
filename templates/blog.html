@@ -1,0 +1,361 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load widget_tweaks %}
+{% load static %}
+
+{% block content %}
+
+<div class="overlay"
+    style="box-shadow:inset 0 0 0 2000px rgba(23, 34, 23, 0.863);background-image: url(/static/images/hero_1.jpg);color: white;"
+    data-aos="fade" id="home-section">
+
+
+    <div class="container">
+        <div class="row align-items-center justify-content-center">
+            <div class="col-md-6 mt-lg-5 text-center">
+                <br><br>
+                <h1>News</h1>
+                <div style="margin-bottom: 10px;">
+                </div>
+            </div>
+        </div>
+    </div>
+    <br><br>
+    <a href="#storage" class="smoothscroll arrow-down"><span class="icon-arrow_downward"></span></a>
+</div>
+
+<!--================Blog Area =================-->
+<section class="blog_area section-padding mt-5 mb-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mb-5 mb-lg-0">
+                <div class="blog_left_sidebar">
+                    <article class="blog_item">
+                        <div class="blog_item_img">
+                            <img class="card-img rounded-0" src="/static/images/blogger/loop3.jpg" alt="">
+                            <a href="#" class="blog_item_date">
+                                <h3>15</h3>
+                                <p>Jan</p>
+                            </a>
+                        </div>
+
+                        <div class="blog_details">
+                            <a class="d-inline-block" href="/">
+                                <h2>Regular Production</h2>
+                            </a>
+                            <p>Warehousing helps in regular production of goods. Storing of raw materials helps to
+                                continue production process. On the other, some kinds of goods are produced to supply
+                                only certain seasonal demand. But their production can be continued through out the
+                                year. Such goods produced regularly even during off-season and are kept safe in store to
+                                supply when demanded.</p>
+                            <ul class="blog-info-link">
+                                <li><a href="#"><i class="fa fa-user"></i> StoreCentre, Bonded</a></li>
+                                <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <article class="blog_item">
+                        <div class="blog_item_img">
+                            <img class="card-img rounded-0"
+                                src="/static/images/blogger/NicePng_shipping-truck-png_8282432.png" alt="">
+                            <a href="#" class="blog_item_date">
+                                <h3>25</h3>
+                                <p>Jan</p>
+                            </a>
+                        </div>
+
+                        <div class="blog_details">
+                            <a class="d-inline-block" href="/">
+                                <h2>Regular Supply</h2>
+                            </a>
+                            <p>Storage or warehousing plays an important role in regular supply of goods. Paddy, rice,
+                                maize, wheat, potato, etc. are produced in certain season. But they are used round the
+                                year. So, such seasonally produced goods should be kept safe in store for their regular
+                                supply to the market when they are demanded.</p>
+                            <ul class="blog-info-link">
+                                <li><a href="#"><i class="fa fa-user"></i> StoreCentre, Bonded</a></li>
+                                <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <article class="blog_item">
+                        <div class="blog_item_img">
+                            <img class="card-img rounded-0" src="/static/images/blogger/NicePng_almacen-png_4065509.png"
+                                alt="">
+                            <a href="#" class="blog_item_date">
+                                <h3>28</h3>
+                                <p>Jan</p>
+                            </a>
+                        </div>
+
+                        <div class="blog_details">
+                            <a class="d-inline-block" href="/">
+                                <h2>Protection From Risk</h2>
+                            </a>
+                            <p>Warehouse protects goods from risks and can be kept safe from fire, theft, robbery, any
+                                loss or damage. So, the producers, businessmen, distributors etc. store their goods in
+                                warehouse. Warehouse is built with special way to keep goods safe. If an agreement is
+                                made with insurance company for goods kept in warehouse, the insurance company gives
+                                compensation for any loss to the concern businessman.</p>
+                            <ul class="blog-info-link">
+                                <li><a href="#"><i class="fa fa-user"></i> StoreCentre, Bonded</a></li>
+                                <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <article class="blog_item">
+                        <div class="blog_item_img">
+                            <img class="card-img rounded-0" src="/static/images/blogger/loop4.jpg" alt="">
+                            <a href="#" class="blog_item_date">
+                                <h3>30</h3>
+                                <p>Jan</p>
+                            </a>
+                        </div>
+
+                        <div class="blog_details">
+                            <a class="d-inline-block" href="/">
+                                <h2>Price Stabilization</h2>
+                            </a>
+                            <p>With the help of warehousing facility, goods can be regularly supplied to market. It
+                                prevents price fluctuation. If the goods are supplied more than demand, then price
+                                declines and if demand is higher than supply, then the price rise. Warehousing prevents
+                                such situation. It keeps proper balance between supply and demand. So, it plays
+                                important role to bring stability in price.</p>
+                            <ul class="blog-info-link">
+                                <li><a href="#"><i class="fa fa-user"></i> StoreCentre, Bonded</a></li>
+                                <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <article class="blog_item">
+                        <div class="blog_item_img">
+                            <img class="card-img rounded-0"
+                                src="/static/images/blogger/pexels-craig-adderley-1543924.jpg" alt="">
+                            <a href="#" class="blog_item_date">
+                                <h3>02</h3>
+                                <p>Feb</p>
+                            </a>
+                        </div>
+
+                        <div class="blog_details">
+                            <a class="d-inline-block" href="/">
+                                <h2>Preservation Of Quality</h2>
+                            </a>
+                            <p>Proper warehousing preserves quality and even increases quality of goods. It preserves
+                                quality, taste, nutritive elements, flavor and utility of fruits, vegetables, drinks
+                                etc. It increases the quality of the goods such as tobacco, alcohol, sauce, pickle and
+                                so on, for which price also can be increased.</p>
+                            <ul class="blog-info-link">
+                                <li><a href="#"><i class="fa fa-user"></i> StoreCentre, Bonded</a></li>
+                                <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <nav class="blog-pagination justify-content-center d-flex">
+                        <ul class="pagination">
+                            <li class="page-item">
+                                <a href="#" class="page-link" aria-label="Previous">
+                                    <i class="fa fa-chevron-left"></i>
+                                </a>
+                            </li>
+                            <li class="page-item">
+                                <a href="#" class="page-link">1</a>
+                            </li>
+                            <li class="page-item active">
+                                <a href="#" class="page-link">2</a>
+                            </li>
+                            <li class="page-item">
+                                <a href="#" class="page-link" aria-label="Next">
+                                    <i class="fa fa-chevron-right"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="blog_right_sidebar">
+                    <aside class="single_sidebar_widget search_widget">
+                        <form action="#">
+                            <div class="form-group">
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" placeholder='Search Keyword'
+                                        onfocus="this.placeholder = ''" onblur="this.placeholder = 'Search Keyword'">
+                                    <div class="input-group-append">
+                                        <button class="btns" type="button"><i class="fa fa-search"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn"
+                                type="submit">Search</button>
+                        </form>
+                    </aside>
+
+                    <aside class="single_sidebar_widget post_category_widget">
+                        <h4 class="widget_title">Category</h4>
+                        <ul class="list cat-list">
+                            <li>
+                                <a href="#" class="d-flex">
+                                    <p>Freezing Unit (37)</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="d-flex">
+                                    <p>StoreCentre news (10)</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="d-flex">
+                                    <p>Modern technology (03)</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="d-flex">
+                                    <p>Perishable (11)</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="d-flex">
+                                    <p>Bonded (18)</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="d-flex">
+                                    <p>Hazardous (21)</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </aside>
+
+                    <aside class="single_sidebar_widget popular_post_widget">
+                        <h3 class="widget_title">Recent Posts</h3>
+                        <div class="media post_item">
+                            <img src="/static/images/blogger/loop3.jpg" class="img-fluid" width="80" alt="post">
+                            <div class="media-body">
+                                <a href="/">
+                                    <h3>Regular Production</h3>
+                                </a>
+                                <p>January 12, 2022</p>
+                            </div>
+                        </div>
+                        <div class="media post_item">
+                            <img src="/static/images/loop5.jpg" class="img-fluid" width="80" alt="post">
+                            <div class="media-body">
+                                <a href="/">
+                                    <h3>Regular Supply</h3>
+                                </a>
+                                <p>02 Hours ago</p>
+                            </div>
+                        </div>
+                        <div class="media post_item">
+                            <img src="/static/images/blogger/NicePng_shipping-truck-png_8282432.png" class="img-fluid" width="80" alt="post">
+                            <div class="media-body">
+                                <a href="/">
+                                    <h3>Protection From Risk</h3>
+                                </a>
+                                <p>03 Hours ago</p>
+                            </div>
+                        </div>
+                        <div class="media post_item">
+                            <img src="/static/images/blogger/loop4.jpg" class="img-fluid" width="80" alt="post">
+                            <div class="media-body">
+                                <a href="/">
+                                    <h3>Price Stabilization</h3>
+                                </a>
+                                <p>01 Hours ago</p>
+                            </div>
+                        </div>
+                    </aside>
+                    <aside class="single_sidebar_widget tag_cloud_widget">
+                        <h4 class="widget_title">Tag Store 254 feeds</h4>
+                        <ul class="list">
+                            <li>
+                                <a href="#">Nuclear</a>
+                            </li>
+                            <li>
+                                <a href="#">Nutrition</a>
+                            </li>
+                            <li>
+                                <a href="#">Technology</a>
+                            </li>
+                            <li>
+                                <a href="#">Perishable</a>
+                            </li>
+                            <li>
+                                <a href="#">Containers</a>
+                            </li>
+                            <li>
+                                <a href="#">Hazardous</a>
+                            </li>
+                            <li>
+                                <a href="#">Bonded</a>
+                            </li>
+                            <li>
+                                <a href="#">Rented</a>
+                            </li>
+                        </ul>
+                    </aside>
+
+
+                    <aside class="single_sidebar_widget instagram_feeds">
+                        <h4 class="widget_title">Managerial Feeds</h4>
+                        <ul class="instagram_row flex-wrap">
+                            <li>
+                                <a href="#">
+                                    <img class="img-fluid" src="assets/img/post/post_5.png" alt="">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img class="img-fluid" src="assets/img/post/post_6.png" alt="">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img class="img-fluid" src="assets/img/post/post_7.png" alt="">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img class="img-fluid" src="assets/img/post/post_8.png" alt="">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img class="img-fluid" src="assets/img/post/post_9.png" alt="">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img class="img-fluid" src="assets/img/post/post_10.png" alt="">
+                                </a>
+                            </li>
+                        </ul>
+                    </aside>
+
+
+                    <aside class="single_sidebar_widget newsletter_widget">
+                        <h4 class="widget_title">Newsletter</h4>
+
+                        <form action="#">
+                            <div class="form-group">
+                                <input type="email" class="form-control" onfocus="this.placeholder = ''"
+                                    onblur="this.placeholder = 'Enter email'" placeholder='Enter email' required>
+                            </div>
+                            <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn"
+                                type="submit">Subscribe</button>
+                        </form>
+                    </aside>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}

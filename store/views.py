@@ -309,3 +309,6 @@ def subscribe(request):
             messages.success(request, 'Success!')
             return redirect('subscribe')
     return render(request, 'index.html', {'form': form})
+
+def blog(request):
+    return render(request, 'blog.html')
