@@ -14,34 +14,24 @@ class Storage(models.Model):
     def add_storage(self):
         self.save()
         
-    def delete(self):
+    def remove_storage(self):
         self.delete()
-    # def __repr__(self):
-    #     return '{}with{}unitscharging{}'.format(self.type,self.no_units,self.charge)
+    
+    @classmethod    
+    def all_storages(self):
+        storages = Storage.objects.all()
+        return storages
+    @classmethod
+    def storage_type(self,type):
+        storage = Storage.objects.filter(type=type).first()
+        return storage
+    @classmethod
+    def units_available(self,type):
+        storage = Storage.objects.filter(type =type).first()
+        units = storage.available_units
+        return units;
 
     
-# class Unit(models.Model):
-#     type = models.ForeignKey(Storage,on_delete=models.CASCADE,related_name='units') #type of storage
-#     booked = models.BooleanField(default=False)
-    
-
-    
-    
-#     def add_unit(self):
-#         self.save()
-        
-#     def delete(self):
-#         self.delete()
-        
-#     @classmethod   
-#     def all_units(self):
-#         units = Unit.objects.all()
-#         return units
-        
-    
-#     def __str__(self):
-#         return  self.type     
-        
     
     
 class Goods(models.Model):
@@ -61,3 +51,9 @@ class Goods(models.Model):
 
     def remove_goods(self):
         self.delete()
+        
+    def owner_goods(self,owner):
+        goods = Goods.objects.filter(owner=owner).all()
+        return goods;
+
+    
