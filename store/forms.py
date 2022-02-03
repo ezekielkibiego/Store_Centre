@@ -36,6 +36,7 @@ class StaffSignUpForm(UserCreationForm):
     first_name = forms.CharField(required=True)
     last_name = forms.CharField(required=True)
     email = forms.CharField(required=True)
+    phone = forms.CharField(required=True)
     designation = forms.CharField(required=True)
 
     class Meta(UserCreationForm.Meta):
@@ -62,10 +63,10 @@ class StaffSignUpForm(UserCreationForm):
 #         model = Profile
 #         exclude = ['user']
 
-# class UpdateProfileForm(forms.ModelForm):
-#     class Meta:
-#         model = Profile
-#         exclude = ['user']
+class UpdateProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        exclude = ['user']
 
 class UpdateClientProfile(forms.ModelForm):
     class Meta:

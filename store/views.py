@@ -1,5 +1,6 @@
 from cProfile import Profile
 from http import client
+from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, render,HttpResponse
 from django.contrib import messages
 from store.forms import ClientSignUpForm,SubscribeForm
@@ -18,9 +19,13 @@ from .models import  Storecentre
 from .serializers import StoreSerializer
 from rest_framework import status
 from .permissions import IsAdminOrReadOnly
+
+import store
+
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.conf import settings
+
 
 
 # Create your views here.
@@ -36,6 +41,18 @@ def post(self, request, format=None):
             return Response(serializers.data, status=status.HTTP_201_CREATED)
         return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
 permission_classes = (IsAdminOrReadOnly,)
+def delete(self, request, pk, format=None):
+        store = self.get_store(pk)
+        store.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+def put(self, request, pk, format=None):
+        store = self.get_store(pk)
+        serializers = StoreSerializer(store, request.data)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data)
+        else:
+            return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 
@@ -140,9 +157,10 @@ class staff_register(CreateView):
     form_class = StaffSignUpForm
     template_name = 'staff_registration.html'
 
+    
     def form_valid(self, form):
         user = form.save()
-        login(self.request, user)
+        login(self.request, user,backend='django.contrib.auth.backends.ModelBackend')
         return redirect('/staff_login')
 
 def client_login(request):
@@ -173,9 +191,9 @@ def staff_login(request):
                 login(request,user)
                 return redirect('/analytics')
             else:
-                messages.error(request,"Invalid username or password")
+                messages.error(request,"You are not a staff.")
         else:
-                messages.error(request,"Invalid username or password")
+                messages.error(request,"You are not a staff.")
     return render(request, 'staff_login.html',
     context={'form':AuthenticationForm()})
 
@@ -197,7 +215,7 @@ def staff_profile(request):
 
 
 @login_required(login_url = '/admin_login')
-def admin_profile(request):
+def profile(request):
     current_user = request.user
     profile = Profile.objects.filter(user_id=current_user.id).first()
     return render(request, "profile.html", {"profile": profile})
@@ -222,17 +240,6 @@ def update_client_profile(request):
   return render(request,'edit_profile.html',params)
 
 
-# def staffProfile(request):
-#     staff = request.user
-#     profile = Staff.objects.get(
-#         user_id=staff.id)  # get profile
-#     profile = Staff.objects.filter(user_id = staff.id).first()  # get profile
-#     context = {
-#         "staff": staff,
-#         'profile':profile
-#     }
-#     return render(request, 'profile.html', context)
-
 def update_staff_profile(request):
     if request.method == 'POST':
         u_form = UpdateUserProfile(request.POST, request.FILES, instance=request.user)
@@ -252,7 +259,20 @@ def update_staff_profile(request):
     }
     return render(request,'staff_profile.html',context)
 
-
+@login_required
+def update_profile(request,id):
+    user = User.objects.get(id=id)
+    profile = Profile.objects.get(user_id = user)
+    form = UpdateProfileForm(instance=profile)
+    if request.method == "POST":
+            form = UpdateProfileForm(request.POST,request.FILES,instance=profile)
+            if form.is_valid():  
+                
+                profile = form.save(commit=False)
+                profile.save()
+                return redirect('profile') 
+            
+    return render(request, 'edit_profile.html', {"form":form, 'profile':profile})
 
 def checkout_booking(request,records_id):
     goods = Goods.objects.filter(id=records_id).first()
@@ -263,8 +283,14 @@ def checkout_goods(request,goods_id):
     goods = Goods.objects.filter(id=goods_id).first()
     goods.remove_goods()
     storage = Storage.objects.filter(type =goods.storage_type).first()
+    #transport logic
+    initial_units = storage.available_units
+    request.session['initial_units']=initial_units
     storage.available_units += goods.no_of_units
     storage.add_storage()
+    final_units = storage.available_units
+    request.session['final_units']=final_units
+    print(initial_units,final_units)
     messages.success(request,'Goods checked out successfully')
     
     
@@ -283,4 +309,3 @@ def subscribe(request):
             messages.success(request, 'Success!')
             return redirect('subscribe')
     return render(request, 'index.html', {'form': form})
-

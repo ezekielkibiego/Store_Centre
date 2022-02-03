@@ -28,27 +28,6 @@ background: #212529b8;
 {% endblock %}
 {% block content %}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <div class="overlay" style="box-shadow:inset 0 0 0 2000px rgba(23, 34, 23, 0.863);background-image: url(/static/images/hero_1.jpg);color: white;" data-aos="fade" id="home-section">
 
 
@@ -73,8 +52,8 @@ background: #212529b8;
         <div class="col col-lg-6 mb-4 mb-lg-0">
           <div class="card mb-3" style="border-radius: .5rem;">
             <div class="row g-0">
-              {% if user.client.profile_photo %}
-                <img src="{{user.client.profile_photo.url}}" alt="" style="border-radius: 50%; width: 50%; height: auto;">
+              {% if profile.profile_photo %}
+                <img src="{{profile.profile_photo.url}}" alt="" style="border-radius: 50%; width: 50%; height: auto;">
                 {%else%}
                 <img src="https://st2.depositphotos.com/1104517/11965/v/600/depositphotos_119659092-stock-illustration-male-avatar-profile-picture-vector.jpg"
                     class="card-img-top" alt="My profile picture"  style="border-radius: 50%; width: 50%; height: auto;">
@@ -85,22 +64,22 @@ background: #212529b8;
 
                     <p>
                         {% if profile.bio %}
-                        <small>Bio: {{ user.client.bio }}</small>
+                        <small>Bio: {{ profile.bio }}</small>
                         {% else %}
                         <span class="text-danger">No about me</span>
                         {% endif %}
                     </p>
-                    {% if user.client.phone %}
-                    <p>Phone_Number: {{user.client.phone }}</p>
+                    {% if profile.phone %}
+                    <p>Phone_Number: {{profile.phone }}</p>
                     {% else %}
                     {% endif %}
-                    {% if user.client.email %}
-                    <p>Email: {{ user.client.email }}</p>
+                    {% if profile.email %}
+                    <p>Email: {{ profile.email }}</p>
                     {%else%}
-                    <p>Email: {{ user.email }}</p>
+                    <p>Email: {{ profile.email }}</p>
                     {% endif %}
-                    {% if user.client.phone %}
-                    <p>Location: {{ user.client.location }}</p>
+                    {% if profile.phone %}
+                    <p>Location: {{ profile.location }}</p>
                     {% else %}
                     {% endif %}
                     
@@ -114,7 +93,7 @@ background: #212529b8;
                     <div class="col-md-6 details">
                         <div class="first">
                             <div>
-                                <a href="{%url 'update_client_profile' %}"
+                                <a href="{%url 'update_profile' user.id %}"
                                     class="btn btn-outline-dark bg-dark text-white rounded-pill">
                                     Edit Profile
                                 </a>
