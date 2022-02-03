@@ -23,4 +23,3 @@ class TransportForm(forms.ModelForm):
         error_messages={
             'phoneNumberRegex': _('Use the required formart +254712345678')
         }
-        

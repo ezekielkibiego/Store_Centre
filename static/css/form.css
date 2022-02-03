@@ -142,7 +142,7 @@ p {
 }
 
 #progressbar .active {
-    color: #37cfa2;
+    color: #369b7d;
 }
 
 #progressbar li {
@@ -200,7 +200,7 @@ p {
 
 #progressbar li.active:before,
 #progressbar li.active:after {
-    background: #37cfa2;
+    background: #369b7d;
 }
 
 .progress {
@@ -208,7 +208,7 @@ p {
 }
 
 .progress-bar {
-    background-color: #37cfa2;
+    background-color: #369b7d;
 }
 
 .fit-image {

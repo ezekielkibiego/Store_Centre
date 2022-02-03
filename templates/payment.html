@@ -53,20 +53,20 @@
                                 {% csrf_token %}
                                 <div class="col-md-5">
 
-                                    <input style="border-radius: 0;" name='fname' class="form-control" type="text" id="example-email-input" value="{{request_transport.user.first_name}}" >
+                                    <input style="border-radius: 0;" name='fname' class="form-control" type="text" id="example-email-input" value="{{request_transport.user.first_name}}" readonly>
 
                                 </div><br>
                                 <div class="col-md-5">
                                 {%if request_goods.transport_goods.count > 0 %}
                                     {%if request_transport.transport_type == 'Pick-Up' %}
-                   
-                                    <input style="border-radius: 0;" name='amount' class="form-control" type="text" required id="example-total-input" value={{request_transport.price|add:request_goods.total_cost}}>
+
+                                    <input style="border-radius: 0;" name='amount' class="form-control" type="text" required id="example-total-input" value={{request_transport.price|add:request_goods.total_cost}} readonly>
                                     {%else%}
-                                    <input style="border-radius: 0;" name='amount' class="form-control" type="text" required id="example-total-input" value={{request_transport.price}} >
+                                    <input style="border-radius: 0;" name='amount' class="form-control" type="text" required id="example-total-input" value={{request_transport.price}} readonly>
 
                                     {%endif%}
                                     {%else%}
-                                    <input style="border-radius: 0;" name='amount' class="form-control" type="text" required id="example-total-input" value={{request_goods.total_cost}}>
+                                    <input style="border-radius: 0;" name='amount' class="form-control" type="text" required id="example-total-input" value={{request_goods.total_cost}} readonly>
                                     {%endif%}
                                 </div><br>
                                 <div class="col-md-5">
@@ -77,8 +77,15 @@
                                         LIPA NA MPESA 
                                     </button>
                                 </div><br>
-                            </form>
-                            <!-- <div class="d-flex justify-content-center bd-highlight">
+                            </form><hr>
+                            <h4 ><strong>CHECKOUT WITH PAYPAL</strong></h4><br>
+                            <div id="paypal-button-container" class="d-flex justify-content-center w-50 ">
+                            </div><hr>
+                            <form action="{%url 'payment' %}" method='get' id="priceChange">
+                                <input name="paypal_transaction" id="transactionMessage" hidden>
+                                <input type="Submit" name="Submit" hidden>
+                            </form>          
+                        <!-- <div class="d-flex justify-content-center bd-highlight">
                                 <div class="p-2 bd-highlight"><a class="btn btn-success mx-5 mb-5 mt-0" href="{%url 'payment'%}" role="button">MAKE PAYMENT</a>
                                 </div>
                             </div>                 -->
@@ -104,21 +111,18 @@
                                 {% csrf_token %}
                                 <div class="col-md-5">
 
-                                   
-                                    <input style="border-radius: 0;" name='fname' class="form-control" type="text" id="example-email-input" value="{{request_transport.user.first_name}}" >
-
+                                    <input style="border-radius: 0;" name='fname' class="form-control" type="text" id="example-email-input" value="{{request_transport.user.first_name}}" readonly>
                                 </div><br>
                                 <div class="col-md-5">
                                 {%if request_goods.transport_goods.count > 0 %}
                                     {%if request_transport.transport_type == 'Pick-Up' %}
-                                    <input style="border-radius: 0;" name='amount' class="form-control" type="text" required id="example-total-input" value={{request_transport.price|add:request_goods.total_cost}}>
+                                    <input style="border-radius: 0;" name='amount' class="form-control" type="text" required id="example-total-input" value={{request_transport.price|add:request_goods.total_cost}} readonly>
                                     {%else%}
 
-                                    
-                                    <input style="border-radius: 0;" name='amount' class="form-control" type="text" required id="example-total-input" value={{request_transport.price}} >
+                                    <input style="border-radius: 0;" name='amount' class="form-control" type="text" required id="example-total-input" value={{request_transport.price}} readonly>
                                     {%endif%}
                                     {%else%}
-                                    <input style="border-radius: 0;" name='amount' class="form-control" type="text" required id="example-total-input" value={{request_goods.total_cost}} >
+                                    <input style="border-radius: 0;" name='amount' class="form-control" type="text" required id="example-total-input" value={{request_goods.total_cost}} readonly>
 
                                     {%endif%}
                                 </div><br>
@@ -130,8 +134,15 @@
                                         LIPA NA MPESA 
                                     </button>
                                 </div><br>
-                            </form>
-                            <!-- <div class="d-flex justify-content-center bd-highlight">
+                            </form><hr>
+                            <h4 ><strong>CHECKOUT WITH PAYPAL</strong></h4><br>
+                            <div id="paypal-button-container" class="d-flex justify-content-center w-50 ">
+                            </div>
+                            <form action="{%url 'payment' %}" method='get' id="priceChange">
+                                <input name="paypal_transaction" id="transactionMessage" hidden>
+                                <input type="Submit" name="Submit" hidden>
+                            </form>          
+                        <!-- <div class="d-flex justify-content-center bd-highlight">
                                 <div class="p-2 bd-highlight"><a class="btn btn-success mx-5 mb-5 mt-0" href="#" role="button">MAKE PAYMENT</a>
                                 </div>
                             </div>                 -->
@@ -141,13 +152,84 @@
             </div>
         </div>
         {%endif%}
+
+
         <div class="col-md-1"></div>
     </div>
 </div>
-
-
-
-
-
-
 {% endblock %}
+{%block scripts%}
+{{block.super}}
+    <!-- Include the PayPal JavaScript SDK -->
+    <script src="https://www.paypal.com/sdk/js?client-id={{paypal_client_id}}&currency=USD"></script>
+
+    <script>
+        // Render the PayPal button into #paypal-button-container
+        paypal.Buttons({
+
+            // Set up the transaction
+            createOrder: function(data, actions) {
+                var goodsCount = '{{request_goods.transport_goods.count}}';
+                var transportType = '{{request_transport.transport_type}}';
+                var transportPrice =Math.round( '{{request_transport.price}}' / 113);
+                var goodsPrice = parseFloat(('{{request_goods.total_cost}}'/113).toFixed(2));
+                var totalCost = goodsPrice + transportPrice
+                console.log(transportPrice)
+                console.log(goodsPrice)
+                if (goodsCount > 0) {
+                    if (transportType == 'Pick-Up') {
+                        return actions.order.create({
+                    
+                            purchase_units: [{
+                                amount: {
+                                    value: totalCost
+                                }
+                            }]
+                        });
+                    } else {
+                        return actions.order.create({
+                    
+                            purchase_units: [{
+                                amount: {
+                                    value: transportPrice
+                                }
+                            }]
+                        });                    
+                    }
+                } else {
+                    return actions.order.create({
+                    
+                        purchase_units: [{
+                            amount: {
+                                value: goodsPrice
+                            }
+                        }]
+                    });                    
+                }
+            },
+
+            // Finalize the transaction
+            onApprove: function(data, actions) {
+                return actions.order.capture().then(function(orderData) {
+                    // Successful capture! For demo purposes:
+                    console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+                    var transaction = orderData.purchase_units[0].payments.captures[0];
+                    alert('TRANSACTION'+transaction.status+'\n\nThank you for your payment!');
+                    const element = document.getElementById('paypal-button-container');
+                    element.innerHTML = '';
+                    element.innerHTML ='TRANSACTION '+transaction.status;
+                    var inputValue = document.getElementById('transactionMessage');
+                    var form = document.getElementById("priceChange");
+                    inputValue.value='TRANSACTION '+ transaction.status;
+                    form.submit();
+                    console.log('inputValue '+ inputValue)
+                    console.log(form)
+
+                });
+
+            }
+
+
+        }).render('#paypal-button-container');
+    </script>
+{%endblock%}
