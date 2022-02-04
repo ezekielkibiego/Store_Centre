@@ -26,38 +26,36 @@
 
 <div class="container-fluid" style="background-color: rgb(245, 255, 255);">
 
-  <div class="container " style="height:90vh;">
+  <div class="container ">
     <div class="records "  style="padding-top:10%;">
       {% if records %}
-  
-          <table class="table table-success table-striped">
-            <thead>
-              <tr>
-                <th scope="col">Unit_no</th>
-                <th scope="col">Storage_Type</th>
-                <th scope="col">Description</th>
-                <th scope="col">Arrival_date</th>
-                <th scope="col">Departure_date</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for record in records %}
-              <tr>
-              
-                <th scope="row">{{record.unit_no.pk}}</th>
-                <td>{{record.storage_type}}</td>
-                <td>{{record.description}}</td>
-                <td>{{record.arrival_date}}</td>
-                <td>{{record.departure_date}}</td>
-                <td><a href="{% url 'checkout' record.id %}"><button class="btn btn-small btn-success">checkout</button></a></td>
-              
-              </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-        
-  
-  
+      <div class="">
+        <table class="table table-success table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Unit_no</th>
+              <th scope="col">Storage_Type</th>
+              <th scope="col">Description</th>
+              <th scope="col">Arrival_date</th>
+              <th scope="col">Departure_date</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for record in records %}
+            <tr>
+            
+              <th scope="row">{{record.unit_no.pk}}</th>
+              <td>{{record.storage_type}}</td>
+              <td>{{record.description}}</td>
+              <td>{{record.arrival_date}}</td>
+              <td>{{record.departure_date}}</td>
+              <td><a href="{% url 'checkout' record.id %}"><button class="btn btn-small btn-success">checkout</button></a></td>
+            
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
         {% else %}
         <p>You don't have any records of bookings </p>
       {%endif%}
