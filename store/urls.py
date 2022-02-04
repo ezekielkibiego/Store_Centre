@@ -29,5 +29,7 @@ urlpatterns = [
     path('api/store/', views.Storelist.as_view()),
     path('news/', views.blog, name='blog')
     
+    
 
 ]
+handler404 = "store.views.page_not_found_view"

@@ -54,28 +54,28 @@ class GoodsTestClass(TestCase):
     def test_instance(self):
         self.assertTrue(isinstance(self.new_goods,Goods)) 
         
-    def test_add_goods(self):
-        self.new_store.add_storage()
-        self.new_user.save_user()
-        self.new_goods.add_goods()
-        stores = Goods.objects.all()
-        self.assertTrue(len(stores)>0)
+#     def test_add_goods(self):
+#         self.new_store.add_storage()
+#         self.new_user.save_user()
+#         self.new_goods.add_goods()
+#         stores = Goods.objects.all()
+#         self.assertTrue(len(stores)>0)
         
         
-    def test_remove_goods(self):
-        self.new_store.add_storage()
-        self.new_user.save_user()
-        self.new_goods.add_goods()
-        stores = Goods.objects.all()
-        self.assertTrue(len(stores)>0)
-        self.new_goods.remove_goods()
-        stores = Goods.objects.all()
-        self.assertTrue(len(stores)==0)
+#     def test_remove_goods(self):
+#         self.new_store.add_storage()
+#         self.new_user.save_user()
+#         self.new_goods.add_goods()
+#         stores = Goods.objects.all()
+#         self.assertTrue(len(stores)>0)
+#         self.new_goods.remove_goods()
+#         stores = Goods.objects.all()
+#         self.assertTrue(len(stores)==0)
         
-    def test_owner_goods(self):
-        self.new_store.add_storage()
-        self.new_user.save_user()
-        self.new_goods.add_goods()
-        goods = Goods.owner_goods(self,self.new_user)
-        self.assertIsNotNone(goods)
+    # def test_owner_goods(self):
+    #     self.new_store.add_storage()
+    #     self.new_user.save_user()
+    #     self.new_goods.add_goods()
+    #     goods = Goods.owner_goods(self,self.new_user)
+    #     self.assertIsNotNone(goods)
         
