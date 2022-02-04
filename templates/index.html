@@ -6,6 +6,57 @@
 
 {% block content %}
 
+<style>
+  .card {
+    flex-direction: column;
+    min-width: 0;
+    color: #000;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid #fff;
+    border-radius: 6px;
+    -webkit-box-shadow: 0px 0px 5px 0px rgb(249, 249, 250);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(212, 182, 212, 1);
+    box-shadow: 0px 0px 5px 0px rgb(161, 163, 164)
+}
+
+.learn-more {
+    text-decoration: none;
+    color: #000;
+    margin-top: 8px
+}
+
+.learn-more:hover {
+    text-decoration: none;
+    color: blue;
+    margin-top: 8px
+}
+</style>
+
+
+<div class="modal fade" id="MyModal" style="margin-top: 400px;" tabindex="-1" role="dialog" aria-labelledby="MyModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+      <div class="d-flex justify-content-center container mt-5">
+        <div class="row">
+          <div class="col-md-10">
+            <div class="d-flex flex-row justify-content-between align-items-center card cookie p-3">
+              <div class="d-flex flex-row align-items-center"><img src="https://i.imgur.com/Tl8ZBUe.png" width="40">
+                <div class="ml-2 mr-2"><span>We use third party cookies to personalize content, ads and&nbsp; analyze
+                    site traffic.<br></span><a class="learn-more" href="#">Learn more<i
+                      class="fa fa-angle-right ml-2"></i></a></div>
+              </div>
+              <div><button class="btn btn-dark" data-dismiss="modal" type="button">Okay</button></div>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
 
 <div class="site-block-wrap">
   <div class="owl-carousel with-dots">
@@ -18,9 +69,10 @@
         <div class="row align-items-center justify-content-center">
           <div class="col-lg-12 mt-lg-5 ">
             <h1 class="text-shadow">Secure <br> Storage For Your goods</h1>
-            <p class="mb-5 text-shadow">Keeping goods safe from damage,loss or theft ...<a href="" target="_blank">store.com</a>
+            <p class="mb-5 text-shadow">Keeping goods safe from damage,loss or theft ...<a href=""
+                target="_blank" style="color: rgb(184, 214, 214);">store.com</a>
             </p>
-            <p><a href="/units/book/" target="_blank" class="btn btn-primary btn-sm">Get Started</a></p>
+            <p><a href="units/book/" target="_blank" class="btn btn-primary btn-sm">Get Started</a></p>
 
           </div>
         </div>
@@ -38,9 +90,9 @@
         <div class="row align-items-center justify-content-center">
           <div class="col-lg-12 mt-lg-5 ">
             <h1 class="text-shadow">Improve workflow <br> of your entire <br> facility. </h1>
-            <p class="mb-5 text-shadow">Using a warehouse to manage orders improves <br>the workflow of your entire facility.... <a href="/"
-                target="_blank">store.com</a> </p>
-            <p><a href="/" target="_blank" class="btn btn-primary btn-sm">Get Started</a></p>
+            <p class="mb-5 text-shadow">Using a warehouse to manage orders improves <br>the workflow of your entire
+              facility.... <a href="/" target="_blank" style="color: rgb(184, 214, 214);">store.com</a> </p>
+            <p><a href="units/book/" target="_blank" class="btn btn-primary btn-sm">Get Started</a></p>
 
           </div>
         </div>
@@ -58,9 +110,9 @@
         <div class="row align-items-center justify-content-center">
           <div class="col-lg-12 mt-lg-5 ">
             <h1 class="text-shadow">Faster shipping<br> and <br> delivery </h1>
-            <p class="mb-5 text-shadow">Packing your products up in the same warehouse they<br> were received in allows shipping to effortlessly handle their part... <a href="/"
-                target="_blank">store.com</a> </p>
-            <p><a href="/" target="_blank" class="btn btn-primary btn-sm">Get Started</a></p>
+            <p class="mb-5 text-shadow">Packing your products up in the same warehouse they<br> were received in allows
+              shipping to effortlessly handle their part... <a href="/" target="_blank" style="color: rgb(184, 214, 214);">store.com</a> </p>
+            <p><a href="units/book/" target="_blank" class="btn btn-primary btn-sm">Get Started</a></p>
 
           </div>
         </div>
@@ -77,10 +129,10 @@
       <div class="container">
         <div class="row align-items-center justify-content-center">
           <div class="col-lg-12 mt-lg-5 ">
-            <h1 class="text-shadow">Task <br>  Delegation <br> </h1>
-            <p class="mb-5 text-shadow">By warehousing your products, you delegate the <br>former responsibilities to staff members.... <a href="/"
-                target="_blank">store.com</a> </p>
-            <p><a href="/" target="_blank" class="btn btn-primary btn-sm">Get Started</a></p>
+            <h1 class="text-shadow">Task <br> Delegation <br> </h1>
+            <p class="mb-5 text-shadow">By warehousing your products, you delegate the <br>former responsibilities to
+              staff members.... <a href="/" target="_blank" style="color: rgb(184, 214, 214);">store.com</a> </p>
+            <p><a href="units/book/" target="_blank" class="btn btn-primary btn-sm">Get Started</a></p>
 
           </div>
         </div>
@@ -97,10 +149,10 @@
       <div class="container">
         <div class="row align-items-center justify-content-center">
           <div class="col-lg-12 mt-lg-5 ">
-            <h1 class="text-shadow">Close to  <br>target <br>market . </h1>
-            <p class="mb-5 text-shadow">This supports fast shipping and easy returns--<br>two factors that customers have high standards for.... <a href="/"
-                target="_blank">store.com</a> </p>
-            <p><a href="/" target="_blank" class="btn btn-primary btn-sm">Get Started</a></p>
+            <h1 class="text-shadow">Close to <br>target <br>market . </h1>
+            <p class="mb-5 text-shadow">This supports fast shipping and easy returns--<br>two factors that customers
+              have high standards for.... <a href="/" target="_blank" style="color: rgb(184, 214, 214);">store.com</a> </p>
+            <p><a href="units/book/" target="_blank" class="btn btn-primary btn-sm">Get Started</a></p>
 
           </div>
         </div>
@@ -118,9 +170,9 @@
         <div class="row align-items-center justify-content-center">
           <div class="col-lg-12 mt-lg-5 ">
             <h1 class="text-shadow">Control <br> over <br>products . </h1>
-            <p class="mb-5 text-shadow">Keeping all of your product stock in a warehouse<br> allows you to maintain control over it... <a href="/"
-                target="_blank">store.com</a> </p>
-            <p><a href="/" target="_blank" class="btn btn-primary btn-sm">Get Started</a></p>
+            <p class="mb-5 text-shadow">Keeping all of your product stock in a warehouse<br> allows you to maintain
+              control over it... <a href="/" target="_blank" style="color: rgb(184, 214, 214);">store.com</a> </p>
+            <p><a href="units/book/" target="_blank" class="btn btn-primary btn-sm">Get Started</a></p>
 
           </div>
         </div>
@@ -130,19 +182,6 @@
     </div>
 
   </div>
-</div>
-<div class="container-fluid text-center">
-  <h1>Subscribe To Our Emailing Service</h1>
-    {% if messages %}
-        {% for message in messages %}
-            <p style="color:green">{{ message }}</p>
-        {% endfor %}
-    {% endif %}
-    <form action="{% url 'subscribe' %}" method="POST">
-        {% csrf_token %}
-        {% bootstrap_form form %}
-        <input type="submit" value="Submit">
-    </form>
 </div>
 
 
@@ -154,7 +193,8 @@
 
         <h2 class="section-title mb-3">Warehousing </h2>
         <p class="lead">Now you can stock closer to your customer than ever before.</p>
-        <p>Now you can stock closer to your customer than ever before — all without costly third party distribution centers. 
+        <p>Now you can stock closer to your customer than ever before — all without costly third party distribution
+          centers.
           Better yet, you'll reduce shrinkage and shipping costs!</p><br>
 
         <ul class="list-unstyled ul-check success">
@@ -196,7 +236,8 @@
           <span class="text-black">01.</span>
           <span class="custom-icon flaticon-house text-black"></span>
           <h3 class="text-black">Find <br> Your Space.</h3>
-          <p class="text-black">A client gets to book a number of units of a storage type based on the available units</p>
+          <p class="text-black">A client gets to book a number of units of a storage type based on the available units
+          </p>
         </div>
       </div>
 
@@ -205,7 +246,8 @@
           <span class="text-black">02.</span>
           <span class="custom-icon flaticon-coin text-black"></span>
           <h3 class="text-dark">Choose <br> Your Storage Plan.</h3>
-          <p class="text-black">A client gets to choose the type of storage based on the goods that need to be stored.</p>
+          <p class="text-black">A client gets to choose the type of storage based on the goods that need to be stored.
+          </p>
         </div>
       </div>
 
@@ -233,26 +275,27 @@
       <div class="col-md-6 col-lg-4 mb-4 mb-lg-4">
         <div class="h-entry">
           <a href="/"><img src="/static/images/image1.png" alt="" class="img-fluid"></a>
-          <h2 class="font-size-regular"><a href="/" class="text-dark">Logistics Business® Magazine | Materials Handling & Warehousing</a></h2>
+          <h2 class="font-size-regular"><a href="/news/" class="text-dark">Logistics Business® Magazine | Materials
+              Handling & Warehousing</a></h2>
           <div class="meta mb-4">Logistics Business® <span class="mx-2">&bullet;</span> Jan 04, 0000<span
-              class="mx-2">&bullet;</span> <a href="/">Logistics</a></div>
+              class="mx-2">&bullet;</span> <a href="/news/">Logistics</a></div>
         </div>
       </div>
       <div class="col-md-6 col-lg-4 mb-4 mb-lg-4">
         <div class="h-entry">
           <a href="/"><img src="/static/images/img_2.jpg" alt="" class="img-fluid"></a>
-          <h2 class="font-size-regular"><a href="/" class="text-dark">Warehouse & Logistics News</a></h2>
+          <h2 class="font-size-regular"><a href="/news/" class="text-dark">Warehouse & Logistics News</a></h2>
           <div class="meta mb-4">Warehouse & Logistics News<span class="mx-2">&bullet;</span> Jan 05, 0000<span
-              class="mx-2">&bullet;</span> <a href="/">Warehouse</a></div>
+              class="mx-2">&bullet;</span> <a href="/news/">Warehouse</a></div>
 
         </div>
       </div>
       <div class="col-md-6 col-lg-4 mb-4 mb-lg-4">
         <div class="h-entry">
           <a href="/"><img src="/static/images/NicePng_stairs-icon-png_9162802.png" alt="" class="img-fluid"></a>
-          <h2 class="font-size-regular"><a href="/" class="text-dark">Cisco-Eagle | Warehousing Insights</a></h2>
+          <h2 class="font-size-regular"><a href="/news/" class="text-dark">Cisco-Eagle | Warehousing Insights</a></h2>
           <div class="meta mb-4">Cisco-Eagle <span class="mx-2">&bullet;</span> Jan 00, 0000<span
-              class="mx-2">&bullet;</span> <a href="/">Warehousing Insights </a></div>
+              class="mx-2">&bullet;</span> <a href="/news/">Warehousing Insights </a></div>
         </div>
       </div>
 

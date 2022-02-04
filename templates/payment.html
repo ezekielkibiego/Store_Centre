@@ -3,22 +3,24 @@
 {% block title %}My Transport Summaries{% endblock %}
 {% block content %}
 
-<div class="overlay" style="box-shadow:inset 0 0 0 2000px rgba(23, 34, 23, 0.863);background-image: url(/static/images/hero_1.jpg);color: white;" data-aos="fade" id="home-section">
+<div class="overlay"
+    style="box-shadow:inset 0 0 0 2000px rgba(23, 34, 23, 0.863);background-image: url(/static/images/hero_1.jpg);color: white;"
+    data-aos="fade" id="home-section">
 
 
     <div class="container">
-      <div class="row align-items-center justify-content-center">
-        <div class="col-md-6 mt-lg-5 text-center">
-          <br><br>
-          <h1>Billing</h1> 
-          <div style="margin-bottom: 10px;">
-          </div>           
+        <div class="row align-items-center justify-content-center">
+            <div class="col-md-6 mt-lg-5 text-center">
+                <br><br>
+                <h1>Billing</h1>
+                <div style="margin-bottom: 10px;">
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  <br><br>
+    <br><br>
     <a href="#heading" class="smoothscroll arrow-down"><span class="icon-arrow_downward"></span></a>
-  </div>  
+</div>
 
 
 
@@ -29,54 +31,90 @@
             {%if request_goods.transport_goods.count > 0 %}
             <div class="card mt-5 mx-5 mb-1 p-0" style="border: 2px solid ; border-radius: 10px;">
                 <div class="row g-0">
-                    <div class="col-md-4 " >
-                        <img src="https://images.pexels.com/photos/4199524/pexels-photo-4199524.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" class="img-fluid rounded-start" alt="image of payment" style="height: 100%; border-radius: 10px;">
+                    <div class="col-md-4 gradient-custom5">
+                        <!-- <img src="https://images.pexels.com/photos/4199524/pexels-photo-4199524.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+                            class="img-fluid rounded-start" alt="image of payment"
+                            style="height: 100%; border-radius: 0;"> -->
                     </div>
                     <div class="col-md-8">
                         <div class="card-body p-5">
-                            <h3 class="card-title font-weight-bold">BILL</h3><hr>
+                            <h3 class="card-title font-weight-bold">BILL</h3>
+                            <hr>
                             {%if request_transport.transport_type == 'Pick-Up' %}
-                            <p class="card-text"><strong>TYPE OF TRANSPORT REQUEST: </strong>{{request_transport.transport_type|upper}}</p>
+                            <p class="card-text"><strong>TYPE OF TRANSPORT REQUEST:
+                                </strong>{{request_transport.transport_type|upper}}</p>
                             <p class="card-text"><strong>GOODS PRICE: </strong>Ksh. {{request_goods.total_cost}}</p>
                             <p class="card-text"><strong>TRANSPORT PRICE: </strong>Ksh. {{request_transport.price}}</p>
-                            <p class="card-text"><strong>TOTAL PRICE: </strong>Ksh. {{request_transport.price|add:request_goods.total_cost}}</p>
+                            <p class="card-text"><strong>TOTAL PRICE: </strong>Ksh.
+                                {{request_transport.price|add:request_goods.total_cost}}</p>
                             <hr>
                             {%else%}
-                            <p class="card-text"><strong>TYPE OF TRANSPORT REQUEST: </strong>{{request_transport.transport_type|upper}}</p>
+                            <p class="card-text"><strong>TYPE OF TRANSPORT REQUEST:
+                                </strong>{{request_transport.transport_type|upper}}</p>
                             <p class="card-text"><strong>GOODS PRICE: </strong>Ksh. 0</p>
                             <p class="card-text"><strong>TRANSPORT PRICE: </strong>Ksh. {{request_transport.price}}</p>
                             <p class="card-text"><strong>TOTAL PRICE: </strong>Ksh. {{request_transport.price}}</p>
                             <hr>
                             {%endif%}
-                            <h4><strong>LIPA NA M-PESA</strong></h4>
                             <form action="{% url 'payment' %}" method="post">
                                 {% csrf_token %}
                                 <div class="col-md-5">
 
-                                    <input style="border-radius: 0;" name='fname' class="form-control" type="text" id="example-email-input" value="{{request_transport.user.first_name}}" readonly>
+                                    <input style="border-radius: 0;display: none;" name='fname' class="form-control" type="text"
+                                        id="example-email-input" value="{{request_transport.user.first_name}}">
 
                                 </div><br>
                                 <div class="col-md-5">
-                                {%if request_goods.transport_goods.count > 0 %}
+                                    {%if request_goods.transport_goods.count > 0 %}
                                     {%if request_transport.transport_type == 'Pick-Up' %}
 
-                                    <input style="border-radius: 0;" name='amount' class="form-control" type="text" required id="example-total-input" value={{request_transport.price|add:request_goods.total_cost}} readonly>
+                                    <input style="border-radius: 0;display: none;" name='amount' class="form-control"
+                                        type="text" required id="example-total-input"
+                                        value={{request_transport.price|add:request_goods.total_cost}}>
                                     {%else%}
-                                    <input style="border-radius: 0;" name='amount' class="form-control" type="text" required id="example-total-input" value={{request_transport.price}} readonly>
+                                    <input style="border-radius: 0;display: none;" name='amount' class="form-control"
+                                        type="text" required id="example-total-input" value={{request_transport.price}}
+                                        >
 
                                     {%endif%}
                                     {%else%}
-                                    <input style="border-radius: 0;" name='amount' class="form-control" type="text" required id="example-total-input" value={{request_goods.total_cost}} readonly>
+                                    <input style="border-radius: 0;display: none;" name='amount' class="form-control"
+                                        type="text" required id="example-total-input" value={{request_goods.total_cost}}>
                                     {%endif%}
+                                </div>
+                                <h1 class="mb-4">Lipa Na M-pesa</h1>
+                                <p class="mb-2">Please fill in or confirm the Mobile ID digits below with which you will
+                                    use to carry out the payment transaction.</p>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <input
+                                            style="border-radius: 5px;background-color: rgb(255, 255, 255);color: rgb(0, 0, 0);"
+                                            name='phone_number' class="form-control" type="tel" placeholder="M-pesa No."
+                                            required value="{{request_transport.phone_number}}">
+                                    </div><br>
+                                    <div class="col-md-12 mt-3">
+                                        <button style="border-radius: 10;font-size: 10px;" type="submit"
+                                            class="btn btn-sm btn-dark">
+                                            Lipa na M-PESA
+                                            <img src="https://www.mobilemoneyafrica.com/media/photos/shares/mpesa.png"
+                                                class="img-fluid" width="20" alt="">
+                                        </button>
+                                    </div>
+                                    <div class="col-md">
+                                        <img style="margin-left: 250px;margin-top: -100px;"
+                                            src="https://www.safaricom.co.ke/personal/images/till.png" width="300"
+                                            alt="">
+                                    </div>
                                 </div><br>
-                                <div class="col-md-5">
-                                    <input style="border-radius: 0;" name='phone_number' class="form-control" type="tel" required value="{{request_transport.phone_number}}">
-                                </div><br>
-                                <div class="col-md-5">
-                                    <button style="border-radius: 0;" type="submit" class="btn btn-dark">
-                                        LIPA NA MPESA 
-                                    </button>
-                                </div><br>
+                            </form>
+                            <hr>
+                            <h4><strong>CHECKOUT WITH PAYPAL</strong></h4><br>
+                            <div id="paypal-button-container" class="d-flex justify-content-center w-50 ">
+                            </div>
+                            <hr>
+                            <form action="{%url 'payment' %}" method='get' id="priceChange">
+                                <input name="paypal_transaction" id="transactionMessage" hidden>
+                                <input type="Submit" name="Submit" hidden>
                             </form>
                             <!-- <div class="d-flex justify-content-center bd-highlight">
                                 <div class="p-2 bd-highlight"><a class="btn btn-success mx-5 mb-5 mt-0" href="{%url 'payment'%}" role="button">MAKE PAYMENT</a>
@@ -89,44 +127,67 @@
             {%else%}
             <div class="card mt-5 mx-5 mb-1 p-0" style="border: 2px solid ; border-radius: 10px;">
                 <div class="row g-0">
-                    <div class="col-md-4 " >
-                        <img src="https://images.pexels.com/photos/4199524/pexels-photo-4199524.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" class="img-fluid rounded-start" alt="image of shipping boxes" style="height: 100%; border-radius: 10px;">
+                    <div class="col-md-4 ">
+                        <img src="https://images.pexels.com/photos/4199524/pexels-photo-4199524.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+                            class="img-fluid rounded-start" alt="image of shipping boxes"
+                            style="height: 100%; border-radius: 0;">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body p-5">
-                            <h3 class="card-title font-weight-bold">BILL</h3><hr>
+                            <h3 class="card-title font-weight-bold">BILL</h3>
+                            <hr>
                             <p class="card-text"><strong>GOODS PRICE: </strong>Ksh. {{request_goods.total_cost}}</p>
                             <p class="card-text"><strong>TRANSPORT PRICE: </strong>Ksh.0</p>
                             <p class="card-text"><strong>TOTAL PRICE: </strong>Ksh. {{request_goods.total_cost}}</p>
                             <hr>
-                            <h4 ><strong>LIPA NA M-PESA</strong></h4>
                             <form action="{% url 'payment' %}" method="post">
                                 {% csrf_token %}
                                 <div class="col-md-5">
 
-                                    <input style="border-radius: 0;" name='fname' class="form-control" type="text" id="example-email-input" value="{{request_transport.user.first_name}}" readonly>
+                                    <input style="border-radius: 0;display: none;" name='fname' class="form-control" type="text"
+                                        id="example-email-input" value="{{request_transport.user.first_name}}" >
                                 </div><br>
                                 <div class="col-md-5">
-                                {%if request_goods.transport_goods.count > 0 %}
+                                    {%if request_goods.transport_goods.count > 0 %}
                                     {%if request_transport.transport_type == 'Pick-Up' %}
-                                    <input style="border-radius: 0;" name='amount' class="form-control" type="text" required id="example-total-input" value={{request_transport.price|add:request_goods.total_cost}} readonly>
+                                    <input style="border-radius: 0;display: none;" name='amount' class="form-control" type="text"
+                                        required id="example-total-input"
+                                        value={{request_transport.price|add:request_goods.total_cost}} >
                                     {%else%}
 
-                                    <input style="border-radius: 0;" name='amount' class="form-control" type="text" required id="example-total-input" value={{request_transport.price}} readonly>
+                                    <input style="border-radius: 0;display: none;" name='amount' class="form-control" type="text"
+                                        required id="example-total-input" value={{request_transport.price}} >
                                     {%endif%}
                                     {%else%}
-                                    <input style="border-radius: 0;" name='amount' class="form-control" type="text" required id="example-total-input" value={{request_goods.total_cost}} readonly>
+                                    <input style="border-radius: 0;display: none;" name='amount' class="form-control" type="text"
+                                        required id="example-total-input" value={{request_goods.total_cost}} >
 
                                     {%endif%}
                                 </div><br>
-                                <div class="col-md-5">
-                                    <input style="border-radius: 0;" name='phone_number' class="form-control" type="tel" required value="{{request_transport.phone_number}}">
+                                <h1 class="mb-4">Lipa Na M-pesa</h1>
+                                <p class="mb-2">Please fill in or confirm the Mobile ID digits below with which you will use to carry out the payment transaction.</p>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <input style="border-radius: 5px;background-color: rgb(255, 255, 255);color: rgb(0, 0, 0);" name='phone_number' class="form-control" type="tel" placeholder="M-pesa No." required value="{{request_transport.phone_number}}">
+                                    </div><br>
+                                    <div class="col-md-12 mt-3">
+                                        <button style="border-radius: 10;font-size: 10px;" type="submit" class="btn btn-sm btn-dark">
+                                            Lipa na M-PESA
+                                           <img src="https://www.mobilemoneyafrica.com/media/photos/shares/mpesa.png" class="img-fluid" width="20" alt="">
+                                        </button>
+                                    </div>
+                                    <div class="col-md">
+                                        <img style="margin-left: 250px;margin-top: -100px;" src="https://www.safaricom.co.ke/personal/images/till.png" width="300" alt="">
+                                    </div>
                                 </div><br>
-                                <div class="col-md-5">
-                                    <button style="border-radius: 0;" type="submit" class="btn btn-dark">
-                                        LIPA NA MPESA 
-                                    </button>
-                                </div><br>
+                            </form>
+                            <hr>
+                            <h4><strong>CHECKOUT WITH PAYPAL</strong></h4><br>
+                            <div id="paypal-button-container" class="d-flex justify-content-center w-50 ">
+                            </div>
+                            <form action="{%url 'payment' %}" method='get' id="priceChange">
+                                <input name="paypal_transaction" id="transactionMessage" hidden>
+                                <input type="Submit" name="Submit" hidden>
                             </form>
                             <!-- <div class="d-flex justify-content-center bd-highlight">
                                 <div class="p-2 bd-highlight"><a class="btn btn-success mx-5 mb-5 mt-0" href="#" role="button">MAKE PAYMENT</a>
@@ -136,15 +197,87 @@
                     </div>
                 </div>
             </div>
+            <div class="col-md-1"></div>
         </div>
         {%endif%}
+
+
         <div class="col-md-1"></div>
     </div>
 </div>
-
-
-
-
-
-
 {% endblock %}
+{%block scripts%}
+{{block.super}}
+<!-- Include the PayPal JavaScript SDK -->
+<script src="https://www.paypal.com/sdk/js?client-id={{paypal_client_id}}&currency=USD"></script>
+
+<script>
+    // Render the PayPal button into #paypal-button-container
+    paypal.Buttons({
+
+        // Set up the transaction
+        createOrder: function (data, actions) {
+            var goodsCount = '{{request_goods.transport_goods.count}}';
+            var transportType = '{{request_transport.transport_type}}';
+            var transportPrice = Math.round('{{request_transport.price}}' / 113);
+            var goodsPrice = parseFloat(('{{request_goods.total_cost}}' / 113).toFixed(2));
+            var totalCost = goodsPrice + transportPrice
+            console.log(transportPrice)
+            console.log(goodsPrice)
+            if (goodsCount > 0) {
+                if (transportType == 'Pick-Up') {
+                    return actions.order.create({
+
+                        purchase_units: [{
+                            amount: {
+                                value: totalCost
+                            }
+                        }]
+                    });
+                } else {
+                    return actions.order.create({
+
+                        purchase_units: [{
+                            amount: {
+                                value: transportPrice
+                            }
+                        }]
+                    });
+                }
+            } else {
+                return actions.order.create({
+
+                    purchase_units: [{
+                        amount: {
+                            value: goodsPrice
+                        }
+                    }]
+                });
+            }
+        },
+
+        // Finalize the transaction
+        onApprove: function (data, actions) {
+            return actions.order.capture().then(function (orderData) {
+                // Successful capture! For demo purposes:
+                console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+                var transaction = orderData.purchase_units[0].payments.captures[0];
+                alert('TRANSACTION' + transaction.status + '\n\nThank you for your payment!');
+                const element = document.getElementById('paypal-button-container');
+                element.innerHTML = '';
+                element.innerHTML = 'TRANSACTION ' + transaction.status;
+                var inputValue = document.getElementById('transactionMessage');
+                var form = document.getElementById("priceChange");
+                inputValue.value = 'TRANSACTION ' + transaction.status;
+                form.submit();
+                console.log('inputValue ' + inputValue)
+                console.log(form)
+
+            });
+
+        }
+
+
+    }).render('#paypal-button-container');
+</script>
+{%endblock%}

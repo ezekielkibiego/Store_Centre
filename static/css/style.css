@@ -1,6 +1,8 @@
 
 html {
-  overflow-x: hidden; }
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
 
 body {
   line-height: 1.7;
@@ -29,6 +31,8 @@ h1, h2, h3, h4, h5,
   font-weight: 300 !important;
   text-transform: uppercase; }
 
+
+  
 .border-2 {
   border-width: 2px; }
 

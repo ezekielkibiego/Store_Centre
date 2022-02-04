@@ -142,7 +142,7 @@ p {
 }
 
 #progressbar .active {
-    color: #37cfa2;
+    color: #369b7d;
 }
 
 #progressbar li {
@@ -200,7 +200,7 @@ p {
 
 #progressbar li.active:before,
 #progressbar li.active:after {
-    background: #37cfa2;
+    background: #369b7d;
 }
 
 .progress {
@@ -208,7 +208,7 @@ p {
 }
 
 .progress-bar {
-    background-color: #37cfa2;
+    background-color: #369b7d;
 }
 
 .fit-image {
@@ -1200,8 +1200,206 @@ p {
     box-shadow: 0 10px 25px -2px rgba(0, 110, 255, 0.6);
 }
 
+.puny {
+    position: relative;
+    height: 100vh;
+}
+
+.puny .puny-center {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+
+
+.unity-form {
+    position: relative;
+    max-width: 912px;
+    width: 100%;
+    margin: auto;
+    background: #fff;
+    border-radius: 6px;
+    -webkit-box-shadow: 0px 5px 10px -5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 5px 10px -5px rgba(0, 0, 0, 0.1);
+}
+
+.unity-form .unity-bg {
+    position: absolute;
+    left: 25px;
+    top: -25px;
+    bottom: -25px;
+    width: 400px;
+    background-image: url('/static/images/yellow-forklift-with-empty-fork-parking-white-background-transportation-industrial-concept-copy-space_10307-1385.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 25px;
+    border-radius: 6px;
+    -webkit-box-shadow: 0px 5px 10px -5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 5px 10px -5px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.unity-form .unity-bg::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    background: rgba(73, 133, 105, 0.78);
+}
+
+.unity-form>form {
+    margin-left: 425px;
+    padding: 30px;
+}
+
+.unity-form .form-header {
+    margin-bottom: 30px;
+    margin-top: 60px;
+    position: relative;
+    z-index: 20;
+}
+
+.unity-form .form-header h2 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-weight: 900;
+    color: #fff;
+    font-size: 42px;
+    text-transform: capitalize;
+}
+
+.unity-form .form-header p {
+    color: #fff;
+    font-size: 18px;
+}
+
+.unity-form .form-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.unity-form .form-control {
+    background-color: #fff;
+    height: 45px;
+    padding: 0px 15px;
+    border: 1px solid #e5e5e5;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border-radius: 40px;
+    -webkit-transition: 0.2s all;
+    transition: 0.2s all;
+}
+
+.unity-form .form-control::-webkit-input-placeholder {
+    color: #e5e5e5;
+}
+
+.unity-form .form-control:-ms-input-placeholder {
+    color: #e5e5e5;
+}
+
+.unity-form .form-control::placeholder {
+    color: #e5e5e5;
+}
+
+.unity-form .form-control:focus {
+    background: #f8f8f8;
+}
+
+.unity-form input[type="date"].form-control:invalid {
+    color: #e5e5e5;
+}
+
+.unity-form select.form-control {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.unity-form select.form-control:invalid {
+    color: #e5e5e5;
+}
+
+.unity-form select.form-control option {
+    color: #151515;
+}
+
+.unity-form select.form-control+.select-arrow {
+    position: absolute;
+    right: 3px;
+    bottom: 5px;
+    width: 32px;
+    line-height: 32px;
+    height: 32px;
+    text-align: center;
+    pointer-events: none;
+    color: #e5e5e5;
+    font-size: 14px;
+}
+
+.unity-form select.form-control+.select-arrow:after {
+    content: '\279C';
+    display: block;
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+.unity-form .form-label {
+    color: #5bc58b;
+    text-transform: uppercase;
+    line-height: 24px;
+    height: 24px;
+    font-size: 14px;
+    font-weight: 400;
+    margin-left: 20px;
+}
+
+.unity-form .form-btn {
+    margin-top: 30px;
+}
+
+.unity-form .submit-btn {
+    display: block;
+    width: 100%;
+    color: #fff;
+    background-color: rgba(62, 170, 120, 0.9);
+    font-weight: 700;
+    font-size: 18px;
+    border: none;
+    border-radius: 40px;
+    height: 55px;
+    -webkit-transition: 0.2s all;
+    transition: 0.2s all;
+}
+
+.unity-form .submit-btn:hover,
+.unity-form .submit-btn:focus {
+    background-color: rgb(49, 121, 93);
+}
+
+@media only screen and (max-width: 768px) {
+    .unity-form .unity-bg {
+        position: relative;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: -15px;
+        width: 95%;
+        margin: auto;
+    }
+
+    .unity-form>form {
+        margin-left: 0px;
+    }
+}
 
 
 
 
-  /*------------------------------------------------------------------
+/*------------------------------------------------------------------

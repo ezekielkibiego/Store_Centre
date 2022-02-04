@@ -4,10 +4,32 @@
 {% load static %}
 
 {% block content %} 
-<div class="container" style="height:100vh;">
-  <div class="records "  style="padding-top:20%;">
-    {% if records %}
 
+<div class="overlay"
+    style="box-shadow:inset 0 0 0 2000px rgba(23, 34, 23, 0.863);background-image: url(/static/images/hero_1.jpg);color: white;"
+    data-aos="fade" id="home-section">
+
+
+    <div class="container">
+        <div class="row align-items-center justify-content-center">
+            <div class="col-md-6 mt-lg-5 text-center">
+                <br><br>
+                <h1>Records</h1>
+                <div style="margin-bottom: 10px;">
+                </div>
+            </div>
+        </div>
+    </div>
+    <br><br>
+    <a href="#bs" class="smoothscroll arrow-down"><span class="icon-arrow_downward"></span></a>
+</div>
+
+<div class="container-fluid" style="background-color: rgb(245, 255, 255);">
+
+  <div class="container ">
+    <div class="records "  style="padding-top:10%;">
+      {% if records %}
+      <div class="">
         <table class="table table-success table-striped">
           <thead>
             <tr>
@@ -33,12 +55,12 @@
             {% endfor %}
           </tbody>
         </table>
-      
-
-
-      {% else %}
-      <p>You don't have any records of bookings </p>
-    {%endif%}
-    </div>
+      </div>
+        {% else %}
+        <p>You don't have any records of bookings </p>
+      {%endif%}
+      </div>
+  </div>
 </div>
+
 {% endblock %}

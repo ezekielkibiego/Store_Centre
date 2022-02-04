@@ -27,6 +27,9 @@ urlpatterns = [
     # path('update_client_profile/',views.update_client_profile, name='update_client_profile'),
     path('social-auth/',include('social_django.urls',namespace='social')),
     path('api/store/', views.Storelist.as_view()),
+    path('news/', views.blog, name='blog')
+    
     
 
 ]
+handler404 = "store.views.page_not_found_view"

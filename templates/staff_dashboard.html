@@ -7,70 +7,95 @@
 {% block content %}
 
 
- <div class="overlay"
- style="box-shadow:inset 0 0 0 2000px rgba(23, 34, 23, 0.863);background-image: url(/static/images/hero_1.jpg);color: white;"
- data-aos="fade" id="home-section">
+<div class="overlay"
+    style="box-shadow:inset 0 0 0 2000px rgba(23, 34, 23, 0.863);background-image: url(/static/images/hero_1.jpg);color: white;"
+    data-aos="fade" id="home-section">
 
 
- <div class="container">
-     <div class="row align-items-center justify-content-center">
-         <div class="col-md-6 mt-lg-5 text-center">
-             <br><br>
-             <h1>Storage Units</h1>
-             <div style="margin-bottom: 10px;">
-             </div>
-         </div>
-     </div>
- </div>
- <br><br>
- <a href="#heading" class="smoothscroll arrow-down"><span class="icon-arrow_downward"></span></a>
+    <div class="container">
+        <div class="row align-items-center justify-content-center">
+            <div class="col-md-6 mt-lg-5 text-center">
+                <br><br>
+                <h1>Staff Dashboard</h1>
+                <div style="margin-bottom: 10px;">
+                </div>
+            </div>
+        </div>
+    </div>
+    <br><br>
+    <a href="#heading" class="smoothscroll arrow-down"><span class="icon-arrow_downward"></span></a>
+</div>
+
+
+
+
+<div id="unity" class="puny">
+    <div class="puny-center">
+        <div class="container">
+            <div class="row">
+                <div class="unity-form">
+                    <div class="unity-bg">
+                        <div class="form-header">
+                            <h2 style="font-family: oswald;font-size: 45px;">Generate New Unit</h2>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate laboriosam numquam at
+                            </p>
+                        </div>
+                    </div>
+                    <form>
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <div class="form-group">
+                                <span style="font-family: oswald;font-size: 15px;" class="form-label">Storage Type</span>
+                                <input class="form-control" name="type" type="text" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-group">
+                                <span style="font-family: oswald;font-size: 15px;" class="form-label">Charge</span>
+                                <input class="form-control" minlength="1" name="charge" type="number" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-group">
+                                <span style="font-family: oswald;font-size: 15px;" class="form-label">Number of Units</span>
+                                <input class="form-control" name="no_units" type="number" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-group">
+                                <span style="font-family: oswald;font-size: 15px;" class="form-label">Available Units</span>
+                                <input class="form-control" name="available_units" type="number" required>
+                            </div>
+                        </div>
+                        <div class="form-btn">
+                            <button style="font-family: oswald;font-size: 15px;" type="submit" class="submit-btn">Generate Unit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <div class="container-fluid">
 
-    <div class="container" style="margin-top: 100px;margin-bottom: 100px;">
-        <div class="col">
-            <div class="card">
-                <div class="card-body gradient-custom" style="border-radius: 5px;">
-                    <form action="" method="POST">
-                        {% csrf_token %}
-                    <!-- <div class="col-md-4 form-group">
-                        <h3 class="text-dark">Add Unit</h3>
-                        <hr>
-                        <label for="type">Storage Type</label>
-                        {{form.type|append_attr:"class:form-control"}}
-                    </div>
-                    <div class="col-md-4 form-group">
-                        <label for="charge">Charge</label>
-                        {{form.charge|append_attr:"class:form-control"}}
-                        <br> -->
-                        {{form|crispy}}
-                        <button class='btn btn-primary' type="submit">Submit</button>
-                    </div>
-                </form>
+    <h1 class="text-center mt-4">Storage Types</h1><br>
+    <div class="row mb-5">
+        {% for storage in storages %}
+        <div class="col-lg ">
+            <div style="width: 180px;height: 250px;" class="profile-card-2"><img
+                    src="https://images.pexels.com/photos/4969107/pexels-photo-4969107.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+                    class="img img-fluid">
+                <div style="font-size: 25px;" class="profile-name"><a class="text-capitalize mt-5"
+                        href="{% url 'units' '2' %}">{{storage.type}}</a></div>
+                <div class="profile-username" style="margin-bottom: -20px;">
+                    <br> Total Units: {{storage.no_units}} <br>
+                    Available Units: {{storage.available_units}}
+                </div>
             </div>
         </div>
-    </div><br>
-    <h3 class="text-center">Storage Types</h3><br>
-     <div class="row">
-         {% for storage in storages %}
-         <div class="col-sm">
-             <div style="width: 180px;height: 250px;" class="profile-card-2"><img src="https://images.pexels.com/photos/4969107/pexels-photo-4969107.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="img img-fluid">
-                 <div style="font-size: 25px;" class="profile-name text-center"><a href="{% url 'units' 'bonded_storage' %}">{{storage.type}} </a></div>
-                 <div class="profile-username"> Total units: {{storage.no_units}} <br> Available: {{storage.available_units}}</div>
-             </div>
-         </div>
-         {% endfor%}
-         <div class="col-sm">
-             <div style="width: 180px;height: 250px;" class="profile-card-2"><img src="https://images.pexels.com/photos/4969107/pexels-photo-4969107.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="img img-fluid">
-                 <div style="font-size: 25px;" class="profile-name"><a href="{% url 'units' 'cold_storage' %}">Cold <br> Storage</a></div>
-                 <div class="profile-username">Booked Units: {{cold_units.count}}</div>
-             </div>
-         </div>
-     </div>
+        {% endfor%}
     </div>
-    
-    
 </div>
 
 

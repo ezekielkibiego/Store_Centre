@@ -23,25 +23,116 @@
 </div>
 
 
-
-
-
 <div class="container-fluid" style="background-color: azure;">
     <div class="row justify-content-center">
-        <div class="col-11 col-sm-10 col-md-10 col-lg-6 col-xl-5 text-center p-0 mt-3 mb-2">
-            <div class="card px-0 pt-4 pb-0 mt-3 mb-3" style="box-shadow: 0px 0px 2px black;">
-                <div class="container">
-                    <h2 id="heading">Staff Registration</h2>
-                    <p>Make Sure To Fill All The Form fields</p>
-                    <form action="{% url 'staff_register' %}" method="post" id="msform">
-                        {% csrf_token %}
-                        {% bootstrap_form form %}
-                        <button class="btn btn-primary btn-sm btn-sm mt-4" style="margin-top:10px;border-radius: 0px;"
-                            type="submit">Submit</button>
-                    </form>
+      <div class="col-11 col-sm-10 col-md-10 col-lg-6 col-xl-5 text-center p-0 mt-3 mb-2">
+        <div class="card px-0 pt-4 pb-0 mt-3 mb-3" style="box-shadow: 0px 0px 2px black;">
+          <div class="container">
+            <h2 id="heading">Staff Registration</h2>
+            <p>Make Sure To Fill All The Form fields</p>
+            <form action="{% url 'staff_register' %}" method="post" id="msform">
+              {% csrf_token %}
+              <!-- progressbar -->
+              <ul id="progressbar">
+                <li class="active" id="personal"><strong>Personal</strong></li>
+                <li id="account"><strong>Account</strong></li>
+                <li id="payment"><strong>Contact</strong></li>
+                <li id="confirm"><strong>Finish</strong></li>
+              </ul>
+              <div class="progress">
+                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemin="0"
+                  aria-valuemax="100"></div>
+              </div> <br>
+  
+  
+              <fieldset>
+                <div class="form-card">
+                  <div class="row">
+                    <div class="col-7">
+                      <h2 class="fs-title">Personal Information:</h2>
+                    </div>
+                    <div class="col-5">
+                      <h2 class="steps">Step 1 - 4</h2>
+                    </div>
+                  </div>
+                  {% render_field form.first_name|append_attr:"" placeholder="First Name" %}
+                  {% render_field form.last_name|append_attr:"" placeholder="Last Name" %}
+                  {% render_field form.username|append_attr:"" placeholder="User Name" %}
+                  <small class="text-left">Already have an account ?</small>
+                  <a class="text-info" href="{% url 'staff_login' %}">Login</a>
                 </div>
-            </div>
+                <input type="button" style="border-radius: 5px;" name="next" class="next action-button" value="Next" />
+              </fieldset>
+              <fieldset>
+                <div class="form-card">
+                  <div class="row">
+                    <div class="col-7">
+                      <h2 class="fs-title">Account Encryption:</h2>
+                    </div>
+                    <div class="col-5">
+                      <h2 class="steps">Step 2 - 4</h2>
+                    </div>
+                  </div>
+                  <label class="fieldlabels">Password.: *</label>
+                  {{form.password1}}
+                  <label class="fieldlabels">Confirm Password.: *</label>
+                  {{form.password2}}
+                </div>
+                <input type="button" style="border-radius: 5px;" name="next" class="next action-button" value="Next" />
+                <input type="button" style="border-radius: 5px;" name="previous" class="previous action-button-previous"
+                  value="Previous" />
+              </fieldset>
+              <fieldset>
+                <div class="form-card">
+                  <div class="row">
+                    <div class="col-7">
+                      <h2 class="fs-title">Almost There</h2>
+                    </div>
+                    <div class="col-5">
+                      <h2 class="steps">Step 3 - 4</h2>
+                    </div>
+                  </div>
+                  {% render_field form.email|append_attr:"" placeholder="Email" %}
+                  {% render_field form.phone|append_attr:"" placeholder="Designation" %}
+                </div>
+                <input type="button" style="border-radius: 5px;" name="next" class="next action-button" value="Next" />
+                <input style="margin-left: 10px;border-radius: 5px;" type="button" name="previous"
+                  class="previous float-left action-button-previous " value="Previous" />
+              </fieldset>
+              <fieldset>
+                <div class="form-card">
+                  <div class="row">
+                    <div class="col-7">
+                      <h2 class="fs-title">Finish:</h2>
+                    </div>
+                    <div class="col-5">
+                      <h2 class="steps">Step 4 - 4</h2>
+                    </div>
+                  </div> <br><br>
+                  <h2 class="purple-text text-center"><strong>SUCCESS !</strong></h2> <br>
+                  <div class="row justify-content-center">
+                    <div class="col-3"> <img src="/static/images/signup/signup.png" class="fit-image"> </div>
+                  </div> <br><br>
+                  <div class="row justify-content-center">
+                    <div class="col-7 text-center">
+                      <h5 class="purple-text text-center">You're One Click Away From Creation</h5>
+                      <small>* make sure you fill all required fields before clicking finish</small>
+                    </div>
+                  </div>
+                </div>
+                <button class="btn btn-primary btn-sm btn-sm mt-4 previous" style="margin-top:10px;border-radius: 0px;"
+                  type="button" name="previous">Back</button>
+                <button class="btn btn-primary btn-sm btn-sm mt-4" style="margin-top:10px;border-radius: 0px;"
+                  type="submit">Submit</button>
+  
+              </fieldset>
+            </form>
+          </div>
         </div>
+      </div>
     </div>
-</div>
+  </div>
+
+
+
 {% endblock %}

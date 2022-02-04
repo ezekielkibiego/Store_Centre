@@ -1,10 +1,4 @@
 
-
-
-
-/*//////////////////////////////////////////////////////////////////
-[ FONT ]*/
-
 @font-face {
   font-family: Poppins-Regular;
   src: url('../fonts/poppins/Poppins-Regular.ttf'); 
@@ -24,9 +18,6 @@
   font-family: Montserrat-Bold;
   src: url('../fonts/montserrat/Montserrat-Bold.ttf'); 
 }
-
-/*//////////////////////////////////////////////////////////////////
-[ RESTYLE TAG ]*/
 
 * {
 	margin: 0px; 
@@ -474,3 +465,42 @@ iframe {
   /* background: linear-gradient(to right bottom, rgba(206, 206, 206, 0.713), rgba(51, 52, 53, 0.713)) */
 }
 
+
+.gradient-custom3 {
+  /* fallback for old browsers */
+  background: #b6af98;
+
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(to right bottom, rgba(13, 14, 14, 0.713), rgba(222, 225, 228, 0.713));
+
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(to right bottom, rgba(13, 14, 14, 0.713), rgba(222, 225, 228, 0.713))
+  /* background: linear-gradient(to right bottom, rgba(206, 206, 206, 0.713), rgba(51, 52, 53, 0.713)) */
+}
+
+.gradient-custom4 {
+  /* fallback for old browsers */
+  background: #b6af98;
+
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(to right bottom, rgba(222, 225, 228, 0.713), rgba(13, 14, 14, 0.713));
+
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(to right bottom, rgba(222, 225, 228, 0.713), rgba(13, 14, 14, 0.713))
+  /* background: linear-gradient(to right bottom, rgba(206, 206, 206, 0.713), rgba(51, 52, 53, 0.713)) */
+}
+
+
+
+
+.gradient-custom5 {
+  /* fallback for old browsers */
+  background: #b6af98;
+
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(to right bottom, rgb(117, 255, 48), rgb(7, 106, 255));
+
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(to right bottom, rgb(117, 255, 48), rgb(42, 170, 255))
+  /* background: linear-gradient(to right bottom, rgba(206, 206, 206, 0.713), rgba(51, 52, 53, 0.713)) */
+}

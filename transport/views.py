@@ -9,6 +9,7 @@ from django.template.loader import render_to_string, get_template
 from django.core.mail import EmailMessage
 from decimal import Decimal
 from paypal.standard.forms import PayPalPaymentsForm
+import re
 from django_daraja.mpesa.core import MpesaClient
 from django.http import HttpResponse, HttpResponseRedirect
 from django.http.response import JsonResponse
@@ -137,10 +138,11 @@ def stk_push_success(request, ph_number, totalAmount):
 def payment(request):
     request_transport = Transport.objects.filter(user=request.user).last()
     request_goods = Goods.objects.filter(owner=request.user).last()  
-    
+    paypal_client_id = settings.PAYPAL_CLIENT_ID
     context = {
         'request_transport': request_transport,
         'request_goods': request_goods,
+        'paypal_client_id': paypal_client_id
         
     }
     if request.method == 'POST':
@@ -164,6 +166,13 @@ def payment(request):
         request_transport.is_paid = True
         request_transport.save()
         return render (request,'success.html')
+
+    if request.GET:
+        input_value = request.GET['paypal_transaction']
+        if input_value:
+            request_transport.is_paid = True
+            request_transport.save()
+            return render (request,'success.html')
 
 
     return render(request,'payment.html', context)

@@ -25,119 +25,64 @@
     <a href="#heading" class="smoothscroll arrow-down"><span class="icon-arrow_downward"></span></a>
 </div>
 
+<section class="mt-5" style="background-image: url(/static/images/image1.png);background-repeat: no-repeat;background-size: contain;margin-left: 50px;">
 
-
-<div class="container-fluid" style="margin-top: 50px;margin-bottom: 100px;">
-    <div class="row ">
-        <div class="col-sm-2"></div>
-        <div class="">
-            <div id="enquiry" class="mt-5">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Would you Like to Request Transport Services?</h5>
-                        <button type="button" class="btn btn-primary card-link"
-                            onclick="transportFunction()">YES</button>
-                        <a href="{%url 'payment'%}" class="card-link btn btn-outline-danger">NO</a>
+    <div class="container-fluid">
+        <div class="row ">
+            <div class="col-sm-2"></div>
+            <div class="" style="margin-top: 50px;margin-bottom: 100px;margin-left: 230px;">
+                <div id="enquiry" style="margin-top: 100px;margin-bottom: 100px;">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Would you Like to Request Transport Services?</h5><br>
+                            <button style="border: 0;" type="button" class="btn bg-primary btn-primary btn-sm card-link"
+                                onclick="transportFunction()">YES <img src="/static/images/button/success.png" width="30" alt=""></button>
+                            <a href="{%url 'payment'%}" class="card-link btn btn-danger pull-right">NO <img src="/static/images/button/cancel (1).png" width="30" alt=""></a>
+                        </div>
+                    </div>
+                </div>
+                <div id="form" style="background-color: rgb(226, 226, 226);display: none;border: 1px solid rgb(162, 159, 159);margin-right: 130px;border-radius: 2px;box-shadow: 0px 0px 1px 0px black;">
+                    <div class="col">
+                        <h1 class="text-center">REQUEST TRANSPORT</h1>
+    
+                        <form method="POST" action="{%url 'request_transport'%}" class="form-group" style="margin-top: 5em;">
+                            {%if initial_units > final_units %}
+                            <h3>TRANSPORT REQUEST: PICK-UP</h3><br>
+                            {%elif initial_units < final_units %}
+                            <h3>DELIVERY TRANSPORT REQUEST: DELIVERY</h3><br>
+                            {%endif%}
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-7">
+                                    <input style="border-radius: 5px;" type="text" name="address" class="form-control" placeholder="Address"><br>
+                                </div>
+                                <div class="col-md-7">
+                                    <input style="border-radius: 5px;" type="email" name="email" class="form-control" placeholder="Email"><br>
+                                </div>
+                                <div class="col-md-7">
+                                    <input style="border-radius: 5px;" type="tel" name="phone_number" maxlength="10" minlength="10" class="form-control"
+                                        placeholder="Phone ."><br>
+                                        <button style="border-radius: 0;" type="submit" class="btn btn-success text-white pull-right">SUBMIT</button>
+                                </div>
+                                <div class="col">
+                                    <img src="/static/images/pool2.png" width="250" alt="">
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
-            <div id="form" style="display: none;">
-                <h1 class="text-center">REQUEST TRANSPORT</h1>
-                
-                <form method="POST" action="{%url 'request_transport'%}" class="form-group" style="margin-top: 5em;">
-                    {%if initial_units > final_units %}
-                    <h3>TRANSPORT REQUEST: PICK-UP</h3><br>
-                    {%elif initial_units < final_units %}
-                    <h3>DELIVERY TRANSPORT REQUEST: DELIVERY</h3><br>
-                    {%endif%}
-                    {% csrf_token %}
-                    {{form|crispy}}
-                    <button type="submit" class="btn btn-success">SUBMIT</button>
-                </form>
-            </div>
-            <!-- <div id="form" style="display: none;background-image: url(/static/images/yellow-forklift-with-empty-fork-parking-white-background-transportation-industrial-concept-copy-space_10307-1385.jpg);background-repeat: no-repeat;background-position-x: -205px;">
-                <form method="POST" action="{%url 'request_transport'%}" style="margin-top: 5em;">
-                    {% csrf_token %}
-                    {{form|crispy}}
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h1 class="text-center">Billing & Address</h1><br>
-                                <div class="card gradient-custom2" style="margin-top: 20px;">
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <label class="text-white" for="pick-up">Pick Up</label>
-                                                    <label class="checkbox">
-                                                        <input type="checkbox" id="Pick-Up" name="transport_type" value="Pick-Up" onclick="onlyOne(this)"/>
-                                                        <span class="success"></span>
-                                                    </label>            
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label class="text-white" for="delivery">Delivery</label>
-                                                    <label class="checkbox">
-                                                        <input type="checkbox" id="Delivery" name="transport_type" value="Delivery" onclick="onlyOne(this)"/>
-                                                        <span class="success"></span>
-                                                    </label> 
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-11">
-                                                <div class="form-group">
-                                                    {% render_field form.address|add_class:"form-control text-dark"|append_attr:"" type="text" placeholder="Enter designated address" style="opacity: 1;background-color:white;border:none;" %}
-                                                </div>
-                                            </div>
-                                            <div class="col-md-11">
-                                                <div class="form-group">
-                                                    {% render_field form.phone_number|add_class:"form-control text-dark"|append_attr:"" type="text" placeholder="Your Phone Number" style="opacity: 1;background-image:white;border:none;" %}
-                                                </div>
-                                                <button style="border-radius: 5px;" type="submit" class="btn btn-dark btn-sm text-hov-white pull-right">SUBMIT <img width="30" src="https://img.icons8.com/color/48/000000/delivery--v2.png"/> </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <h3 class="text">Transportation Docks</h3><hr><br>
-                                <h5 class="text-left">Pick-Up</h5>
-                                <p class="text-left">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam quo tempora accusantium, excepturi porro dolores ab veritatis voluptates mollitia quidem laudantium molestiae iste est officiis reiciendis consectetur quam sint autem.</p>
-                                <br><h5 class="text-left">Delivery</h5>
-                                <p class="text-left">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam quo tempora accusantium, excepturi porro dolores ab veritatis voluptates mollitia quidem laudantium molestiae iste est officiis reiciendis consectetur quam sint autem.</p>
-                            </div>
-                        </div>
-                        </div>
-                        </div>
-
-                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
-                        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="staticBackdropLabel">REQUEST CONFIRMATION</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <p>Submit form with the input details?</p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-outline-success"
-                                        data-bs-dismiss="modal">EDIT</button>
-                                    <button type="submit" class="btn btn-dark">SUBMIT</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div> -->
+            <div class="col-sm-2"></div>
         </div>
-        <div class="col-sm-2"></div>
     </div>
-</div>
+    
+</section>
+
+
+
+
+
+
 
 {%endblock%}
 {%block scripts%}
@@ -147,12 +92,12 @@
     src="https://maps.googleapis.com/maps/api/js?key={{api_key}}&callback=initAutocomplete&libraries=places&v=weekly"
     async></script>
 
-    <script>
-        function onlyOne(checkbox) {
-    var checkboxes = document.getElementsByName('transport_type')
-    checkboxes.forEach((item) => {
-        if (item !== checkbox) item.checked = false
-    })
-}
-    </script>
+<script>
+    function onlyOne(checkbox) {
+        var checkboxes = document.getElementsByName('transport_type')
+        checkboxes.forEach((item) => {
+            if (item !== checkbox) item.checked = false
+        })
+    }
+</script>
 {%endblock%}

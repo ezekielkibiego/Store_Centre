@@ -12,18 +12,19 @@
 [Victor Wachira](https://github.com/Dhyder)  <br>
 
 ## Description
+
 Store Centre is a storage facility that helps users to store either personal belongings or business goods in a secure location.
 
 ## Screenshots 
 
 ### Landing Page
 
-<img src="static/images/Screenshot (1).png">
+![Store](https://user-images.githubusercontent.com/86789832/152447136-46ef3166-2058-4ebc-bf13-3f68d16d4ba5.png)
 
 
 ##  Live Link  
  
-https://storecentre254.herokuapp.com/  
+https://storecentre254.herokuapp.com/
 
 ## Setup and Installation  
   

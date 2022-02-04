@@ -23,8 +23,9 @@
 
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,900|Oswald:300,400,700" rel="stylesheet">
   <link rel="stylesheet" href="/static/fonts/icomoon/style.css">
-
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
   <link rel="stylesheet" href="/static/css/jquery-ui.css">
   <link rel="stylesheet" href="/static/css/owl.carousel.min.css">
   <link rel="stylesheet" href="/static/css/owl.theme.default.min.css">
@@ -32,15 +33,19 @@
   <link rel="stylesheet" href="/static/css/jquery.fancybox.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
   <link rel="stylesheet" href="/static/css/bootstrap-datepicker.css">
-
+  <link href="https://fonts.googleapis.com/css?family=Kaushan+Script|Source+Sans+Pro" rel="stylesheet">
   <link rel="stylesheet" href="/static/fonts/flaticon/font/flaticon.css">
 
   <link rel="stylesheet" href="/static/css/aos.css">
-  <link rel="stylesheet" href="/static/css/animate.css">
   <link rel="stylesheet" href="/static/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="/static/css/hamburgers.min.css">
   <link rel="stylesheet" href="/static/css/select2.min.css">
   <link rel="stylesheet" href="/static/css/util.css">
+  <link rel="stylesheet" href="/static/css/themify-icons.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="/static/css/date-picker/css/datepicker.min.css">
   <link rel="stylesheet" href="/static/css/loginform.css">
   <link rel="stylesheet" href="/static/css/form.css">
   <link rel="stylesheet" href="/static/css/help.css">
@@ -49,12 +54,29 @@
   <link rel="stylesheet" href="/static/css/ionicons.min.css">
   <link rel="stylesheet" href="/static/css/flaticon.css">
   <link rel="stylesheet" href="/static/css/fess.css">
+  <link rel="stylesheet" href="/static/css/blog.css">
+  <link rel="stylesheet" href="/static/css/loader.css">
 
   {% endblock %}
 
 </head>
 
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+  <!-- Preloader Start -->
+  <div id="preloader-active">
+    <div class="preloader d-flex align-items-center justify-content-center">
+      <div class=" position-relative">
+        <div class="preloader-circle"></div>
+        <div class="preloader-img pere-text">
+          <img src="/static/images/pool2.png" width="50" alt="">
+        </div>
+        <h3 class="text-center animate__animated animate__zoomIn"><span class="text-info ">STORE </span><span
+            class="text-dark"> 2</span><span style="color: red;">5</span><span style="color: green;">4</span></h3>
+      </div>
+    </div>
+  </div>
+  <!-- Preloader Start -->
+
 
   <div class="site-wrap">
     {% include "navbar.html" %}
@@ -87,11 +109,15 @@
 
 
     <script src="/static/js/jquery-3.3.1.min.js"></script>
-    <script src="/static/js/popper.min.js"></script>
-    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script src="/static/js/loader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
     <script src="/static/js/jquery-ui.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
     <script src="/static/js/owl.carousel.min.js"></script>
+    <script src="/static/css/date-picker/js/datepicker.js"></script>
+    <script src="/static/css/date-picker/js/datepicker.en.js"></script>
     <script src="/static/js/jquery.countdown.min.js"></script>
     <script src="/static/js/bootstrap-datepicker.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
@@ -104,6 +130,7 @@
     <script src="/static/js/help.js"></script>
     <script src="/static/js/main.js"></script>
     <script src="/static/js/grunt.js"></script>
+    <script src="/static/js/pass.js"></script>
     <script src="/static/js/loginform.js"></script>
     <script>
       $('.js-tilt').tilt({
@@ -124,47 +151,51 @@
           return Math.floor((Math.abs(date2 - date1)) / (1000 * 60 * 60 * 24));
         }
         total = function () {
-         
+
           var departure = $('#departure_date').val();
           var arrival = $('#arrival_date').val();
-          
+
           var units = $('#no_of_units').val();
 
-        
+
           no_of_days = findDayDifference(departure, arrival)
           total_cost = no_of_days * charge * units;
           $('#total_cost').attr('value', total_cost);
 
         }
-        
+
         //set date values to today on load
         $('#departure_date').val(new Date().toDateInputValue());
         $('#arrival_date').val(new Date().toDateInputValue());
 
-        var charge =$("#id_storage_type").find('option:selected').attr('charge')
+        var charge = $("#id_storage_type").find('option:selected').attr('charge')
         var units = 0;
         total()
 
         $("#id_storage_type").change(function () {
-            var element = $(this).find('option:selected');
-            value= element.attr("value")
-            console.log(typeof value)
-            charge = parseInt(element.attr("charge"));
-            total();
-          });
-        $("#no_of_units").on('input',function () {
-            units = $(this).val();
-            console.log(units)
-            total();
-          });
-          
+          var element = $(this).find('option:selected');
+          value = element.attr("value")
+          console.log(typeof value)
+          charge = parseInt(element.attr("charge"));
+          total();
+        });
+        $("#no_of_units").on('input', function () {
+          units = $(this).val();
+          console.log(units)
+          total();
+        });
 
-        
+
+        $(document).ready(function () {
+          if (document.cookie.indexOf("FooBar=true") == -1) {
+            document.cookie = "FooBar=true; max-age=86400"; // 86400: seconds in a day
+            $('#MyModal').modal('show');
+          }
+        });
 
 
 
       });
-
     </script>
 
 

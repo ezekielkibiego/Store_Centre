@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load bootstrap4 %}
 {% block title %} Edit Profile {% endblock %}
+{%load widget_tweaks%}
 
 {% block css %}
 {% endblock %}
@@ -26,7 +27,7 @@
     <a href="#eprofile" class="smoothscroll arrow-down"><span class="icon-arrow_downward"></span></a>
 </div>
 
-
+<!-- 
 <section id="eprofile" class="vh-100" style="background-color: #f4f5f7;">
 
     <div class="container">
@@ -36,8 +37,10 @@
                 <form action="" method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
                     <fieldset class="form-group">
-                    
-                    {% bootstrap_form form %}
+                    <div class="form-group">
+
+                        {% bootstrap_form form %}
+                    </div>
                     </fieldset>
                     <div class="form-group">
                         <input type="submit" class="btn btn-outline-dark bg-dark text-white" value="Update" />
@@ -49,83 +52,100 @@
 
     </div>
 </section>
+ -->
 
-
-
-
-
-
-<!-- <div class="container">
-    <form method="POST"> {% csrf_token %}
-<div class="row mt-4">
-    <div class="form-group col-md-6">
-        <label><i style="font-weight: bold;">Email</i></label>
-        <input type="email" class="form-control mt-2" name="email" value="{{user.email}}">
+<!-- 
+<div class="container">
+    <div class="row">
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <div class="col">
+                    <label class="text-secondary" for="pick-up">Verified</label>
+                    <label class="checkbox">
+                        <input type="checkbox" id="verified" name="verified" value="verified" required/>
+                        <span class="info"></span>
+                    </label>            
+                </div>
+                <div class="col">
+                    {% render_field form.profile_photo|add_class:"form-control" %}
+                </div>
+                <div class="col">
+                    {% render_field form.bio|add_class:"form-control" %}
+                </div>
+                <div class="col">
+                    {% render_field form.location|add_class:"form-control" %}
+                </div>
+                <div class="col">
+                    {% render_field form.email|add_class:"form-control" %}
+                </div>
+                <div class="col">
+                    {% render_field form.phone|add_class:"form-control" %}
+                </div>
+                <button class="btn btn-info btn-sm">Submit</button>
+            </form>
+        </div>
     </div>
-    <div class="form-group col-md-6">
-        <label><i style="font-weight: bold;">Mobile Number</i></label>
-        <input type="number" class="form-control mt-2" name="phone" value="{{user.student.phone}}">
-    </div>
-</div>
-
-<div class="row mt-4">
-    <div class="form-group col-md-6">
-        <label><i style="font-weight: bold;">Location Name</i></label>
-        <input type="text" class="form-control mt-2" name="branch" value="{{user.client.client}}">
-    </div>
-    
-</div>
-
-<div class="row mt-4">
-    
-    </div>
-    <button type="submit" class="btn btn-outline-primary mt-5">Update Profile</button>
-</form>
 </div> -->
 
 
 
 
 
-<!-- <section id="eprofile" class="vh-100" style="background-color: #f4f5f7;">
-    <div class="container py-5 h-100">
+
+
+
+<section id="eprofile" class="vh-100" style="background-color: #f4f5f7;">
+    <div class="container-fluid py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="col col-lg-6 mb-4 mb-lg-0">
+            <div class="col col-lg-10 mb-4 mb-lg-0">
                 <div class="card mb-3" style="border-radius: .5rem;">
                     <div class="row g-0">
-                        <div class="col-md-4 gradient-custom text-center text-white"
+                        <div class="col-md-4 bg-dark text-center text-white"
                             style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
-                            <img src="{{user.client.image.url}}" alt="Avatar"
-                                class="img img-responsive rounded-circle my-5" width="150px" height="150px" />
+                            {% if profile.profile_photo %}
+                            <img src="{{profile.profile_photo.url}}" width="200" class="mt-5 mb-3 rounded-circle img-fluid" title="" alt="">
+                            {%else%}
+                            <img src="https://bootdey.com/img/Content/avatar/avatar7.png" class="rounded-circle" title="" alt="">
+                            {% endif %}
                             <h5>{{user}}</h5>
                             <p>@store.com</p>
                             <a class="text-light" href="/profile/"> Profile <i class="fa fa-caret-left mb-5"></i></a>
                         </div>
-                        <div class="col-md-8">
+                        <div class="gradient-custom4 col-md-8">
                             <div class="card-body p-4">
-                                <h2>EDIT PROFILE</h2>
+                                <h2 class="text-center">EDIT PROFILE</h2>
                                 <hr class="mt-2 mb-3">
-                                <form method="POST"> {% csrf_token %}
+                                <form action="" method="post" enctype="multipart/form-data">
+                                    {% csrf_token %}
                                     <div class="row pt-1">
                                         <div class="col-12 mb-3">
-                                            <h6>Email</h6>
-                                            <input type="email" class="form-control mt-2" required name="email"
-                                                value="{{user.email}}">
+                                            <h6>Profile Picture</h6>
+                                            <input style="border-radius: 50px;background-color: rgb(255, 255, 255);" type="file" class="form-control" id="profile_photo" name="profile_photo">
                                         </div>
                                         <div class="col-12 mb-3">
-                                            <h6>Mobile Number</h6>
-                                            <input type="tel" class="form-control mt-2" required name="phone"
-                                                value="{{user.student.phone}}">
+                                            <label for="bio">Bio</label>
+                                            <textarea style="border-radius: 10px;background-color: rgb(255, 255, 255);" name="bio" class="form-control" maxlength="800" required id="bio" cols="55" rows="5" placeholder='{{profile.bio}}'></textarea>
                                         </div>
                                         <div class="col-12 mb-3">
-                                            <h6>Location Name</h6>
-                                            <input type="text" class="form-control mt-2" required name="branch"
-                                                value="{{user.client.client}}">
+                                            <input style="border-radius: 10px;background-color: rgb(255, 255, 255);" type="email" class="form-control" name="email" placeholder="Email" value={{profile.email}}>
+                                        </div>
+                                        <div class="col-12 mb-3">
+                                            <input style="border-radius: 10px;background-color: rgb(255, 255, 255);" type="tel" class="form-control" name="phone" placeholder="Phone No." value={{profile.phone}}>
+                                        </div>
+                                        <div class="col-12 mb-3">
+                                            <input style="border-radius: 10px;background-color: rgb(255, 255, 255);" type="text" class="form-control" name="location" placeholder="Location" value={{profile.location}}>
+                                        </div>
+                                        <div class="col-12 mb-3">
+                                            <label class="text-secondary" for="pick-up">Verified</label>
+                                            <label class="checkbox">
+                                                <input type="checkbox" id="verified" name="verified" value="verified" required/>
+                                                <span class="info"></span>
+                                            </label>            
                                         </div>
                                     </div>
                                     <hr class="mt-2 mb-3">
-                                    <button class="btn btn-dark btn-sm pull-right">UPDATE <i
-                                            class="fa fa-cogs"></i></button><br><br>
+                                    <button type="submit" style="border-radius: 0;" class="btn btn-light btn-sm pull-right"><strong>UPDATE </strong><img src="/static/images/hoverable/cloud-computing.png" width="20"></button><br><br>
                                 </form>
                             </div>
                         </div>
@@ -135,6 +155,5 @@
         </div>
     </div>
     </div>
-</section> -->
-
+</section>
 {% endblock %}
