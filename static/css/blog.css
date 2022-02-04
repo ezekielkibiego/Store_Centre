@@ -1587,44 +1587,6 @@
     height: 100% !important
 }
 
-.modal-message .modal-dialog {
-    position: absolute;
-    top: 36%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%) !important;
-    margin: 0px;
-    max-width: 500px;
-    width: 100%
-}
-
-.modal-message .modal-dialog .modal-content .modal-header {
-    text-align: center;
-    display: block;
-    border-bottom: none;
-    padding-top: 50px;
-    padding-bottom: 50px
-}
-
-.modal-message .modal-dialog .modal-content .modal-header .close {
-    position: absolute;
-    right: -15px;
-    top: -15px;
-    padding: 0px;
-    color: #fff;
-    opacity: 1;
-    cursor: pointer
-}
-
-.modal-message .modal-dialog .modal-content .modal-header h2 {
-    display: block;
-    text-align: center;
-    padding-bottom: 10px
-}
-
-.modal-message .modal-dialog .modal-content .modal-header p {
-    display: block
-}
-
 .contact-section {
     padding: 130px 0 100px
 }
